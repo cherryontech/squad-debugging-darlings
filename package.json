@@ -1,0 +1,28 @@
+{
+  "name": "squad-debugging-darlings",
+  "version": "1.0.0",
+  "description": "still debuggin shit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cherryontech/squad-debugging-darlings.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cherryontech/squad-debugging-darlings/issues"
+  },
+  "homepage": "https://github.com/cherryontech/squad-debugging-darlings#readme",
+  "dependencies": {
+    "eslint": "^8.34.0",
+    "prettier": "^2.8.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "jest": "^29.4.3"
+  }
+}
