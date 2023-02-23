@@ -19,27 +19,34 @@ app.post("/auth/signup", async (req, res) => {
   const { email, password, password_confirm } = req.body;
   // validate the data here the email should be an actual email, password should be crypted
   if (password === password_confirm) {
-    try {
-      const cryptedPassword = await bcrypt.hash(password, 10); // use await to get the hashed password
-      const userId = uuidv4();
-      const user = {
-        userId: userId,
-        userEmail: email,
-        userPassword: cryptedPassword
-      };
-      console.log({user})
-      //save it in the json file
-      res.status(201).json({
-        message: "User created successfully!",
-        user: user
-      });
-
-    }
-    catch (error) {
-      console.log(`error occurred ${error}`)
-    }
+      if(password.length > 8) {
+          try {
+              const cryptedPassword = await bcrypt.hash(password, 10); // use await to get the hashed password
+              const userId = uuidv4();
+              const user = {
+                  userId: userId,
+                  userEmail: email,
+                  userPassword: cryptedPassword
+              };
+              console.log({user})
+              //save it in the json file
+              res.status(201).json({
+                  message: "User created successfully!",
+                  user: user
+              });
+          }
+          catch (error) {
+              console.log(`error occurred ${error}`)
+          }
+      } else {
+          res.status(500).json({
+              message: "Password should be 8 characters or more"
+          });
+      }
   } else { //password doesn't match
-
+      res.status(500).json({
+          message: "Password doesn't match"
+      });
   }
 })
 
