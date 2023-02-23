@@ -14,29 +14,35 @@ app.get("/", (req, res) => {
   res.send("Hello, world!");
 });
 
-// POST endpoint to be able to signup the users
-app.post("/auth/signup", (req, res) => {
-  const { email, password, password_confirm } = req.body
+//try catch
+app.post("/auth/signup", async (req, res) => {
+  const { email, password, password_confirm } = req.body;
   // validate the data here the email should be an actual email, password should be crypted
   if (password === password_confirm) {
-    cryptedPassword = bcrypt.hash(password)
-  }
+    try {
+      const cryptedPassword = await bcrypt.hash(password, 10); // use await to get the hashed password
+      const userId = uuidv4();
+      const user = {
+        userId: userId,
+        userEmail: email,
+        userPassword: cryptedPassword
+      };
+      console.log({user})
+      //save it in the json file
+      res.status(201).json({
+        message: "User created successfully!",
+        user: user
+      });
 
-  try {
-    const userId = uuidv4();
-    user = {
-      userId: userId,
-      userEmail: email,
-      userPassword: cryptedPassword
     }
-    console.log({user})
-    //save it in the json file
+    catch (error) {
+      console.log(`error occurred ${error}`)
+    }
+  } else { //password doesn't match
 
-  }
-  catch (error) {
-    console.log(`error occured ${error}`)
   }
 })
+
 
 app.listen(port, () => {
   console.log("welcome to Mentor-Mentee matching platform");
