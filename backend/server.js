@@ -5,8 +5,11 @@ const bcrypt = require("bcryptjs");
 
 //for authentication token
 require('dotenv').config();
-const jwt = require('jsonwebtoken');
+// const jwt = require("express-jwt");
+const jwt  = require('jsonwebtoken');
 const secretKey = process.env.JWT_SECRET;
+
+const auth = require("./auth");
 
 const fs = require("fs");
 const port = 3000;
@@ -107,7 +110,7 @@ app.post("/auth/signup", async (req, res) => {
 });
 
 //log in
-app.post("/auth/signin", async (req, res) => {
+app.post("/auth/login", async (req, res) => {
     const { email, password } = req.body;
 
     fs.readFile(userDB, 'utf-8', (err, data) => {
@@ -135,9 +138,16 @@ app.post("/auth/signin", async (req, res) => {
                 { userId: user.userId, userEmail: user.userEmail },
                 secretKey
             );
-            res.status(200).json({ message: 'Login successful', token: token });
+            res.status(200)
+                .header('Authorization', `Bearer ${token}`)
+                .json({ message: 'Login successful', token: token });
         });
     });
+});
+
+app.get("/auth/welcome", auth, (req, res) => {
+    console.log("welcome req", req.user)
+    res.status(200).json({ message: `Congrats! You're authenticated. ${req.user.userEmail}` });
 });
 
 app.listen(port, () => {
