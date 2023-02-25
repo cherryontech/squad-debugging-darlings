@@ -8,7 +8,7 @@ const regexEnum = require("./regexEnum");
 app.use(express.urlencoded({ extended: "false" }));
 app.use(express.json());
 
-userDB = "../database/user.json";
+userDB = "./database/user.json";
 
 app.get("/", (req, res) => {
   res.send("Hello, world!");
@@ -30,7 +30,7 @@ app.post("/auth/signup", async (req, res) => {
       !password.match(regexEnum.SPECIAL_CHAR)
     ) {
       try {
-        const cryptedPassword = await bcrypt.hash(password, 10); // use await to get the hashed password
+        const cryptedPassword = await bcrypt.hash(password, 10);
         const userId = uuidv4();
         const user = {
           userId: userId,
@@ -38,19 +38,37 @@ app.post("/auth/signup", async (req, res) => {
           userPassword: cryptedPassword,
         };
         console.log({ user });
-        //save it in the json file
-        res.status(201).json({
-          message: "User created successfully!",
-          user: user,
-        });
 
-        fs.appendFile("./database/user.json",  JSON.stringify(user, null, 2) , (err) => {
-          if (err) {
-            console.error(err);
-            return;
-          }
-          console.log("Response saved to user.json");
-        });
+        fs.readFile(userDB, 'utf-8', (err, data) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ message: 'Error reading user data' });
+            }
+
+            let users = JSON.parse(data);
+
+            const userExists = users.length && users.some(user => user.userEmail === email);
+            if (userExists) {
+                return res.status(400).json({ message: 'Email already exists' });
+            }
+
+            users.push(user);
+
+            // Convert the users array to JSON format
+            const usersJSON = JSON.stringify(users, null, 2);
+            fs.writeFile(userDB, usersJSON, (err) => {
+                if (err) {
+                    console.error(err);
+                    return res.status(500).json({ message: "Error writing user data" });
+                }
+                console.log("Response saved to user.json");
+
+                return res.status(201).json({
+                    message: "User created successfully!",
+                    user: user,
+                });
+            });
+        })
       } catch (error) {
         console.log(`error occurred ${error}`);
       }
