@@ -1,1 +1,5 @@
-{"name":"John","age":30,"email":"john@example.com"}
+{
+  "userId": "d7545cc8-8755-4428-be2d-09e29ed7b991",
+  "userEmail": "test@gmail.com",
+  "userPassword": "$2a$10$E5d1V7cE2.1Ohsq9NeF6BOfgJIQSwVw/tN6G0eUmcqJZtJqI/639W"
+}

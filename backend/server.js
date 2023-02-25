@@ -4,6 +4,7 @@ const app = express();
 const bcrypt = require("bcryptjs");
 const fs = require("fs");
 const port = 3000;
+const regexEnum = require("./regexEnum");
 app.use(express.urlencoded({ extended: "false" }));
 app.use(express.json());
 
@@ -17,21 +18,16 @@ app.get("/", (req, res) => {
 app.post("/auth/signup", async (req, res) => {
   const { email, password, password_confirm } = req.body;
   function isEmail(email) {
-    let emailRegex = /\S+@\S+\.\S+/;
-    return emailRegex.test(email);
+    return regexEnum.EMAIL.test(email);
   }
   let isValidEmail = isEmail(email);
-  let upperCaseRegex = /[A-Z]/;
-  let numberRegex = /[0-9]/;
-  let specialCharRegex = /[^a-zA-Z0-9]/;
   // validate the data here the email should be an actual email, password should be crypted
   if (isValidEmail && password === password_confirm) {
-    //Check if password length > 8
     if (
       password.length >= 8 &&
-      password.match(upperCaseRegex) &&
-      password.match(numberRegex) &&
-      !password.match(specialCharRegex)
+      password.match(regexEnum.UPPER_CASE) &&
+      password.match(regexEnum.NUMBER) &&
+      !password.match(regexEnum.SPECIAL_CHAR)
     ) {
       try {
         const cryptedPassword = await bcrypt.hash(password, 10); // use await to get the hashed password
@@ -47,7 +43,8 @@ app.post("/auth/signup", async (req, res) => {
           message: "User created successfully!",
           user: user,
         });
-        fs.writeFile("./database/user.json", user, (err) => {
+
+        fs.appendFile("./database/user.json",  JSON.stringify(user, null, 2) , (err) => {
           if (err) {
             console.error(err);
             return;
@@ -61,15 +58,15 @@ app.post("/auth/signup", async (req, res) => {
       res.status(400).json({
         message: "Password should be 8 characters or more",
       });
-    } else if (!password.match(upperCaseRegex)) {
+    } else if (!password.match(regexEnum.UPPER_CASE)) {
       res.status(400).json({
         message: "Password should have at least one upper",
       });
-    } else if (!password.match(numberRegex)) {
+    } else if (!password.match(regexEnum.NUMBER)) {
       res.status(400).json({
         message: "Password should have at least one number",
       });
-    } else if (password.match(specialCharRegex)) {
+    } else if (password.match(regexEnum.SPECIAL_CHAR)) {
       res.status(400).json({
         message: "Password should not have any symbol",
       });
@@ -79,7 +76,6 @@ app.post("/auth/signup", async (req, res) => {
       message: "Wrong email format",
     });
   } else {
-    //password doesn't match
     res.status(400).json({
       message: "Password doesn't match",
     });
