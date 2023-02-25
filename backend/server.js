@@ -2,6 +2,12 @@ const { v4: uuidv4 } = require("uuid");
 const express = require("express");
 const app = express();
 const bcrypt = require("bcryptjs");
+
+//for authentication token
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
+const secretKey = process.env.JWT_SECRET;
+
 const fs = require("fs");
 const port = 3000;
 const regexEnum = require("./regexEnum");
@@ -14,7 +20,7 @@ app.get("/", (req, res) => {
   res.send("Hello, world!");
 });
 
-//try catch
+//sign up
 app.post("/auth/signup", async (req, res) => {
   const { email, password, password_confirm } = req.body;
   function isEmail(email) {
@@ -100,6 +106,41 @@ app.post("/auth/signup", async (req, res) => {
   }
 });
 
+//log in
+app.post("/auth/signin", async (req, res) => {
+    const { email, password } = req.body;
+
+    fs.readFile(userDB, 'utf-8', (err, data) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).json({ message: 'Error reading user data' });
+        }
+        const users = JSON.parse(data);
+
+        const user = users.find((u) => u.userEmail === email);
+        if (!user) {
+            return res.status(401).json({ message: 'Email does not exist' });
+        }
+
+        bcrypt.compare(password, user.userPassword, (err, result) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).json({ message: 'Error comparing passwords' });
+            }
+            if (!result) {
+                return res.status(401).json({ message: 'Wrong password' });
+            }
+
+            const token = jwt.sign(
+                { userId: user.userId, userEmail: user.userEmail },
+                secretKey
+            );
+            res.status(200).json({ message: 'Login successful', token: token });
+        });
+    });
+});
+
 app.listen(port, () => {
   console.log("welcome to Mentor-Mentee matching platform");
 });
+
