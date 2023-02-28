@@ -17,6 +17,9 @@
     "url": "https://github.com/cherryontech/squad-debugging-darlings/issues"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.11.11",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
