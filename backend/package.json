@@ -1,17 +1,17 @@
 {
-  "name": "squad-debugging-darlings",
+  "name": "squad-debugging-darlings - backend",
   "version": "1.0.0",
-  "description": "still debuggin shit",
+  "description": "still debuggin shit in the backend",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./backend/server.js"
+    "start": "nodemon ./routes/server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cherryontech/squad-debugging-darlings.git"
   },
-  "author": "",
+  "author": "Jin, Susanna, Ana",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/cherryontech/squad-debugging-darlings/issues"
@@ -24,9 +24,9 @@
     "express": "^4.18.2",
     "express-jwt": "^8.4.1",
     "jsonwebtoken": "^9.0.0",
+    "nodemon": "^2.0.20",
+    "path": "^0.12.7",
     "prettier": "^2.8.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
