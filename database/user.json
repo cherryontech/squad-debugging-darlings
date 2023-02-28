@@ -13,10 +13,5 @@
     "userId": "8633bc74-e732-4ff6-8b21-86bbdf6abf1a",
     "userEmail": "test2@gmail.com",
     "userPassword": "$2a$10$MaN/KBsQnvcAXtvq.u/0HutBrSkNRAoqfRuah4iot8ruxFNSAG0UW"
-  },
-  {
-    "userId": "5fd8c74c-66a1-4380-bb14-cb95e397fe95",
-    "userEmail": "abc@example2.com",
-    "userPassword": "$2a$10$moH8Y3xazx18qEwdSglH8ePbY9p.dsKE0XcfVmsly849jDJGS7QqW"
   }
 ]

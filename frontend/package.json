@@ -1,0 +1,38 @@
+{
+  "name": "squad-debugging-darlings-frontend",
+  "version": "1.0.0",
+  "description": "still debuggin shit in the frontend",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cherryontech/squad-debugging-darlings.git"
+  },
+  "author": "Jin, Susanna, Ana",
+  "bugs": {
+    "url": "https://github.com/cherryontech/squad-debugging-darlings/issues"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "react-scripts": "^5.0.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
