@@ -10,11 +10,12 @@ const secretKey = process.env.JWT_SECRET;
 
 const fs = require("fs");
 const port = 3000;
-const regexEnum = require("./regexEnum");
+const path = require('path')
+const regexEnum = require("../constants/regexEnum");
 app.use(express.urlencoded({ extended: "false" }));
 app.use(express.json());
 
-userDB = "./database/user.json";
+const userDB = path.resolve("../database/user.json");
 
 app.get("/", (req, res) => {
   res.send("Hello, world!");
@@ -46,34 +47,34 @@ app.post("/auth/signup", async (req, res) => {
         console.log({ user });
 
         fs.readFile(userDB, 'utf-8', (err, data) => {
+          if (err) {
+            console.error(err);
+            return res.status(500).json({ message: 'Error reading user data' });
+          }
+
+          let users = JSON.parse(data);
+
+          const userExists = users.length && users.some(user => user.userEmail === email);
+          if (userExists) {
+            return res.status(400).json({ message: 'Email already exists' });
+          }
+
+          users.push(user);
+
+          // Convert the users array to JSON format
+          const usersJSON = JSON.stringify(users, null, 2);
+          fs.writeFile(userDB, usersJSON, (err) => {
             if (err) {
-                console.error(err);
-                return res.status(500).json({ message: 'Error reading user data' });
+              console.error(err);
+              return res.status(500).json({ message: "Error writing user data" });
             }
+            console.log("Response saved to user.json");
 
-            let users = JSON.parse(data);
-
-            const userExists = users.length && users.some(user => user.userEmail === email);
-            if (userExists) {
-                return res.status(400).json({ message: 'Email already exists' });
-            }
-
-            users.push(user);
-
-            // Convert the users array to JSON format
-            const usersJSON = JSON.stringify(users, null, 2);
-            fs.writeFile(userDB, usersJSON, (err) => {
-                if (err) {
-                    console.error(err);
-                    return res.status(500).json({ message: "Error writing user data" });
-                }
-                console.log("Response saved to user.json");
-
-                return res.status(201).json({
-                    message: "User created successfully!",
-                    user: user,
-                });
+            return res.status(201).json({
+              message: "User created successfully!",
+              user: user
             });
+          });
         })
       } catch (error) {
         console.log(`error occurred ${error}`);
@@ -108,39 +109,41 @@ app.post("/auth/signup", async (req, res) => {
 
 //log in
 app.post("/auth/signin", async (req, res) => {
-    const { email, password } = req.body;
+  const { email, password } = req.body;
 
-    fs.readFile(userDB, 'utf-8', (err, data) => {
-        if (err) {
-            console.error(err);
-            return res.status(500).json({ message: 'Error reading user data' });
-        }
-        const users = JSON.parse(data);
+  fs.readFile(userDB, 'utf-8', (err, data) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Error reading user data' });
+    }
+    const users = JSON.parse(data);
 
-        const user = users.find((u) => u.userEmail === email);
-        if (!user) {
-            return res.status(401).json({ message: 'Email does not exist' });
-        }
+    const user = users.find((u) => u.userEmail === email);
+    if (!user) {
+      return res.status(401).json({ message: 'Email does not exist' });
+    }
 
-        bcrypt.compare(password, user.userPassword, (err, result) => {
-            if (err) {
-                console.error(err);
-                return res.status(500).json({ message: 'Error comparing passwords' });
-            }
-            if (!result) {
-                return res.status(401).json({ message: 'Wrong password' });
-            }
+    bcrypt.compare(password, user.userPassword, (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ message: 'Error comparing passwords' });
+      }
+      if (!result) {
+        return res.status(401).json({ message: 'Wrong password' });
+      }
 
-            const token = jwt.sign(
-                { userId: user.userId, userEmail: user.userEmail },
-                secretKey
-            );
-            res.status(200).json({ message: 'Login successful', token: token });
-        });
+      const token = jwt.sign(
+        { userId: user.userId, userEmail: user.userEmail },
+        secretKey
+      );
+      res.status(200).json({
+        message: 'Login successful', token: token
+      });
     });
+  });
 });
 
 app.listen(port, () => {
-  console.log("welcome to Mentor-Mentee matching platform");
+  console.log(`welcome to Mentor-Mentee matching platform running on port: ${port}`);
 });
 
