@@ -1,4 +1,12 @@
+/* @import './CSS/fonts.css'; */
+
 .App {
     text-align: center;
-    color: blue;
+    color: black;
   }
+
+  .my-heading {
+  font-family: 'SF Pro Display', sans-serif;
+  font-weight: bold;
+  font-size: 24px;
+}

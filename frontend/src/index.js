@@ -13,7 +13,7 @@ const breakpoints = {
   // desktopWide: 1920,
 }
 
-// ReactDOM.render(<App />, document.getElementById('root'));
+//https://www.npmjs.com/package/react-breakpoints
 
 ReactDOM.render(
   <ReactBreakpoints breakpoints={breakpoints}>

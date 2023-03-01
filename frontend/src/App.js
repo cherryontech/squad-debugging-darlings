@@ -1,12 +1,21 @@
 import './App.css';
+import { useState, useEffect } from 'react';
+import SignupForm from './Components/SignupForm';
 
+// this will need to be conditionally rendered: import LoginForm from './Components/LoginForm'
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-     <h1>test</h1>
-    </div>
+    <>
+      <div>
+        <h1 className='app-title'>Get Started with Cherry On Tech!</h1>
+        <SignupForm />
+      </div>
+    </>
   );
-}
+};
+
+
 
 export default App;
+
