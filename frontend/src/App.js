@@ -19,7 +19,7 @@ const App = () => {
   return (
     <>
     <div>
-      <button onClick={toggleModal}>Sign In</button>
+      <button onClick={toggleModal}>Sign Up</button>
       {showModal && <SignupModal onClose={toggleModal} />}
     </div>
   </>

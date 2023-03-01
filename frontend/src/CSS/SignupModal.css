@@ -38,3 +38,8 @@
   font-weight: bold;
   cursor: pointer;
 }
+
+.signup-button-enabled {
+  background-color: #027800;
+  color: #FFFFFF;
+}
