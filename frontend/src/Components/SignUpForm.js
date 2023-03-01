@@ -1,4 +1,5 @@
 import { Box, Button, TextField } from '@mui/material';
+import '../CSS/SignupForm.css'
 
 
 const SignupForm = () => {
@@ -11,7 +12,7 @@ const SignupForm = () => {
   //see color palate in figma
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 4 }}>
+    <Box className='signup-box' sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 4 }}>
       <form onSubmit={handleSubmit}>
         <TextField
           label="Email"
