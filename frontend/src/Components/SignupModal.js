@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SignInModal = ({ onClose }) => {
+const SignupModal = ({ onClose }) => {
   return (
     <div className="modal">
       <div className="modal-content">
@@ -22,7 +22,7 @@ const SignInModal = ({ onClose }) => {
   );
 };
 
-export default SignInModal;
+export default SignupModal;
 
 
 // import { Box, Button, TextField } from '@mui/material';
