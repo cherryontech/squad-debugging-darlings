@@ -21,6 +21,26 @@
   flex-direction: column; 
 }
 
+.modal-content, .i {
+  margin: 0;
+  line-height: 0.2em;
+}
+
+.i {
+ font-size: 0.5em;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #333;
+}
+
+.modal-header  {
+  margin-bottom: 20px;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -49,4 +69,8 @@ input {
 .signup-button-enabled {
   background-color: #027800;
   color: #FFFFFF;
+}
+
+.account-redirect {
+  font-size: .8em;
 }
