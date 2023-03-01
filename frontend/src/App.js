@@ -1,8 +1,10 @@
 import './App.css';
 // import { useState, useEffect } from 'react';
 // import SignupForm from './Components/SignupForm';
-import Nav from './Components/Nav';
+// import Nav from './Components/Nav';
 import SignInModal from './Components/SignupForm';
+// import { Routes, Route, useLocation } from 'react-router-dom';
+
 
 import React, { useState } from 'react';
 
@@ -15,10 +17,13 @@ const App = () => {
   };
   
   return (
+    <>
+    <h1>TITLE</h1>
     <div>
       <button onClick={toggleModal}>Sign In</button>
       {showModal && <SignInModal onClose={toggleModal} />}
     </div>
+  </>
   );
 };
 
