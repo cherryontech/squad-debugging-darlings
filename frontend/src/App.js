@@ -2,7 +2,7 @@ import './App.css';
 // import { useState, useEffect } from 'react';
 // import SignupForm from './Components/SignupForm';
 // import Nav from './Components/Nav';
-import SignInModal from './Components/SignupForm';
+import SignInModal from './Components/SignUpForm';
 // import { Routes, Route, useLocation } from 'react-router-dom';
 
 
