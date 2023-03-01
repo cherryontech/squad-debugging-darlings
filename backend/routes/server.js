@@ -10,7 +10,7 @@ const secretKey = process.env.JWT_SECRET;
 
 const fs = require("fs");
 const port = 3000;
-const path = require('path')
+const path = require("path");
 const regexEnum = require("../constants/regexEnum");
 app.use(express.urlencoded({ extended: "false" }));
 app.use(express.json());
@@ -21,15 +21,21 @@ app.get("/", (req, res) => {
   res.send("Hello, world!");
 });
 
+//GET user by userID
 app.get("/:userID", (req, res) => {
-  const userID = req.params.userID;
-  const userData = JSON.parse(fs.readFileSync(userDB));
-  const user = userData.find((user) => user.userId === userID);
-  const { userId, userEmail, userPassword } = user;
-  if (!user) {
-    res.status(404).send("User not found");
-  } else {
-    res.json({ userId, userEmail, userPassword });
+  try {
+    const userID = req.params.userID;
+    const userData = JSON.parse(fs.readFileSync(userDB));
+    const user = userData.find((user) => user.userId === userID);
+    if (!user) {
+      res.status(404).send("User not found");
+    } else {
+      const { userId, userEmail, userPassword } = user;
+      res.json({ userId, userEmail, userPassword });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Internal server error");
   }
 });
 
@@ -58,31 +64,18 @@ app.post("/auth/signup", async (req, res) => {
         };
         console.log({ user });
 
-<<<<<<< HEAD:backend/server.js
         fs.readFile(userDB, "utf-8", (err, data) => {
           if (err) {
             console.error(err);
             return res.status(500).json({ message: "Error reading user data" });
-=======
-        fs.readFile(userDB, 'utf-8', (err, data) => {
-          if (err) {
-            console.error(err);
-            return res.status(500).json({ message: 'Error reading user data' });
->>>>>>> main:backend/routes/server.js
           }
 
           let users = JSON.parse(data);
 
-<<<<<<< HEAD:backend/server.js
           const userExists =
             users.length && users.some((user) => user.userEmail === email);
           if (userExists) {
             return res.status(400).json({ message: "Email already exists" });
-=======
-          const userExists = users.length && users.some(user => user.userEmail === email);
-          if (userExists) {
-            return res.status(400).json({ message: 'Email already exists' });
->>>>>>> main:backend/routes/server.js
           }
 
           users.push(user);
@@ -92,29 +85,18 @@ app.post("/auth/signup", async (req, res) => {
           fs.writeFile(userDB, usersJSON, (err) => {
             if (err) {
               console.error(err);
-<<<<<<< HEAD:backend/server.js
               return res
                 .status(500)
                 .json({ message: "Error writing user data" });
-=======
-              return res.status(500).json({ message: "Error writing user data" });
->>>>>>> main:backend/routes/server.js
             }
             console.log("Response saved to user.json");
 
             return res.status(201).json({
               message: "User created successfully!",
-<<<<<<< HEAD:backend/server.js
               user: user,
             });
           });
         });
-=======
-              user: user
-            });
-          });
-        })
->>>>>>> main:backend/routes/server.js
       } catch (error) {
         console.log(`error occurred ${error}`);
       }
@@ -150,60 +132,38 @@ app.post("/auth/signup", async (req, res) => {
 app.post("/auth/signin", async (req, res) => {
   const { email, password } = req.body;
 
-<<<<<<< HEAD:backend/server.js
   fs.readFile(userDB, "utf-8", (err, data) => {
     if (err) {
       console.error(err);
       return res.status(500).json({ message: "Error reading user data" });
-=======
-  fs.readFile(userDB, 'utf-8', (err, data) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).json({ message: 'Error reading user data' });
->>>>>>> main:backend/routes/server.js
     }
     const users = JSON.parse(data);
 
     const user = users.find((u) => u.userEmail === email);
     if (!user) {
-<<<<<<< HEAD:backend/server.js
       return res.status(401).json({ message: "Email does not exist" });
-=======
-      return res.status(401).json({ message: 'Email does not exist' });
->>>>>>> main:backend/routes/server.js
     }
 
     bcrypt.compare(password, user.userPassword, (err, result) => {
       if (err) {
         console.error(err);
-<<<<<<< HEAD:backend/server.js
         return res.status(500).json({ message: "Error comparing passwords" });
       }
       if (!result) {
         return res.status(401).json({ message: "Wrong password" });
-=======
-        return res.status(500).json({ message: 'Error comparing passwords' });
-      }
-      if (!result) {
-        return res.status(401).json({ message: 'Wrong password' });
->>>>>>> main:backend/routes/server.js
       }
 
       const token = jwt.sign(
         { userId: user.userId, userEmail: user.userEmail },
         secretKey
       );
-<<<<<<< HEAD:backend/server.js
       res.status(200).json({ message: "Login successful", token: token });
-=======
-      res.status(200).json({
-        message: 'Login successful', token: token
-      });
->>>>>>> main:backend/routes/server.js
     });
   });
 });
 
 app.listen(port, () => {
-  console.log(`welcome to Mentor-Mentee matching platform running on port: ${port}`);
+  console.log(
+    `welcome to Mentor-Mentee matching platform running on port: ${port}`
+  );
 });
