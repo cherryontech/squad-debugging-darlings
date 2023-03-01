@@ -6,7 +6,7 @@ import SignInModal from './Components/SignupForm';
 // import { Routes, Route, useLocation } from 'react-router-dom';
 
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 
 const App = () => {
