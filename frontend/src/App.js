@@ -6,7 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 //Routes need to be set up for link to work
 
 const App = () => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -15,7 +15,7 @@ const App = () => {
   return (
     <>
     <div>
-      <button onClick={toggleModal}>Sign Up</button>
+      {/* <button onClick={toggleModal}>Sign Up</button> */}
       {showModal && <SignupModal onClose={toggleModal} />}
     </div>
   </>
