@@ -14,7 +14,7 @@ import { Routes, Route } from 'react-router-dom';
 
 export const postNewUser = (newUser) => {
   console.log("newUser", newUser)
-   return fetch('http://localhost:3001/auth/signup', {
+   return fetch('http://localhost:3000/auth/signup', {
      method: 'POST',
      body: JSON.stringify({
        email: newUser.email,
