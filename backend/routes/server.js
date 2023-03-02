@@ -13,6 +13,13 @@ const port = 3000;
 const path = require("path");
 const regexEnum = require("../constants/regexEnum");
 app.use(express.urlencoded({ extended: "false" }));
+app.use((req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+});
 app.use(express.json());
 
 const userDB = path.resolve("../database/user.json");
@@ -23,6 +30,7 @@ app.get("/", (req, res) => {
 
 //GET user by userID
 app.get("/:userID", (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     const userID = req.params.userID;
     const userData = JSON.parse(fs.readFileSync(userDB));
@@ -41,6 +49,7 @@ app.get("/:userID", (req, res) => {
 
 //sign up
 app.post("/auth/signup", async (req, res) => {
+  console.log('Did it come to this?')
   const { email, password, password_confirm } = req.body;
   function isEmail(email) {
     return regexEnum.EMAIL.test(email);
