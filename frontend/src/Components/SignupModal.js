@@ -5,17 +5,47 @@ import { Link } from 'react-router-dom';
 
   const SignupModal = ({ onClose }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false)
+  // const [email, setEmail] = useState("")
+  // const [repeatEmail, setRepeatEmail] = useState("")
+  // const [password, setPassword] = useState("")
+  // const [repeatPassword, setRepeatPassword] = useState("")
 
-  function handleInputChange(event) {
-    const inputs = event.target.form.querySelectorAll('input[type="text"], input[type="password"], input[type="email"]');
-    let isAllFilled = true;
-    inputs.forEach(input => {
-      if (!input.value) {
-        isAllFilled = false;
-      }
-    });
-    setIsButtonDisabled(!isAllFilled);
+  // const handleInputChange = (event) => {
+  //   const inputs = event.target.form.querySelectorAll('input[type="text"], input[type="password"], input[type="email"]');
+  //   let isAllFilled = true;
+  //   inputs.forEach(input => {
+  //     if (!input.value) {
+  //       isAllFilled = false;
+  //     }
+  //   });
+  //   setIsButtonDisabled(!isAllFilled);
+  // }
+
+   const handleSubmit = (event) => {
+  event.preventDefault();
+  if (email === repeatEmail && password === repeatPassword) {
+    console.log("did this submit?")
+    setIsFormSubmitted(true);
+  } else {
+    setIsButtonDisabled(true);
   }
+}
+
+const handleInputChange = (event) => {
+  const form = event.target.form;
+  const email = form.elements.email.value;
+  const repeatEmail = form.elements.repeatEmail.value;
+  const password = form.elements.password.value;
+  const repeatPassword = form.elements.repeatPassword.value;
+
+  const isEmailMatch = email === repeatEmail;
+  const isPasswordMatch = password === repeatPassword;
+  const isPasswordValid = /^[a-zA-Z]{8,}$/.test(password);
+
+  setIsButtonDisabled(!(isEmailMatch && isPasswordMatch && isPasswordValid));
+}
+
 
   return (
 <div className="modal">
@@ -24,7 +54,7 @@ import { Link } from 'react-router-dom';
     <div className="modal-header">
       <p>Sign Up</p>
     </div>
-    <form>
+    <form onSubmit={handleSubmit}>
       <label htmlFor="email">Email </label>
       <input onChange={handleInputChange} placeholder="info@cherry.com" type="email" id="email" />
       <label htmlFor="email"> Repeat Email </label>
@@ -36,7 +66,7 @@ import { Link } from 'react-router-dom';
       <p className="i"><span>&#9432;</span>No symbols.</p>
       <label htmlFor="password"> Repeat Password </label>
       <input onChange={handleInputChange} placeholder="your password" type="password" id="repeatPassword" />
-      <button disabled={isButtonDisabled} className={isButtonDisabled ? "signup-button-disabled" : "signup-button-enabled"} type="submit">Sign Up</button>
+      <button disabled={isButtonDisabled} className={isButtonDisabled ? "signup-button-disabled" : "signup-button-enabled"} type="submit">Register Account</button>
     </form>
     <div>
        <p>Already have an account?</p>

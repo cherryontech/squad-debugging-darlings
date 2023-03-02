@@ -1,7 +1,5 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-// import SignupForm from './Components/SignupForm';
-// import Nav from './Components/Nav';
 import SignupModal from './Components/SignupModal'
 import { Routes, Route } from 'react-router-dom';
 
