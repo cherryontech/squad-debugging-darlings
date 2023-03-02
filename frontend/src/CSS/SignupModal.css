@@ -74,3 +74,17 @@ input {
 .account-redirect {
   font-size: .8em;
 }
+
+.login-account {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.i {
+  color: black;
+}
+
+/* .error {
+  color: red;
+} */
