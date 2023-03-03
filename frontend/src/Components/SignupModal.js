@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import '../CSS/SignupModal.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SignupModal = ({ onClose }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -14,33 +14,34 @@ const SignupModal = ({ onClose }) => {
     setIsButtonDisabled(!isValid); 
   }, [email, emailConfirm, password, passwordConfirm]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (email !== emailConfirm) {
-      throw new Error('Emails do not match');
-    }  
-    if (password !== passwordConfirm) {
-      throw new Error('Passwords do not match');
-    } 
 
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password, password_confirm: passwordConfirm })
-    };
-    console.log('requestOptions:', requestOptions);
-    
-    fetch('http://localhost:3000/auth/signup', requestOptions)
-      .then(response => response.json())
-      .then(data => {
-        console.log('POST request was successful:', data);
-        setEmail('');
-        setEmailConfirm('');
-        setPassword('');
-        setPasswordConfirm('');
-      })
-      .catch(error => console.log('Error:', error));
-  }
+  //need to check if email already in account
+  //visual error handling: see mockup
+  //send a user to the login if they have already got an account
+
+useEffect(() => {
+    const isValid = email && password && passwordConfirm && password === passwordConfirm;
+    setIsButtonDisabled(!isValid); 
+  }, [email, password, passwordConfirm]);
+
+  const handleSubmit = (event) => {
+  event.preventDefault();
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password, password_confirm: passwordConfirm })
+  };
+  fetch('http://localhost:3000/auth/signup', requestOptions)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      setEmail('');
+      setEmailConfirm('');
+      setPassword('');
+      setPasswordConfirm('');
+    })
+    .catch(error => console.log(error));
+};
 
   return (
     <div className="modal">
@@ -78,3 +79,4 @@ const SignupModal = ({ onClose }) => {
 };
 
 export default SignupModal;
+

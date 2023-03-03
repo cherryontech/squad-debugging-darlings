@@ -13,5 +13,20 @@
     "userId": "8633bc74-e732-4ff6-8b21-86bbdf6abf1a",
     "userEmail": "test2@gmail.com",
     "userPassword": "$2a$10$MaN/KBsQnvcAXtvq.u/0HutBrSkNRAoqfRuah4iot8ruxFNSAG0UW"
+  },
+  {
+    "userId": "c41c3731-d0b1-4a5b-8435-c480aa873493",
+    "userEmail": "123@test.com",
+    "userPassword": "$2a$10$klcCcvtvikX9w6hZ5ZXsM.bmRxjdaBkguHzheaV/zFYWe/m5eTupK"
+  },
+  {
+    "userId": "9f7cf900-bb2b-415d-b950-73ca6f886e6f",
+    "userEmail": "happy@123.com",
+    "userPassword": "$2a$10$oviCblKsJmpaIxeXe2c7beVFzJpPulwJkswc30FKOyzyWxhpbD7M6"
+  },
+  {
+    "userId": "aeecaaba-fe49-4f46-aee9-526df0730751",
+    "userEmail": "hi@gmail.com",
+    "userPassword": "$2a$10$EM2D5nOyoULh8DPyU9biIuir.TLnXNhZFpKsYxc6dRG5Sq.wCfPFi"
   }
 ]
