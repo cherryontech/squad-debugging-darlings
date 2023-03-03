@@ -1,7 +1,8 @@
 import '../CSS/LoginModal.css';
-import {useState} from 'react';
+import { useState } from 'react';
+// import { Modal } from '@mui/material';
 
- const LoginModal = ({ onClose }) => {
+ export const LoginModal = ({ open, closeLoginModal }) => {
    const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -13,10 +14,10 @@ import {useState} from 'react';
   };
   return (
     <>
-      <div id="login-modal" className="modal">
+      <div id="login-modal" className="modal" open={open}>
         <div className="modal-content-login">
           <div className='title-login'>
-          <span className="close" onClick={onClose}>&times;</span>
+          {/* <span className="close" onClick={onClose}>&times;</span> */}
             <h1>Welcome back to Cherry on Tech!</h1>
             <p>Log in with your email</p>
             <p>Looks like you may already have an account with us. Use your credentials to log in instead.</p>
@@ -42,4 +43,3 @@ import {useState} from 'react';
   );
 };
 
-export default LoginModal;
