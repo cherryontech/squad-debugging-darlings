@@ -78,3 +78,7 @@ button {
   cursor: pointer;
 }
 
+.reminder-error {
+  background-color: red;
+  opacity: .9;
+}
