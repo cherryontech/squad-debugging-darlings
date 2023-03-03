@@ -5,27 +5,42 @@ import { Link } from 'react-router-dom';
 const SignupModal = ({ onClose }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [email, setEmail] = useState('');
+  const [emailConfirm, setEmailConfirm] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-//want to clear inputs also after submission
 
   useEffect(() => {
-    const isValid = email && password && passwordConfirm && password === passwordConfirm;
+    const isValid = email && email === emailConfirm && password && password === passwordConfirm;
     setIsButtonDisabled(!isValid); 
-  }, [email, password, passwordConfirm]);
+  }, [email, emailConfirm, password, passwordConfirm]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (email !== emailConfirm) {
+      throw new Error('Emails do not match');
+    }  
+    if (password !== passwordConfirm) {
+      throw new Error('Passwords do not match');
+    } 
+
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password, password_confirm: passwordConfirm })
     };
+    console.log('requestOptions:', requestOptions);
+    
     fetch('http://localhost:3000/auth/signup', requestOptions)
       .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.log(error));
-  };
+      .then(data => {
+        console.log('POST request was successful:', data);
+        setEmail('');
+        setEmailConfirm('');
+        setPassword('');
+        setPasswordConfirm('');
+      })
+      .catch(error => console.log('Error:', error));
+  }
 
   return (
     <div className="modal">
@@ -37,6 +52,8 @@ const SignupModal = ({ onClose }) => {
         <form onSubmit={handleSubmit}>
           <label>Email:</label>
           <input type="email" value={email} placeholder="info@cherry.com" onChange={e => setEmail(e.target.value)} />
+          <label>Confirm Email:</label>
+          <input type="email" value={emailConfirm} placeholder="info@cherry.com" onChange={e => setEmailConfirm(e.target.value)} />
           <br />
           <label>Password:</label>
           <input type="password" value={password} placeholder="your password" onChange={e => setPassword(e.target.value)} />
@@ -60,4 +77,4 @@ const SignupModal = ({ onClose }) => {
   );
 };
 
-  export default SignupModal;
+export default SignupModal;
