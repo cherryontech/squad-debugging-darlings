@@ -24,6 +24,7 @@
 .modal-content, .i {
   margin: 0;
   line-height: 0.2em;
+  width: 400px;
 }
 
 .i {
@@ -33,18 +34,38 @@
 .modal-header {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   border-bottom: 1px solid #333;
+  width: 100%;
+  margin-bottom: 20px
 }
 
 .modal-header  {
   margin-bottom: 20px;
 }
 
+.close-button {
+  background-color: transparent;
+  border: none;
+  color: black;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
 form {
   display: flex;
   flex-direction: column;
   gap: 10px; 
+}
+
+.form input:focus {
+  outline: none;
+  border-color: red;
 }
 
 label {
@@ -71,26 +92,30 @@ input {
   color: #FFFFFF;
 }
 
-.account-redirect {
-  font-size: .8em;
-}
-
 .login-account {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
+  margin-top: 20px;
 }
 
-.close-modal-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  border: none;
+.login-account p {
+  margin-right: 10px;
+}
+
+.log-in-button {
   background-color: transparent;
-  font-size: 1.5rem;
+  color: black;
+  text-decoration: underline;
+  border: none;
+  padding: 1px;
+  border-radius: 3px;
+  font-weight: bold;
   cursor: pointer;
 }
 
-.close-modal-button:focus {
-  outline: none;
+.error-message {
+  color: red;
 }
+
+

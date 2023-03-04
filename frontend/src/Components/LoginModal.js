@@ -1,7 +1,7 @@
 import '../CSS/LoginModal.css';
 import { useState } from 'react';
 
- export const LoginModal = ({ open, closeLoginModal }) => {
+ export const LoginModal = ({ closeLoginModal }) => {
    const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -9,37 +9,39 @@ import { useState } from 'react';
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // login logic needs to be here for button to be enabled for the next ticket to be done
+    // login logic in the next ticket 
   };
   return (
     <>
-      <div id="login-modal" className="modal" open={open}>
+      <div className="modal">
         <div className="modal-content-login">
           <div className='title-login'>
             <h1>Welcome back to Cherry on Tech!</h1>
             <p>Log in with your email</p>
-            <div className="reminder-error">
-              <p>Looks like you may already have an account with us. Use your credentials to log in instead.</p>
-            </div>
+          <div className="reminder-error">
+            <p>Looks like you may already have an account with us. Use your credentials to log in instead.</p>
           </div>
-          <form onSubmit={handleSubmit}>
+          </div>
+          <form className="form" onSubmit={handleSubmit}>
             <div className="form-group-login">
-              <label htmlFor="email">Email</label>
+              <label>Email</label>
               <input type="email" placeholder="info@cherry.com" id="email" name="email" required />
             </div>
             <div className="form-group-login">
-              <label htmlFor="password">Password:</label>
+              <label>Password:</label>
               <input type="password" placeholder="password" id="password" name="password" required />
             </div>
-            <button disabled={isButtonDisabled} className={isButtonDisabled ? "login-button-disabled" : "login-button-enabled"} type="submit">Log In</button>
+            <button className="login-button" disabled={isButtonDisabled} className={isButtonDisabled ? "login-button-disabled" : "login-button-enabled"} type="submit">Log In</button>
           </form>
-          <div>
+          <div className="register-account">
             <p>Not a member yet?</p>
-            <button>Register Now</button>
+            <button className='register-button'>Register Now</button>
           </div>
         </div>
       </div>
     </>
   );
 };
+
+ 
 

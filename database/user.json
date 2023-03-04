@@ -48,5 +48,25 @@
     "userId": "40330025-2b69-4c1b-a0ab-17a62ef8b5d9",
     "userEmail": "info@cher.com",
     "userPassword": "$2a$10$lUO4/N2Ij3G9fjhWSiCjOONqmJa/yBzujT/3oMj7NQJaLFJiSlheW"
+  },
+  {
+    "userId": "75309e9d-903d-43f0-8168-9c9b0b299309",
+    "userEmail": "infor@gmail.com",
+    "userPassword": "$2a$10$RmzIvCTTcVkVMBUGC5cfQORsjbZ5m0U2JJE3OKdouW.yaHM0PkGA2"
+  },
+  {
+    "userId": "66900195-e78c-47f8-972a-280295eb6853",
+    "userEmail": "happy@day.com",
+    "userPassword": "$2a$10$yQABU9n.4PLy963WdjqKq.z2YaWAWAXbL7MqAeAs2YaJZmclB04L2"
+  },
+  {
+    "userId": "c317964e-970e-496b-891d-3cfd4d20beaa",
+    "userEmail": "info@gmail.com",
+    "userPassword": "$2a$10$T/vsQOEbsiJN44G04vdSfO4yXos5OMKEaXRqoT5IhXBBFOtmJz866"
+  },
+  {
+    "userId": "f853f528-d929-4cf7-8dd4-5d61f5ec6604",
+    "userEmail": "info@cherry.com",
+    "userPassword": "$2a$10$sEqR.ReZ9DseYKZOS44mEesDLbTnSvyKlbaqrCA58vSpweMa4AxsC"
   }
 ]
