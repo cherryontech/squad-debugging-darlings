@@ -8,10 +8,43 @@ export const SignupModal = ({ open, openLoginModal, closeSignupModal }) => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [message, setMessage] = useState('');
+  const [emailMatchError, setEmailMatchError] = useState(false);
 
   useEffect(() => {
     const isValid = email && email === emailConfirm && password && password === passwordConfirm;
     setIsButtonDisabled(!isValid);
+  }, [email, emailConfirm, password, passwordConfirm]);
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const requestOptions = {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ email, password, password_confirm: passwordConfirm })
+  //   };
+  //   fetch('http://localhost:3000/auth/signup', requestOptions)
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       console.log(data);
+  //       setMessage(data.message);
+  //       if (data.message === 'Email already exists') {
+  //         closeSignupModal(false);
+  //         openLoginModal(true);
+  //       } else {
+  //         setEmail('');
+  //         setEmailConfirm('');
+  //         setPassword('');
+  //         setPasswordConfirm('');
+  //         closeSignupModal(true);
+  //       }
+  //     })
+  //     .catch(error => console.log(error));
+  // };
+
+ useEffect(() => {
+    const isValid = email && email === emailConfirm && password && password === passwordConfirm;
+    setIsButtonDisabled(!isValid);
+    setEmailMatchError(email !== '' && emailConfirm !== '' && email !== emailConfirm);
   }, [email, emailConfirm, password, passwordConfirm]);
 
   const handleSubmit = (event) => {
@@ -40,6 +73,7 @@ export const SignupModal = ({ open, openLoginModal, closeSignupModal }) => {
       .catch(error => console.log(error));
   };
 
+
   return (
     <div className="modal" open={open}>
       <div className="modal-content">
@@ -49,8 +83,10 @@ export const SignupModal = ({ open, openLoginModal, closeSignupModal }) => {
         <form onSubmit={handleSubmit}>
           <label>Email</label>
           <input type="email" value={email} placeholder="info@cherry.com" onChange={e => setEmail(e.target.value)} />
+           {emailMatchError && <p style={{ color: 'red' }}>This value is not a valid email.</p>}
           <label>Confirm Email</label>
           <input type="email" value={emailConfirm} placeholder="info@cherry.com" onChange={e => setEmailConfirm(e.target.value)} />
+          {emailMatchError && <p style={{ color: 'red' }}>Emails do not match.</p>}
           <br />
           <label>Password</label>
           <input type="password" value={password} placeholder="your password" onChange={e => setPassword(e.target.value)} />
