@@ -1,12 +1,15 @@
 const { v4: uuidv4 } = require("uuid");
 const express = require("express");
 const app = express();
+const cors = require('cors');
 const bcrypt = require("bcryptjs");
 
 //for authentication token
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
-const secretKey = process.env.JWT_SECRET;
+const secretKey = process.env.JWT_SECRET || 'xxx';
+
+const auth = require("../auth");
 
 const fs = require("fs");
 const port = 3000;
@@ -14,6 +17,7 @@ const path = require("path");
 const regexEnum = require("../constants/regexEnum");
 app.use(express.urlencoded({ extended: "false" }));
 app.use(express.json());
+app.use(cors());
 
 const userDB = path.resolve("../database/user.json");
 
@@ -160,6 +164,10 @@ app.post("/auth/signin", async (req, res) => {
       res.status(200).json({ message: "Login successful", token: token });
     });
   });
+});
+
+app.get("/auth/welcome", auth, (req,res) => {
+  res.status(200).json({ message: `Congrats! You're authenticated. ${req.user.userEmail}` });
 });
 
 app.listen(port, () => {
