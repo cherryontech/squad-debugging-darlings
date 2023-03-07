@@ -5,7 +5,7 @@ const secretKey = process.env.JWT_SECRET || 'xxx';
 module.exports = (req, res, next) => {
     const authHeader = req.headers['authorization'];
     if (!authHeader) {
-        return res.status(401).json({ message: 'Access Denied, Missing Authorization header' });
+        return res.status(401).json({ message: 'Access Denied. Missing Authorization header' });
     }
 
 

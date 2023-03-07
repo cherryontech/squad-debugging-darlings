@@ -4,6 +4,11 @@ const app = express();
 const cors = require('cors');
 const bcrypt = require("bcryptjs");
 
+//Connect with MongoDB
+const mongoose = require('mongoose');
+const usersRouter = require('./users');
+
+
 //for authentication token
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
@@ -19,12 +24,16 @@ app.use(express.urlencoded({ extended: "false" }));
 app.use(express.json());
 app.use(cors());
 
+app.use('/users', usersRouter);
+
 const userDB = path.resolve("../database/user.json");
 
 app.get("/", (req, res) => {
   res.send("Hello, world!");
 });
 
+
+//Below APIs will be deprecated and replaced by MongoDB
 //GET user by userID
 app.get("/:userID", (req, res) => {
   try {
@@ -168,6 +177,18 @@ app.post("/auth/signin", async (req, res) => {
 
 app.get("/auth/welcome", auth, (req,res) => {
   res.status(200).json({ message: `Congrats! You're authenticated. ${req.user.userEmail}` });
+});
+
+//Jinju will provide confidential
+const uri = "";
+
+mongoose.connect(process.env.MONGO_URI || uri,{
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(() => {
+  console.log('MongoDB connected');
+}).catch((err) => {
+  console.log('MongoDB connection error', err)
 });
 
 app.listen(port, () => {
