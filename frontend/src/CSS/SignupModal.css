@@ -1,31 +1,30 @@
+* {
+  font-family: 'SF Pro', sans-serif;
 
-
-
-.modal-content, .i {
-  margin: 0;
-  line-height: 0.2em;
-  width: 400px;
 }
-
-.i {
-font-family: 'SF Pro';
-  font-size: 16px;
-  line-height: 24px;
-  color: black;
-}
-
-.modal-header {
+.signup-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  border-bottom: 1px solid #333;
+  align-items: center;
+  /* position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0; */
   width: 100%;
-  margin-bottom: 20px
+  height: 100%;
+  background-color: white;
+  position: relative;
+
 }
 
-.modal-header  {
-  margin-bottom: 20px;
-}
+
+
+
+
+
+
+
+
 
 .close-button {
   background-color: transparent;
@@ -73,14 +72,7 @@ input {
   cursor: pointer;
 }
 
-.sign-up {
-font-family: "SF Pro Text", sans-serif;
-size: 17px;
-font-weight: 600;
-line-height: 22px;
-width: 61px;
-height: 22px;
-}
+
 
 .signup-button-enabled {
   background-color: #027800;
