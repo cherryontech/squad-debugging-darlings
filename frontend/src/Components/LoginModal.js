@@ -1,5 +1,7 @@
 import "../CSS/LoginModal.css";
 import { useState } from "react";
+import { Paper } from "@mui/material";
+import Nav from "./Nav";
 
 export const LoginModal = ({ closeLoginModal }) => {
   const [email, setEmail] = useState("");
@@ -11,7 +13,8 @@ export const LoginModal = ({ closeLoginModal }) => {
     // login logic in the next ticket
   };
   return (
-    <>
+    <Paper elevation={3} sx={{ width: 1 / 4 }}>
+      <Nav></Nav>
       <div className="modal">
         <div className="modal-content-login">
           <div className="title-login">
@@ -63,6 +66,6 @@ export const LoginModal = ({ closeLoginModal }) => {
           </div>
         </div>
       </div>
-    </>
+    </Paper>
   );
 };
