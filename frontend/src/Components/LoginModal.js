@@ -13,7 +13,8 @@ export const LoginModal = ({ closeLoginModal }) => {
     // login logic in the next ticket
   };
   return (
-    <Paper elevation={3} sx={{ width: 1 / 4 }}>
+    // <Paper elevation={3} sx={{ width: 1 / 4 }}>
+    <>
       <Nav></Nav>
       <div className="modal">
         <div className="modal-content-login">
@@ -66,6 +67,7 @@ export const LoginModal = ({ closeLoginModal }) => {
           </div>
         </div>
       </div>
-    </Paper>
+      {/* </Paper> */}
+    </>
   );
 };
