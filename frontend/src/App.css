@@ -1,4 +1,20 @@
+/* @import './CSS/fonts.css'; */
+
 .App {
-    text-align: center;
-    color: blue;
+  text-align: center;
+  color: black;
   }
+
+.welcome-msg-div {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 29%;
+  margin-bottom: 0;
+}
+
+.register {
+  font-size: large;
+  margin-top: -2%;
+}

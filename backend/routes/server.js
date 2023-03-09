@@ -1,7 +1,8 @@
 const { v4: uuidv4 } = require("uuid");
 const express = require("express");
-const app = express();
 const cors = require('cors');
+const app = express();
+
 const bcrypt = require("bcryptjs");
 
 //Connect with MongoDB
@@ -106,7 +107,7 @@ app.post("/auth/signup", async (req, res) => {
 
             return res.status(201).json({
               message: "User created successfully!",
-              user: user,
+              // user: user, # we DONT WANT THE USER TO SEE THE HASHED PASSWORD
             });
           });
         });

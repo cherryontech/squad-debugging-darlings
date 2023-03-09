@@ -1,25 +1,19 @@
-import logo from './logo.gif';
 import './App.css';
+import { useState } from 'react';
+import { LoginModal } from './Components/LoginModal'
+import { SignupModal } from './Components/SignupModal'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+const App = () => {
+  const [showSignupModal, setSignupShowModal] = useState(true);
+  const [showLoginModal, setLoginShowModal] = useState(false);
+  const [alertMsg, setAlertMsg] = useState('');
+
+  return (   
+    <div>
+      {showSignupModal && <SignupModal open={showSignupModal} openLoginModal={setLoginShowModal} closeSignupModal={setSignupShowModal} setAlertMsg={setAlertMsg} />}
+      {showLoginModal && !showSignupModal && <LoginModal open={showLoginModal} closeLoginModal={setLoginShowModal} alertMsg={alertMsg} setAlertMsg={setAlertMsg} />}    
     </div>
   );
-}
+};
 
 export default App;
