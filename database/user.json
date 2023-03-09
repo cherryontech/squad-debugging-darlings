@@ -15,58 +15,18 @@
     "userPassword": "$2a$10$MaN/KBsQnvcAXtvq.u/0HutBrSkNRAoqfRuah4iot8ruxFNSAG0UW"
   },
   {
-    "userId": "c41c3731-d0b1-4a5b-8435-c480aa873493",
-    "userEmail": "123@test.com",
-    "userPassword": "$2a$10$klcCcvtvikX9w6hZ5ZXsM.bmRxjdaBkguHzheaV/zFYWe/m5eTupK"
+    "userId": "2cb8868b-73a5-4588-ae8a-09d52ed9d7e5",
+    "userEmail": "test3@gmail.com",
+    "userPassword": "$2a$10$v353.jBmYVzu6XIo1IMZc.2E3ZJO6MewJWKlLS2tF3uHlNLNezALy"
   },
   {
-    "userId": "9f7cf900-bb2b-415d-b950-73ca6f886e6f",
-    "userEmail": "happy@123.com",
-    "userPassword": "$2a$10$oviCblKsJmpaIxeXe2c7beVFzJpPulwJkswc30FKOyzyWxhpbD7M6"
+    "userId": "7238b021-de28-433c-9e42-9194ff115134",
+    "userEmail": "test4@gmail.com",
+    "userPassword": "$2a$10$wFYS2L55RJlzPKpc84nI/e110G49OgaB7106kejwV/Q3saQQPEzMS"
   },
   {
-    "userId": "aeecaaba-fe49-4f46-aee9-526df0730751",
-    "userEmail": "hi@gmail.com",
-    "userPassword": "$2a$10$EM2D5nOyoULh8DPyU9biIuir.TLnXNhZFpKsYxc6dRG5Sq.wCfPFi"
-  },
-  {
-    "userId": "dec32940-75ba-4efe-aad7-3e653304411c",
-    "userEmail": "cat@124.com",
-    "userPassword": "$2a$10$8rNE4DASD7u.ZNFOdOOVXObWTThLwgPZtOmXS5pnZXfwJfrv9fvVi"
-  },
-  {
-    "userId": "9ef83eae-98b3-4399-acb2-362f1714f57b",
-    "userEmail": "happy@cat.com",
-    "userPassword": "$2a$10$XBBbErLfXwPtGSBm0a.Gn.5X2UFC3vtPl5Z9WQF80irq5.fZd4sfG"
-  },
-  {
-    "userId": "91e4d2c9-db90-4fdf-abd5-e28a286e7958",
-    "userEmail": "infor@test.com",
-    "userPassword": "$2a$10$XTqid5fbO5x4065weV1xmup9Kuxuio4OyvHa4YQoYdrhFn7XNUdgS"
-  },
-  {
-    "userId": "40330025-2b69-4c1b-a0ab-17a62ef8b5d9",
-    "userEmail": "info@cher.com",
-    "userPassword": "$2a$10$lUO4/N2Ij3G9fjhWSiCjOONqmJa/yBzujT/3oMj7NQJaLFJiSlheW"
-  },
-  {
-    "userId": "75309e9d-903d-43f0-8168-9c9b0b299309",
-    "userEmail": "infor@gmail.com",
-    "userPassword": "$2a$10$RmzIvCTTcVkVMBUGC5cfQORsjbZ5m0U2JJE3OKdouW.yaHM0PkGA2"
-  },
-  {
-    "userId": "66900195-e78c-47f8-972a-280295eb6853",
-    "userEmail": "happy@day.com",
-    "userPassword": "$2a$10$yQABU9n.4PLy963WdjqKq.z2YaWAWAXbL7MqAeAs2YaJZmclB04L2"
-  },
-  {
-    "userId": "c317964e-970e-496b-891d-3cfd4d20beaa",
-    "userEmail": "info@gmail.com",
-    "userPassword": "$2a$10$T/vsQOEbsiJN44G04vdSfO4yXos5OMKEaXRqoT5IhXBBFOtmJz866"
-  },
-  {
-    "userId": "f853f528-d929-4cf7-8dd4-5d61f5ec6604",
-    "userEmail": "info@cherry.com",
-    "userPassword": "$2a$10$sEqR.ReZ9DseYKZOS44mEesDLbTnSvyKlbaqrCA58vSpweMa4AxsC"
+    "userId": "624ca67d-b345-46d4-9814-4ffff2618d51",
+    "userEmail": "test5@gmail.com",
+    "userPassword": "$2a$10$HqSbsbLXXJ6eGFQUYNuT6ulwY9MeZnZ4.Kt/XTuO/iBwvDl58Hrp2"
   }
 ]
