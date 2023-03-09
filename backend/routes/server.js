@@ -2,7 +2,7 @@ const { v4: uuidv4 } = require("uuid");
 const express = require("express");
 const cors = require('cors');
 const app = express();
-const cors = require('cors');
+
 const bcrypt = require("bcryptjs");
 
 //Connect with MongoDB

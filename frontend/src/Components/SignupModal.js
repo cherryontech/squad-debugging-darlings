@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "../CSS/SignupModal.css";
 import Nav from "./Nav";
 
-export const SignupModal = ({ openLoginModal, closeSignupModal }) => {
+export const SignupModal = ({ openLoginModal, closeSignupModal, setAlertMsg }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [email, setEmail] = useState("");
   const [emailConfirm, setEmailConfirm] = useState("");
@@ -42,6 +42,11 @@ export const SignupModal = ({ openLoginModal, closeSignupModal }) => {
     console.log(passwordError);
   };
 
+  const showLoginModal = () => {
+    closeSignupModal(false);
+    openLoginModal(true);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const requestOptions = {
@@ -58,14 +63,16 @@ export const SignupModal = ({ openLoginModal, closeSignupModal }) => {
       .then((data) => {
         console.log(data);
         if (data.message === "Email already exists") {
-          closeSignupModal(false);
-          openLoginModal(true);
+          setAlertMsg("Email already exists. Please login!");
+          showLoginModal();
         } else {
           setEmail("");
           setEmailConfirm("");
           setPassword("");
           setPasswordConfirm("");
-          closeSignupModal(true);
+          setAlertMsg("Account successfully created!");
+          showLoginModal();
+          
         }
       })
       .catch((error) => console.log(error));
@@ -73,7 +80,7 @@ export const SignupModal = ({ openLoginModal, closeSignupModal }) => {
 
   return (
     <>
-      <Nav></Nav>
+      <Nav />
       <div className="signup-container">
         <div className="signup-content">
           <div className="signup-title">
@@ -145,7 +152,7 @@ export const SignupModal = ({ openLoginModal, closeSignupModal }) => {
           {message && <p>{message}</p>}
           <div className="login-account">
             <p>Already have an account?</p>
-            <button className="log-in-button">Log In</button>
+            <button className="log-in-button" onClick={showLoginModal}>Log In</button>
           </div>
         </div>
       </div>

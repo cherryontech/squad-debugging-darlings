@@ -1,32 +1,59 @@
 import "../CSS/LoginModal.css";
-import { useState } from "react";
-import { Paper } from "@mui/material";
+import { useState, useEffect } from "react";
+import { Paper, Alert } from "@mui/material";
 import Nav from "./Nav";
+import { AlertSeverity } from '../constants/AlertSeverity';
+import { SignupModal } from './SignupModal'
 
-export const LoginModal = ({ closeLoginModal }) => {
+export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
+  useEffect(() => {
+    const isValid =
+      email && password
+    console.log(isValid)
+    setIsButtonDisabled(!isValid);
+  });
+
+  const showSignupModal = () => {
+    // closeLoginModal(true);
+    open(SignupModal, "_self");
+  };
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // login logic in the next ticket
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    };
+    fetch("http://localhost:3000/auth/signin", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setAlertMsg(data.message);
+
+      })
+      .catch((error) => console.log(error));
   };
+
   return (
-    // <Paper elevation={3} sx={{ width: 1 / 4 }}>
     <>
-      <Nav></Nav>
+      <Nav />
       <div className="modal">
         <div className="modal-content-login">
           <div className="title-login">
             <h1>Welcome back to Cherry on Tech!</h1>
             <p>Log in with your email</p>
-            <div className="reminder-error">
-              <p>
-                Looks like you may already have an account with us. Use your
-                credentials to log in instead.
-              </p>
-            </div>
+            {
+              alertMsg != '' ? <Alert severity={AlertSeverity[alertMsg]}>{alertMsg}</Alert> : <></>
+            }
           </div>
           <form className="form" onSubmit={handleSubmit}>
             <div className="form-group-login">
@@ -36,6 +63,7 @@ export const LoginModal = ({ closeLoginModal }) => {
                 placeholder="info@cherry.com"
                 id="email"
                 name="email"
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
@@ -46,6 +74,7 @@ export const LoginModal = ({ closeLoginModal }) => {
                 placeholder="password"
                 id="password"
                 name="password"
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>
@@ -63,11 +92,10 @@ export const LoginModal = ({ closeLoginModal }) => {
           </form>
           <div className="register-account">
             <p>Not a member yet?</p>
-            <button className="register-button">Register Now</button>
+            <button className="register-button" onClick={showSignupModal}>Register Now</button>
           </div>
         </div>
       </div>
-      {/* </Paper> */}
     </>
   );
 };
