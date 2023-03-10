@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import "../CSS/SignupModal.css";
 import Nav from "./Nav";
 
-export const SignupModal = ({ openLoginModal, closeSignupModal, setAlertMsg }) => {
+export const SignupModal = ({ setAlertMsg }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [email, setEmail] = useState("");
   const [emailConfirm, setEmailConfirm] = useState("");
@@ -42,10 +42,10 @@ export const SignupModal = ({ openLoginModal, closeSignupModal, setAlertMsg }) =
     console.log(passwordError);
   };
 
-  const showLoginModal = () => {
-    closeSignupModal(false);
-    openLoginModal(true);
-  };
+  // const showLoginModal = () => {
+  //   closeSignupModal(false);
+  //   openLoginModal(true);
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -64,15 +64,14 @@ export const SignupModal = ({ openLoginModal, closeSignupModal, setAlertMsg }) =
         console.log(data);
         if (data.message === "Email already exists") {
           setAlertMsg("Email already exists. Please login!");
-          showLoginModal();
+          // showLoginModal();
         } else {
           setEmail("");
           setEmailConfirm("");
           setPassword("");
           setPasswordConfirm("");
           setAlertMsg("Account successfully created!");
-          showLoginModal();
-          
+          // showLoginModal();
         }
       })
       .catch((error) => console.log(error));
@@ -152,7 +151,7 @@ export const SignupModal = ({ openLoginModal, closeSignupModal, setAlertMsg }) =
           {message && <p>{message}</p>}
           <div className="login-account">
             <p>Already have an account?</p>
-            <button className="log-in-button" onClick={showLoginModal}>Log In</button>
+            <button className="log-in-button">Log In</button>
           </div>
         </div>
       </div>
