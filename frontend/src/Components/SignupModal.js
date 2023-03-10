@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "../CSS/SignupModal.css";
 import { LoginModal } from "./LoginModal";
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from "react-router-dom";
 import Nav from "./Nav";
 
 export const SignupModal = ({ setAlertMsg }) => {
@@ -23,9 +23,7 @@ export const SignupModal = ({ setAlertMsg }) => {
       password !== "" &&
       passwordConfirm !== "";
     setIsButtonDisabled(!isValid);
-    setEmailMatchError(
-      email !== ""
-    );
+    setEmailMatchError(email !== "");
   }, [email, password, passwordConfirm]);
 
   const validatePassword = (value) => {
@@ -35,8 +33,8 @@ export const SignupModal = ({ setAlertMsg }) => {
   };
 
   const showLoginModal = () => {
-    console.log("Are we here")
-    navigate('/login', { alertMsg: alertMsg })
+    console.log("Are we here");
+    navigate("/login", { alertMsg: alertMsg });
   };
 
   const handleSubmit = (event) => {
@@ -55,7 +53,7 @@ export const SignupModal = ({ setAlertMsg }) => {
       .then((data) => {
         console.log(data);
         if (data.message === "Email already exists") {
-          console.log("we are in this block")
+          console.log("we are in this block");
           setAlertMsg("Email already exists. Please login!");
           showLoginModal();
         } else {
@@ -133,7 +131,9 @@ export const SignupModal = ({ setAlertMsg }) => {
           {message && <p>{message}</p>}
           <div className="login-account">
             <p>Already have an account?</p>
-            <Link className="log-in-button" to="/login">Log In</Link>
+            <Link className="log-in-button" to="/login">
+              Log In
+            </Link>
           </div>
         </div>
       </div>
