@@ -79,7 +79,7 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
                 required
               />
             </div>
-            <Link to="/progress-bar-form">
+            <Link to="/setup-profile">
               <button
                 className={
                   isButtonDisabled
