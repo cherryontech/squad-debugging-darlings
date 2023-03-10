@@ -2,8 +2,10 @@ import "../CSS/LoginModal.css";
 import { useState, useEffect } from "react";
 import { Paper, Alert } from "@mui/material";
 import Nav from "./Nav";
-import { AlertSeverity } from '../constants/AlertSeverity';
-import { SignupModal } from './SignupModal'
+import { AlertSeverity } from "../constants/AlertSeverity";
+import { SignupModal } from "./SignupModal";
+import { Link } from "react-router-dom";
+import { ProgressBarForm } from "./ProgressBarForm";
 
 export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
   const [email, setEmail] = useState("");
@@ -11,9 +13,8 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   useEffect(() => {
-    const isValid =
-      email && password
-    console.log(isValid)
+    const isValid = email && password;
+    console.log(isValid);
     setIsButtonDisabled(!isValid);
   });
 
@@ -21,7 +22,6 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
     // closeLoginModal(true);
     open(SignupModal, "_self");
   };
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,7 +38,6 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
       .then((data) => {
         console.log(data);
         setAlertMsg(data.message);
-
       })
       .catch((error) => console.log(error));
   };
@@ -51,9 +50,11 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
           <div className="title-login">
             <h1>Welcome back to Cherry on Tech!</h1>
             <p>Log in with your email</p>
-            {
-              alertMsg != '' ? <Alert severity={AlertSeverity[alertMsg]}>{alertMsg}</Alert> : <></>
-            }
+            {alertMsg != "" ? (
+              <Alert severity={AlertSeverity[alertMsg]}>{alertMsg}</Alert>
+            ) : (
+              <></>
+            )}
           </div>
           <form className="form" onSubmit={handleSubmit}>
             <div className="form-group-login">
@@ -78,21 +79,25 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
                 required
               />
             </div>
-            <button
-              className={
-                isButtonDisabled
-                  ? "login-button-disabled"
-                  : "login-button-enabled"
-              }
-              disabled={isButtonDisabled}
-              type="submit"
-            >
-              Log In
-            </button>
+            <Link to="/progress-bar-form">
+              <button
+                className={
+                  isButtonDisabled
+                    ? "login-button-disabled"
+                    : "login-button-enabled"
+                }
+                disabled={isButtonDisabled}
+                type="submit"
+              >
+                Log In
+              </button>
+            </Link>
           </form>
           <div className="register-account">
             <p>Not a member yet?</p>
-            <button className="register-button" onClick={showSignupModal}>Register Now</button>
+            <button className="register-button" onClick={showSignupModal}>
+              Register Now
+            </button>
           </div>
         </div>
       </div>
