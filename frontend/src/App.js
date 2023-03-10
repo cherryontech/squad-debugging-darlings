@@ -6,8 +6,6 @@ import { Routes, Route } from "react-router-dom";
 import ProgressBarForm from "./Components/ProgressBarForm";
 
 const App = () => {
-  // const [showSignupModal, setSignupShowModal] = useState(true);
-  // const [showLoginModal, setLoginShowModal] = useState(false);
   const [alertMsg, setAlertMsg] = useState("");
 
   return (
@@ -17,21 +15,16 @@ const App = () => {
           path="/signup"
           element={<SignupModal setAlertMsg={setAlertMsg} />}
         />
-        <Route path="/setup-profile" element={<ProgressBarForm />} />
-        {/* <Route
+        <Route
           path="/login"
           element={
-            showLoginModal &&
-            !showSignupModal && (
-              <LoginModal
-                open={showLoginModal}
-                closeLoginModal={setLoginShowModal}
-                alertMsg={alertMsg}
-                setAlertMsg={setAlertMsg}
-              />
-            )
+            <LoginModal
+              alertMsg={alertMsg}
+              setAlertMsg={setAlertMsg}
+            />
           }
-        /> */}
+        />
+        <Route path="/setup-profile" element={<ProgressBarForm />} />
       </Routes>
     </div>
   );
