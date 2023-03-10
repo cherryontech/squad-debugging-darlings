@@ -24,7 +24,7 @@ const ProgressBarForm = () => {
 
   return (
     <div>
-      {"Hello world"}
+      <h1>Hello World!</h1>
       {/* <form className={classes.root} onSubmit={handleSubmit}>
         <TextField label="Name" variant="outlined" />
         <TextField label="Email" variant="outlined" />
