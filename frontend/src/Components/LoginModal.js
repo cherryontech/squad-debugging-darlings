@@ -44,7 +44,7 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
 
   return (
     <>
-      <Nav />
+      <Nav showLogoutButton={false} />
       <div className="modal">
         <div className="modal-content-login">
           <div className="title-login">

@@ -29,8 +29,8 @@ const ProgressBarForm = () => {
   };
 
   return (
-    <div>
-      <Nav />
+    <div className="progress-bar-form-container">
+      <Nav showLogoutButton={true} />
       <LinearDeterminate />
       <h1>Hello, welcome to Cherry on Tech!</h1>
       <h2>Tell us a bit about yourself.</h2>

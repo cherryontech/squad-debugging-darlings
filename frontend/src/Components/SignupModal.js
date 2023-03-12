@@ -69,7 +69,7 @@ export const SignupModal = ({ setAlertMsg }) => {
 
   return (
     <>
-      <Nav />
+      <Nav showLogoutButton={false} />
       <div className="signup-container">
         <div className="signup-content">
           <div className="signup-title">
