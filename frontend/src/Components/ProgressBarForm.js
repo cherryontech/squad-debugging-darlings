@@ -3,6 +3,7 @@ import { ProgressBar, LinearDeterminate } from "./ProgressBar";
 import Nav from "./Nav";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import "../CSS/ProgressBarForm.css";
 
 const ProgressBarForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -29,35 +30,39 @@ const ProgressBarForm = () => {
   };
 
   return (
-    <div className="progress-bar-form-container">
+    <>
       <Nav showLogoutButton={true} />
-      <LinearDeterminate />
-      <h1>Hello, welcome to Cherry on Tech!</h1>
-      <h2>Tell us a bit about yourself.</h2>
-      <label> First Name</label>
-      <TextField
-        id="outlined-basic"
-        label="First Name"
-        variant="outlined"
-        value={firstName}
-        onChange={handleFirstNameChange}
-      />
-      <label> Last Name</label>
-      <TextField
-        id="outlined-basic"
-        label="Last Name"
-        variant="outlined"
-        value={lastName}
-        onChange={handleLastNameChange}
-      />
-      <Button
-        disabled={!isValid}
-        variant="contained"
-        onClick={handleContinueClick}
-      >
-        Continue
-      </Button>
-    </div>
+      <div className="progress-bar-form-container">
+        <LinearDeterminate />
+        <h1>Hello, welcome to Cherry on Tech!</h1>
+        <h2>Tell us a bit about yourself.</h2>
+        <div className="input-container">
+          <label> First Name</label>
+          <TextField
+            id="outlined-basic"
+            label="First Name"
+            variant="outlined"
+            value={firstName}
+            onChange={handleFirstNameChange}
+          />
+          <label> Last Name</label>
+          <TextField
+            id="outlined-basic"
+            label="Last Name"
+            variant="outlined"
+            value={lastName}
+            onChange={handleLastNameChange}
+          />
+          <Button
+            disabled={!isValid}
+            variant="contained"
+            onClick={handleContinueClick}
+          >
+            Continue
+          </Button>
+        </div>
+      </div>
+    </>
   );
 };
 
