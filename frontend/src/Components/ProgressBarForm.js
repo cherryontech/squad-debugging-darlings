@@ -34,8 +34,8 @@ const ProgressBarForm = () => {
       <Nav showLogoutButton={true} />
       <div className="progress-bar-form-container">
         <LinearDeterminate />
-        <h1>Hello, welcome to Cherry on Tech!</h1>
-        <h2>Tell us a bit about yourself.</h2>
+        <h1 className="welcome">Hello, welcome to Cherry on Tech!</h1>
+        <h2 className="tellus">Tell us a bit about yourself.</h2>
         <div className="input-container">
           <label> First Name</label>
           <TextField
@@ -44,6 +44,7 @@ const ProgressBarForm = () => {
             variant="outlined"
             value={firstName}
             onChange={handleFirstNameChange}
+            sx={{ width: "671.85px", marginBottom: "2rem" }}
           />
           <label> Last Name</label>
           <TextField
@@ -57,6 +58,14 @@ const ProgressBarForm = () => {
             disabled={!isValid}
             variant="contained"
             onClick={handleContinueClick}
+            sx={{
+              backgroundColor: "#027800",
+              color: "#FFFFFF",
+              fontWeight: "500",
+              width: "245px",
+              height: "60px",
+              marginTop: "4rem",
+            }}
           >
             Continue
           </Button>
