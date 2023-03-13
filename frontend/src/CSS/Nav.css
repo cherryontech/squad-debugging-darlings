@@ -8,10 +8,11 @@
 }
 
 .placeholder-logo {
-  border: 2px solid red;
+  border: none;
   margin-left: 10px;
   background-color: #D9D9D9;
   width: 10%;
+  font-size: 36px;
 }
 
 .logout-button {

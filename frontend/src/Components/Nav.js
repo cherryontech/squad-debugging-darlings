@@ -4,7 +4,7 @@ import React from "react";
 const Nav = ({ showLogoutButton }) => {
   return (
     <div className="nav">
-      <h1 className="placeholder-logo">LOGO</h1>
+      <h1 className="placeholder-logo">Logo</h1>
       {showLogoutButton && (
         <button className="logout-button" onClick={handleLogout}>
           Logout
