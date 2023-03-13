@@ -12,6 +12,11 @@ export function LinearDeterminate() {
         height: "4px",
         left: "383px",
         top: "140px",
+        borderRadius: 5, // add rounded corners to the progress bar
+        bgcolor: "white", // change the background color of the progress bar
+        "& .MuiLinearProgress-bar": {
+          bgcolor: "green", // change the color of the progress bar
+        },
       }}
     >
       <LinearProgress variant="determinate" value={progress} />
