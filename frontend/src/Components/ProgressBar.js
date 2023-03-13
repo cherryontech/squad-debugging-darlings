@@ -12,14 +12,18 @@ export function LinearDeterminate() {
         height: "4px",
         left: "383px",
         top: "140px",
-        borderRadius: 5, // add rounded corners to the progress bar
-        bgcolor: "white", // change the background color of the progress bar
+        borderRadius: 5,
+        bgcolor: "white",
         "& .MuiLinearProgress-bar": {
-          bgcolor: "green", // change the color of the progress bar
+          bgcolor: "green",
         },
       }}
     >
-      <LinearProgress variant="determinate" value={progress} />
+      <LinearProgress
+        variant="determinate"
+        value={progress}
+        sx={{ bgcolor: "#E5F1E5" }}
+      />
     </Box>
   );
 }
