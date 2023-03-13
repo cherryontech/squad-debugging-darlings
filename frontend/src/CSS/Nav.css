@@ -11,3 +11,14 @@
   background-color: #D9D9D9;
   width: 10%;
 }
+
+.logout-button {
+  background: #FFFFFF;
+    border: 3px solid #027800;
+    border-radius: 10px;
+    color: #027800;
+    width: 189px;
+      height: 44px;
+      left: 1215px;
+      top: 20px;
+}

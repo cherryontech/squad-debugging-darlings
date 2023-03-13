@@ -6,7 +6,14 @@ export function LinearDeterminate() {
   const [progress, setProgress] = React.useState(33);
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box
+      sx={{
+        width: "674px",
+        height: "4px",
+        left: "383px",
+        top: "140px",
+      }}
+    >
       <LinearProgress variant="determinate" value={progress} />
     </Box>
   );

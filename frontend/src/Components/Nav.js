@@ -5,7 +5,11 @@ const Nav = ({ showLogoutButton }) => {
   return (
     <div className="nav">
       <h1 className="placeholder-logo">LOGO</h1>
-      {showLogoutButton && <button onClick={handleLogout}>Logout</button>}
+      {showLogoutButton && (
+        <button className="logout-button" onClick={handleLogout}>
+          Logout
+        </button>
+      )}
     </div>
   );
 };

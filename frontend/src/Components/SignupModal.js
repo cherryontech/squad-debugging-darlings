@@ -125,7 +125,7 @@ export const SignupModal = ({ setAlertMsg }) => {
               }
               type="submit"
             >
-              Register Account
+              Register
             </button>
           </form>
           {message && <p>{message}</p>}

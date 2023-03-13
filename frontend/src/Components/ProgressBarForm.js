@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ProgressBar, LinearDeterminate } from "./ProgressBar";
+import { LinearDeterminate } from "./ProgressBar";
 import Nav from "./Nav";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
