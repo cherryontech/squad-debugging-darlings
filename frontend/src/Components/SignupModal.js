@@ -1,40 +1,30 @@
 import { useState, useEffect } from "react";
 import "../CSS/SignupModal.css";
+import { LoginModal } from "./LoginModal";
+import { Link, useNavigate } from "react-router-dom";
 import Nav from "./Nav";
 
-export const SignupModal = ({ openLoginModal, closeSignupModal, setAlertMsg }) => {
+export const SignupModal = ({ setAlertMsg }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [email, setEmail] = useState("");
-  const [emailConfirm, setEmailConfirm] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [message, setMessage] = useState("");
   const [emailMatchError, setEmailMatchError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
-  const [passwordRequirementsMet, setPasswordRequirementsMet] = useState(false);
 
+  const navigate = useNavigate();
   useEffect(() => {
     const isValid =
       email &&
-      emailConfirm &&
       password &&
       passwordConfirm &&
       email !== "" &&
-      emailConfirm !== "" &&
       password !== "" &&
       passwordConfirm !== "";
     setIsButtonDisabled(!isValid);
-    setEmailMatchError(
-      email !== "" && emailConfirm !== "" && email !== emailConfirm
-    );
-  }, [email, emailConfirm, password, passwordConfirm]);
-
-  useEffect(() => {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
-    setPasswordError(!passwordRegex.test(password));
-    setPasswordRequirementsMet(passwordRegex.test(password));
-    console.log(passwordError);
-  }, [password]);
+    setEmailMatchError(email !== "");
+  }, [email, password, passwordConfirm]);
 
   const validatePassword = (value) => {
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
@@ -43,8 +33,8 @@ export const SignupModal = ({ openLoginModal, closeSignupModal, setAlertMsg }) =
   };
 
   const showLoginModal = () => {
-    closeSignupModal(false);
-    openLoginModal(true);
+    console.log("Are we here");
+    navigate("/login", { alertMsg: alertMsg });
   };
 
   const handleSubmit = (event) => {
@@ -63,16 +53,15 @@ export const SignupModal = ({ openLoginModal, closeSignupModal, setAlertMsg }) =
       .then((data) => {
         console.log(data);
         if (data.message === "Email already exists") {
+          console.log("we are in this block");
           setAlertMsg("Email already exists. Please login!");
           showLoginModal();
         } else {
           setEmail("");
-          setEmailConfirm("");
           setPassword("");
           setPasswordConfirm("");
           setAlertMsg("Account successfully created!");
           showLoginModal();
-          
         }
       })
       .catch((error) => console.log(error));
@@ -80,7 +69,7 @@ export const SignupModal = ({ openLoginModal, closeSignupModal, setAlertMsg }) =
 
   return (
     <>
-      <Nav />
+      <Nav showLogoutButton={false} />
       <div className="signup-container">
         <div className="signup-content">
           <div className="signup-title">
@@ -94,16 +83,6 @@ export const SignupModal = ({ openLoginModal, closeSignupModal, setAlertMsg }) =
               value={email}
               placeholder="info@cherry.com"
               onChange={(e) => setEmail(e.target.value)}
-            />
-            {emailMatchError && (
-              <p className="error-message">This value is not a valid email.</p>
-            )}
-            <label>Repeat Email</label>
-            <input
-              type="email"
-              value={emailConfirm}
-              placeholder="info@cherry.com"
-              onChange={(e) => setEmailConfirm(e.target.value)}
             />
             {emailMatchError && (
               <p className="error-message">This value is not a valid email.</p>
@@ -146,13 +125,15 @@ export const SignupModal = ({ openLoginModal, closeSignupModal, setAlertMsg }) =
               }
               type="submit"
             >
-              Register Account
+              Register
             </button>
           </form>
           {message && <p>{message}</p>}
           <div className="login-account">
             <p>Already have an account?</p>
-            <button className="log-in-button" onClick={showLoginModal}>Log In</button>
+            <Link className="log-in-button" to="/login">
+              Log In
+            </Link>
           </div>
         </div>
       </div>
