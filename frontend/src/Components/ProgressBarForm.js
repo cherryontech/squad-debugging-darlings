@@ -16,18 +16,22 @@ const ProgressBarForm = () => {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/userProfile");
-        const { firstName, lastName, id } = response.data;
-        setFirstName(firstName);
-        setLastName(lastName);
-        setUserId(id);
-        setIsValid(validateInput(firstName, lastName));
+        if (userId) {
+          const response = await axios.get(
+            `http://localhost:3000/userProfile/${userId}`
+          );
+          const { firstName, lastName, id } = response.data;
+          setFirstName(firstName);
+          setLastName(lastName);
+          setUserId(id);
+          setIsValid(validateInput(firstName, lastName));
+        }
       } catch (error) {
         console.error(error);
       }
     };
     fetchUserProfile();
-  }, []);
+  }, [userId]);
 
   const handleFirstNameChange = (event) => {
     setFirstName(event.target.value);
