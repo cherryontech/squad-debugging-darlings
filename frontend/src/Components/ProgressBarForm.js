@@ -4,6 +4,7 @@ import Nav from "./Nav";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import "../CSS/ProgressBarForm.css";
+import { Link } from "react-router-dom";
 
 const ProgressBarForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -54,21 +55,23 @@ const ProgressBarForm = () => {
             value={lastName}
             onChange={handleLastNameChange}
           />
-          <Button
-            disabled={!isValid}
-            variant="contained"
-            onClick={handleContinueClick}
-            sx={{
-              backgroundColor: "#027800",
-              color: "#FFFFFF",
-              fontWeight: "500",
-              width: "245px",
-              height: "60px",
-              marginTop: "4rem",
-            }}
-          >
-            Continue
-          </Button>
+          <Link className="continue-button" to="/setup-profile2">
+            <Button
+              disabled={!isValid}
+              variant="contained"
+              onClick={handleContinueClick}
+              sx={{
+                backgroundColor: "#027800",
+                color: "#FFFFFF",
+                fontWeight: "500",
+                width: "245px",
+                height: "60px",
+                marginTop: "4rem",
+              }}
+            >
+              Continue
+            </Button>
+          </Link>
         </div>
       </div>
     </>

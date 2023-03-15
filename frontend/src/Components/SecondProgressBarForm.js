@@ -7,6 +7,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 
 const SecondProgressBarForm = () => {
   const [pronoun, setPronoun] = React.useState("");
@@ -48,7 +49,9 @@ const SecondProgressBarForm = () => {
                 <MenuItem value="Ze/Zir">Ze/Zir</MenuItem>
               </Select>
             </FormControl>
-            <Button onClick={handleBackClick}>Back</Button>
+            <Link className="back-button" to="/setup-profile1">
+              <Button onClick={handleBackClick}>Back</Button>
+            </Link>
             <Button onClick={handleContinueClick}>Continue</Button>
           </Box>
         </div>
