@@ -5,6 +5,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import "../CSS/ProgressBarForm.css";
 import { Link } from "react-router-dom";
+// import axios from "axios";
 
 const ProgressBarForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -26,8 +27,20 @@ const ProgressBarForm = () => {
     return regex.test(firstName) && regex.test(lastName);
   };
 
-  const handleContinueClick = () => {
-    // move to next step of questionnaire
+  const handleContinueClick = async (userId, firstName, lastName) => {
+    try {
+      const response = await axios.patch(
+        `http://localhost:3000/userProfile/${userId}`,
+        {
+          firstName,
+          lastName,
+        }
+      );
+      console.log(response.data);
+      // move to next step of questionnaire
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

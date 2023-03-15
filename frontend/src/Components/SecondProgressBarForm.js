@@ -41,6 +41,7 @@ const SecondProgressBarForm = () => {
                 value={pronoun}
                 label="Pronouns"
                 onChange={handleChange}
+                style={{ width: "674px" }}
               >
                 <MenuItem value="She/Her">She/Her</MenuItem>
                 <MenuItem value="He/Him">He/Him</MenuItem>
@@ -50,7 +51,9 @@ const SecondProgressBarForm = () => {
               </Select>
             </FormControl>
             <Link className="back-button" to="/setup-profile1">
-              <Button onClick={handleBackClick}>Back</Button>
+              <Button variant="outlined" onClick={handleBackClick}>
+                Back
+              </Button>
             </Link>
             <Button onClick={handleContinueClick}>Continue</Button>
           </Box>
