@@ -1,16 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { LinearDeterminate } from "./ProgressBar";
 import Nav from "./Nav";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import "../CSS/ProgressBarForm.css";
 import { Link } from "react-router-dom";
-// import axios from "axios";
+import axios from "axios";
 
 const ProgressBarForm = () => {
+  const [userId, setUserId] = useState(""); // Add userId state
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [isValid, setIsValid] = useState(false);
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/userProfile");
+        const { firstName, lastName, id } = response.data;
+        setFirstName(firstName);
+        setLastName(lastName);
+        setUserId(id);
+        setIsValid(validateInput(firstName, lastName));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchUserProfile();
+  }, []);
 
   const handleFirstNameChange = (event) => {
     setFirstName(event.target.value);
@@ -27,7 +44,7 @@ const ProgressBarForm = () => {
     return regex.test(firstName) && regex.test(lastName);
   };
 
-  const handleContinueClick = async (userId, firstName, lastName) => {
+  const handleContinueClick = async () => {
     try {
       const response = await axios.patch(
         `http://localhost:3000/userProfile/${userId}`,
