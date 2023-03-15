@@ -2,8 +2,8 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
 
-export function LinearDeterminate() {
-  const [progress, setProgress] = React.useState(33);
+export function LinearDeterminate({ page }) {
+  const [progress, setProgress] = React.useState(page === 1 ? 33 : 66);
 
   return (
     <Box

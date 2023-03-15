@@ -33,7 +33,7 @@ const ProgressBarForm = () => {
     <>
       <Nav showLogoutButton={true} />
       <div className="progress-bar-form-container">
-        <LinearDeterminate />
+        <LinearDeterminate page={1} />
         <h1 className="welcome">Hello, welcome to Cherry on Tech!</h1>
         <h2 className="tellus">Tell us a bit about yourself.</h2>
         <div className="input-container">

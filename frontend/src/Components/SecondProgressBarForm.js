@@ -26,7 +26,7 @@ const SecondProgressBarForm = () => {
     <>
       <Nav showLogoutButton={true} />
       <div className="second-progress-bar-form-container">
-        <LinearDeterminate />
+        <LinearDeterminate page={2} />
         <h1 className="welcome">Hello, welcome to Cherry on Tech!</h1>
         <h2 className="tellus">Tell us a little bit about yourself.</h2>
         <div className="pronoun-container">
