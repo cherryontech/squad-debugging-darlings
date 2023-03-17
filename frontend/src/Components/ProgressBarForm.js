@@ -8,30 +8,25 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const ProgressBarForm = () => {
-  const [userId, setUserId] = useState(""); // Add userId state
+  const [userId, setUserId] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [isValid, setIsValid] = useState(false);
 
-  useEffect(() => {
-    const fetchUserProfile = async () => {
-      try {
-        if (userId) {
-          const response = await axios.get(
-            `http://localhost:3000/userProfile/${userId}`
-          );
-          const { firstName, lastName, id } = response.data;
-          setFirstName(firstName);
-          setLastName(lastName);
-          setUserId(id);
-          setIsValid(validateInput(firstName, lastName));
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchUserProfile();
-  }, [userId]);
+  const fetchUserProfile = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/userProfile/${userId}`
+      );
+      const { firstName, lastName, id } = response.data;
+      setFirstName(firstName);
+      setLastName(lastName);
+      setUserId(id);
+      setIsValid(validateInput(firstName, lastName));
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleFirstNameChange = (event) => {
     setFirstName(event.target.value);
@@ -50,6 +45,7 @@ const ProgressBarForm = () => {
 
   const handleContinueClick = async () => {
     try {
+      await fetchUserProfile();
       const response = await axios.patch(
         `http://localhost:3000/userProfile/${userId}`,
         {
