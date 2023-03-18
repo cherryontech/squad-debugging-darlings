@@ -21,9 +21,9 @@ const App = () => {
           path="/login"
           element={<LoginModal alertMsg={alertMsg} setAlertMsg={setAlertMsg} />}
         />
-        <Route path="/setup-profile1" element={<ProgressBarForm />} />
-        <Route path="/setup-profile2" element={<SecondProgressBarForm />} />
-        <Route path="/setup-profile3" element={<ThirdProgressBarForm />} />
+        <Route path="/setup-profile-1" element={<ProgressBarForm />} />
+        <Route path="/setup-profile-2" element={<SecondProgressBarForm />} />
+        <Route path="/setup-profile-3" element={<ThirdProgressBarForm />} />
       </Routes>
     </div>
   );

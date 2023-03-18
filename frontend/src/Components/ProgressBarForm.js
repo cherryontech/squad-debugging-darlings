@@ -16,7 +16,7 @@ const ProgressBarForm = () => {
   const fetchUserProfile = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/userProfile/${userId}`
+        `http://localhost:3000/users/userProfile/${userId}`
       );
       const { firstName, lastName, id } = response.data;
       setFirstName(firstName);
@@ -47,7 +47,7 @@ const ProgressBarForm = () => {
     try {
       await fetchUserProfile();
       const response = await axios.patch(
-        `http://localhost:3000/userProfile/${userId}`,
+        `http://localhost:3000/users/userProfile/${userId}`,
         {
           firstName,
           lastName,
@@ -85,7 +85,7 @@ const ProgressBarForm = () => {
             value={lastName}
             onChange={handleLastNameChange}
           />
-          <Link className="continue-button" to="/setup-profile2">
+          <Link className="continue-button" to="/setup-profile-2">
             <Button
               disabled={!isValid}
               variant="contained"

@@ -50,7 +50,7 @@ const SecondProgressBarForm = () => {
                 <MenuItem value="Ze/Zir">Ze/Zir</MenuItem>
               </Select>
             </FormControl>
-            <Link className="back-button" to="/setup-profile1">
+            <Link className="back-button" to="/setup-profile-1">
               <Button variant="outlined" onClick={handleBackClick}>
                 Back
               </Button>

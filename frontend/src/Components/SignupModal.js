@@ -48,7 +48,7 @@ export const SignupModal = ({ setAlertMsg }) => {
         password_confirm: passwordConfirm,
       }),
     };
-    fetch("http://localhost:3000/auth/signup", requestOptions)
+    fetch("http://localhost:3000/users/signup", requestOptions)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);

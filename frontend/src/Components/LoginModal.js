@@ -33,7 +33,7 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
         password,
       }),
     };
-    fetch("http://localhost:3000/auth/signin", requestOptions)
+    fetch("http://localhost:3000/users/signin", requestOptions)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -79,7 +79,7 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
                 required
               />
             </div>
-            <Link to="/setup-profile">
+            <Link to="/setup-profile-1">
               <button
                 className={
                   isButtonDisabled
