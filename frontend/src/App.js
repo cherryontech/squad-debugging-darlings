@@ -5,6 +5,7 @@ import { SignupModal } from "./Components/SignupModal";
 import { Routes, Route } from "react-router-dom";
 import ProgressBarForm from "./Components/ProgressBarForm";
 import SecondProgressBarForm from "./Components/SecondProgressBarForm";
+import ThirdProgressBarForm from "./Components/ThirdProgressBarForm";
 
 const App = () => {
   const [alertMsg, setAlertMsg] = useState("");
@@ -22,6 +23,7 @@ const App = () => {
         />
         <Route path="/setup-profile1" element={<ProgressBarForm />} />
         <Route path="/setup-profile2" element={<SecondProgressBarForm />} />
+        <Route path="/setup-profile3" element={<ThirdProgressBarForm />} />
       </Routes>
     </div>
   );
