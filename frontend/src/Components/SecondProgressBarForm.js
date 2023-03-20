@@ -24,6 +24,9 @@ const SecondProgressBarForm = () => {
   const handleContinueClick = () => {
     // handle continue button click
   };
+
+  const isContinueButtonDisabled = !pronoun;
+
   return (
     <>
       <Nav showLogoutButton={true} />
@@ -51,12 +54,19 @@ const SecondProgressBarForm = () => {
                 <MenuItem value="Ze/Zir">Ze/Zir</MenuItem>
               </Select>
             </FormControl>
-            <Link className="back-button" to="/setup-profile-1">
-              <Button variant="outlined" onClick={handleBackClick}>
-                Back
+            <div className="button-div">
+              <Link className="back-button" to="/setup-profile-1">
+                <Button variant="outlined" onClick={handleBackClick}>
+                  Back
+                </Button>
+              </Link>
+              <Button
+                disabled={isContinueButtonDisabled}
+                onClick={handleContinueClick}
+              >
+                Continue
               </Button>
-            </Link>
-            <Button onClick={handleContinueClick}>Continue</Button>
+            </div>
           </Box>
         </div>
       </div>

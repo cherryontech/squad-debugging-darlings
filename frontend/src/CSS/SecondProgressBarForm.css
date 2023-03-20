@@ -9,3 +9,8 @@
         width: 100%;
         height: 201px;
 }
+
+.button-div {
+    display: flex;
+    justify-content: space-evenly;
+}
