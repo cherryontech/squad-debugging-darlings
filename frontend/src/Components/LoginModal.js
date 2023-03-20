@@ -79,19 +79,21 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
                 required
               />
             </div>
-            <Link to="/setup-profile-1">
-              <button
-                className={
-                  isButtonDisabled
-                    ? "login-button-disabled"
-                    : "login-button-enabled"
-                }
-                disabled={isButtonDisabled}
-                type="submit"
-              >
-                Log In
-              </button>
-            </Link>
+            <div className="login-btn-div">
+              <Link to="/setup-profile-1" style={{ textDecoration: "none" }}>
+                <button
+                  className={
+                    isButtonDisabled
+                      ? "login-button-disabled"
+                      : "login-button-enabled"
+                  }
+                  disabled={isButtonDisabled}
+                  type="submit"
+                >
+                  Log In
+                </button>
+              </Link>
+            </div>
           </form>
           <div className="register-account">
             <p>Not a member yet?</p>

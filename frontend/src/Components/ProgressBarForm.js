@@ -3,6 +3,7 @@ import { LinearDeterminate } from "./ProgressBar";
 import Nav from "./Nav";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 import "../CSS/ProgressBarForm.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -85,22 +86,28 @@ const ProgressBarForm = () => {
             value={lastName}
             onChange={handleLastNameChange}
           />
-          <Link className="continue-button" to="/setup-profile-2">
-            <Button
-              disabled={!isValid}
-              variant="contained"
-              onClick={handleContinueClick}
-              sx={{
-                backgroundColor: "#027800",
-                color: "#FFFFFF",
-                fontWeight: "500",
-                width: "245px",
-                height: "60px",
-                marginTop: "4rem",
-              }}
-            >
-              Continue
-            </Button>
+          <Link
+            className="continue-button"
+            to="/setup-profile-2"
+            style={{ textDecoration: "none" }}
+          >
+            <Box textAlign="center">
+              <Button
+                disabled={!isValid}
+                variant="contained"
+                onClick={handleContinueClick}
+                sx={{
+                  backgroundColor: "#027800",
+                  color: "#FFFFFF",
+                  fontWeight: "500",
+                  width: "245px",
+                  height: "60px",
+                  marginTop: "4rem",
+                }}
+              >
+                Continue
+              </Button>
+            </Box>
           </Link>
         </div>
       </div>

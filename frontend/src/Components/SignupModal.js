@@ -116,17 +116,19 @@ export const SignupModal = ({ setAlertMsg }) => {
               onChange={(e) => setPasswordConfirm(e.target.value)}
             />
             <br />
-            <button
-              disabled={isButtonDisabled}
-              className={
-                isButtonDisabled
-                  ? "signup-button-disabled"
-                  : "signup-button-enabled"
-              }
-              type="submit"
-            >
-              Register
-            </button>
+            <div className="button-div">
+              <button
+                disabled={isButtonDisabled}
+                className={
+                  isButtonDisabled
+                    ? "signup-button-disabled"
+                    : "signup-button-enabled"
+                }
+                type="submit"
+              >
+                Register
+              </button>
+            </div>
           </form>
           {message && <p>{message}</p>}
           <div className="login-account">

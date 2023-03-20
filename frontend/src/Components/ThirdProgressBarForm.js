@@ -9,7 +9,7 @@ import Button from "@mui/material/Button";
 const ThirdProgressBarForm = () => {
   return (
     <>
-      <Nav />
+      <Nav showLogoutButton={true} />
       <LinearDeterminate page={3} />
       <h1 className="welcome">Hello, welcome to Cherry on Tech!</h1>
       <h2 className="tellus">Tell us a little bit about yourself.</h2>
