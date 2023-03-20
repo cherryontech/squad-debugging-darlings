@@ -38,7 +38,9 @@ const SecondProgressBarForm = () => {
           <label> What are your pronouns? </label>
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Pronouns</InputLabel>
+              <InputLabel shrink={false} id="demo-simple-select-label">
+                Pronouns
+              </InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
@@ -55,12 +57,39 @@ const SecondProgressBarForm = () => {
               </Select>
             </FormControl>
             <div className="button-div">
-              <Link className="back-button" to="/setup-profile-1">
-                <Button variant="outlined" onClick={handleBackClick}>
+              <Link
+                className="back-button"
+                to="/setup-profile-1"
+                style={{ textDecoration: "none" }}
+              >
+                <Button
+                  sx={{
+                    backgroundColor: "white",
+                    border: "3px solid green",
+                    width: "245px",
+                    height: "60px",
+                    textTransform: "none",
+                    fontSize: "20px",
+                    color: "green",
+                    borderRadius: "10px",
+                  }}
+                  variant="outlined"
+                  onClick={handleBackClick}
+                >
                   Back
                 </Button>
               </Link>
               <Button
+                sx={{
+                  width: "245px",
+                  fontSize: "20px",
+                  color: "white",
+                  height: "60px",
+                  textTransform: "none",
+                  backgroundColor: isContinueButtonDisabled
+                    ? "#DBDBDC"
+                    : "green",
+                }}
                 disabled={isContinueButtonDisabled}
                 onClick={handleContinueClick}
               >
