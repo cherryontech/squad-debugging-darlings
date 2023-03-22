@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const auth = require('../auth');
 const User = require("../models/User");
 
+// TODO: NEED A GET METHOD HERE TO FETCH USER DETAILS
+
 router.patch('/userProfile/:userId', auth, async (req, res) => {
     //Jinju will provide confidential
     const uri = "";
