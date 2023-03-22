@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const ProgressBarForm = () => {
-  const [userId, setUserId] = useState("");
+  const [userId, setUserId] = useState("45a0278e-12a3-47aa-adb3-25ccfd3abfcf");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [isValid, setIsValid] = useState(false);
@@ -29,6 +29,8 @@ const ProgressBarForm = () => {
     }
   };
 
+  //put the useEffect in here and invoke the fetchuserprofile
+
   const handleFirstNameChange = (event) => {
     setFirstName(event.target.value);
     setIsValid(validateInput(event.target.value, lastName));
@@ -46,14 +48,22 @@ const ProgressBarForm = () => {
 
   const handleContinueClick = async () => {
     try {
-      await fetchUserProfile();
-      const response = await axios.patch(
-        `http://localhost:3000/users/userProfile/${userId}`,
-        {
-          firstName,
-          lastName,
-        }
-      );
+      let data = JSON.stringify({
+        firstName,
+        lastName,
+      });
+      let config = {
+        method: "patch",
+        maxBodyLength: Infinity,
+        url: `http://localhost:3000/users/userProfile/${userId}`,
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0NWEwMjc4ZS0xMmEzLTQ3YWEtYWRiMy0yNWNjZmQzYWJmY2YiLCJpYXQiOjE2Nzk1MTQ0MjN9.xMqOi2PfGABNJiZjdlgtcDeqOelYg1KQjku3jZEMyMw",
+          "Content-Type": "application/json",
+        },
+        data: data,
+      };
+      const response = await axios.request(config);
       console.log(response.data);
       // move to next step of questionnaire
     } catch (error) {

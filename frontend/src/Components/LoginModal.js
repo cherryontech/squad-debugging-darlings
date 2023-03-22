@@ -38,6 +38,7 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
       .then((data) => {
         console.log(data);
         setAlertMsg(data.message);
+        //data.token would give you the token, we need to navigate to the next page with this token, this token contains the userId which we'll use on the next page
       })
       .catch((error) => console.log(error));
   };
@@ -80,19 +81,20 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
               />
             </div>
             <div className="login-btn-div">
-              <Link to="/setup-profile-1" style={{ textDecoration: "none" }}>
-                <button
-                  className={
-                    isButtonDisabled
-                      ? "login-button-disabled"
-                      : "login-button-enabled"
-                  }
-                  disabled={isButtonDisabled}
-                  type="submit"
-                >
-                  Log In
-                </button>
-              </Link>
+              {/* <Link to="/setup-profile-1" style={{ textDecoration: "none" }}> see how to send props on this part, send this token to the next page, maybe use the Link or maybe use the useNavigate hook to do that. So we can dyncially invole each user */}
+
+              <button
+                className={
+                  isButtonDisabled
+                    ? "login-button-disabled"
+                    : "login-button-enabled"
+                }
+                disabled={isButtonDisabled}
+                type="submit"
+              >
+                Log In
+              </button>
+              {/* </Link> */}
             </div>
           </form>
           <div className="register-account">
