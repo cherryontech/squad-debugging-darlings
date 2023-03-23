@@ -36,9 +36,11 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
     fetch("http://localhost:3000/users/signin", requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        console.log(data, "data");
         setAlertMsg(data.message);
         //data.token would give you the token, we need to navigate to the next page with this token, this token contains the userId which we'll use on the next page
+        // setToken(data.token)
+        localStorage.setItem("token", data.token);
       })
       .catch((error) => console.log(error));
   };

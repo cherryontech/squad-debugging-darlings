@@ -9,7 +9,9 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const ProgressBarForm = () => {
-  const [userId, setUserId] = useState("45a0278e-12a3-47aa-adb3-25ccfd3abfcf");
+  const token = localStorage.getItem("token");
+  console.log(token);
+  const [userId, setUserId] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [isValid, setIsValid] = useState(false);
@@ -17,9 +19,10 @@ const ProgressBarForm = () => {
   const fetchUserProfile = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3000/users/userProfile/${userId}`
+        `http://localhost:3000/users/userProfile/${token}`
       );
       const { firstName, lastName, id } = response.data;
+      console.log(response.data, "lalalalala");
       setFirstName(firstName);
       setLastName(lastName);
       setUserId(id);
@@ -30,6 +33,9 @@ const ProgressBarForm = () => {
   };
 
   //put the useEffect in here and invoke the fetchuserprofile
+  useEffect(() => {
+    fetchUserProfile();
+  }, [userId]);
 
   const handleFirstNameChange = (event) => {
     setFirstName(event.target.value);
@@ -57,8 +63,7 @@ const ProgressBarForm = () => {
         maxBodyLength: Infinity,
         url: `http://localhost:3000/users/userProfile/${userId}`,
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0NWEwMjc4ZS0xMmEzLTQ3YWEtYWRiMy0yNWNjZmQzYWJmY2YiLCJpYXQiOjE2Nzk1MTQ0MjN9.xMqOi2PfGABNJiZjdlgtcDeqOelYg1KQjku3jZEMyMw",
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
         data: data,
