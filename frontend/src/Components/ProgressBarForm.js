@@ -21,7 +21,7 @@ const ProgressBarForm = () => {
 
   // const patchUserProfile = async () => {
   //   try {
-  //     const response = await axios.patch(
+  //     const response = await axios.get(
   //       `http://localhost:3000/users/userProfile/${userId}`,
   //       {
   //         firstName: firstName,
