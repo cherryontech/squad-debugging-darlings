@@ -7,35 +7,43 @@ import Box from "@mui/material/Box";
 import "../CSS/ProgressBarForm.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 
 const ProgressBarForm = () => {
   const token = localStorage.getItem("token");
-  console.log(token);
-  const [userId, setUserId] = useState("");
+  const decoded = jwt_decode(token);
+  console.log(decoded.userId, "decoded");
+  console.log(token, "token");
+  const [userId, setUserId] = useState(decoded.userId);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [isValid, setIsValid] = useState(false);
 
-  const fetchUserProfile = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:3000/users/userProfile/${token}`
-      );
-      const { firstName, lastName, id } = response.data;
-      console.log(response.data, "lalalalala");
-      setFirstName(firstName);
-      setLastName(lastName);
-      setUserId(id);
-      setIsValid(validateInput(firstName, lastName));
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const patchUserProfile = async () => {
+  //   try {
+  //     const response = await axios.patch(
+  //       `http://localhost:3000/users/userProfile/${userId}`,
+  //       {
+  //         firstName: firstName,
+  //         lastName: lastName,
+  //       }
+  //     );
+  //     console.log(response, "response, lalalal");
+  //     // const { firstName, lastName, id } = response.data;
+  //     // console.log(response.data, "lalalalala");
+  //     // setFirstName(firstName);
+  //     // setLastName(lastName);
+  //     // setUserId(id);
+  //     // setIsValid(validateInput(firstName, lastName));
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   //put the useEffect in here and invoke the fetchuserprofile
-  useEffect(() => {
-    fetchUserProfile();
-  }, [userId]);
+  // useEffect(() => {
+  // //   patchUserProfile();
+  // // }, [userId, firstName, lastName]);
 
   const handleFirstNameChange = (event) => {
     setFirstName(event.target.value);
