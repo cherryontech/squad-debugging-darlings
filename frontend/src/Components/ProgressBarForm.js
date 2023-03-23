@@ -19,7 +19,7 @@ const ProgressBarForm = () => {
   const [lastName, setLastName] = useState("");
   const [isValid, setIsValid] = useState(false);
 
-  // const patchUserProfile = async () => {
+  // const getUserProfile = async () => {
   //   try {
   //     const response = await axios.get(
   //       `http://localhost:3000/users/userProfile/${userId}`,
@@ -29,21 +29,21 @@ const ProgressBarForm = () => {
   //       }
   //     );
   //     console.log(response, "response, lalalal");
-  //     // const { firstName, lastName, id } = response.data;
-  //     // console.log(response.data, "lalalalala");
-  //     // setFirstName(firstName);
-  //     // setLastName(lastName);
-  //     // setUserId(id);
-  //     // setIsValid(validateInput(firstName, lastName));
+  //     const { firstName, lastName, id } = response.data;
+  //     console.log(response.data, "lalalalala");
+  //     setFirstName(firstName);
+  //     setLastName(lastName);
+  //     setUserId(id);
+  //     setIsValid(validateInput(firstName, lastName));
   //   } catch (error) {
   //     console.error(error);
   //   }
   // };
 
-  //put the useEffect in here and invoke the fetchuserprofile
+  // //put the useEffect in here and invoke the fetchuserprofile
   // useEffect(() => {
-  // //   patchUserProfile();
-  // // }, [userId, firstName, lastName]);
+  //   getUserProfile();
+  // }, [userId, firstName, lastName]);
 
   const handleFirstNameChange = (event) => {
     setFirstName(event.target.value);
