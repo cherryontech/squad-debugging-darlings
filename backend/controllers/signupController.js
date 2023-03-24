@@ -32,7 +32,7 @@ router.post("/signup", async (req, res) => {
                 } else {
                     //Jinju will provide confidential
                     const uri = "";
-                    await mongoose.connect(process.env.MONGO_URI || uri,{
+                    await mongoose.connect(process.env.MONGO_URI || uri, {
                         useNewUrlParser: true,
                         useUnifiedTopology: true,
                     });

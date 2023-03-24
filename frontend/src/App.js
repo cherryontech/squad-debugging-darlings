@@ -1,25 +1,32 @@
-import logo from './logo.gif';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import { LoginModal } from "./Components/LoginModal";
+import { SignupModal } from "./Components/SignupModal";
+import { Routes, Route } from "react-router-dom";
+import ProgressBarForm from "./Components/ProgressBarForm";
+import SecondProgressBarForm from "./Components/SecondProgressBarForm";
+import ThirdProgressBarForm from "./Components/ThirdProgressBarForm";
 
-function App() {
+const App = () => {
+  const [alertMsg, setAlertMsg] = useState("");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+        <Route
+          path="/signup"
+          element={<SignupModal setAlertMsg={setAlertMsg} />}
+        />
+        <Route
+          path="/login"
+          element={<LoginModal alertMsg={alertMsg} setAlertMsg={setAlertMsg} />}
+        />
+        <Route path="/setup-profile-1" element={<ProgressBarForm />} />
+        <Route path="/setup-profile-2" element={<SecondProgressBarForm />} />
+        <Route path="/setup-profile-3" element={<ThirdProgressBarForm />} />
+      </Routes>
     </div>
   );
-}
+};
 
 export default App;
