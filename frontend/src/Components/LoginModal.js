@@ -1,16 +1,18 @@
 import "../CSS/LoginModal.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Paper, Alert } from "@mui/material";
 import Nav from "./Nav";
 import { AlertSeverity } from "../constants/AlertSeverity";
 import { SignupModal } from "./SignupModal";
 import { Link } from "react-router-dom";
 import { ProgressBarForm } from "./ProgressBarForm";
+import { AuthContext } from "../Context/AuthContext";
 
 export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const { login, token } = useContext(AuthContext);
 
   useEffect(() => {
     const isValid = email && password;
@@ -40,7 +42,9 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
         setAlertMsg(data.message);
         //data.token would give you the token, we need to navigate to the next page with this token, this token contains the userId which we'll use on the next page
         // setToken(data.token)
-        localStorage.setItem("token", data.token);
+        // localStorage.setItem("token", data.token);
+        login(data.token);
+        console.log(token, "token");
       })
       .catch((error) => console.log(error));
   };

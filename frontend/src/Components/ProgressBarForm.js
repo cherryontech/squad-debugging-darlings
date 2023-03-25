@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { LinearDeterminate } from "./ProgressBar";
 import Nav from "./Nav";
 import TextField from "@mui/material/TextField";
@@ -6,14 +6,18 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import "../CSS/ProgressBarForm.css";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 
 const ProgressBarForm = () => {
-  const token = localStorage.getItem("token");
+  // const token = localStorage.getItem("token");
+  // const decoded = jwt_decode(token);
+  // console.log(decoded.userId, "decoded");
+  // console.log(token, "token");
+  const { token } = useContext(AuthContext);
   const decoded = jwt_decode(token);
-  console.log(decoded.userId, "decoded");
-  console.log(token, "token");
+  console.log(token);
   const [userId, setUserId] = useState(decoded.userId);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
