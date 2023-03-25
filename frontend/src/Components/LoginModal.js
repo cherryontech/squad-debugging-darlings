@@ -6,6 +6,7 @@ import { AlertSeverity } from "../constants/AlertSeverity";
 import { SignupModal } from "./SignupModal";
 import { Link } from "react-router-dom";
 import { ProgressBarForm } from "./ProgressBarForm";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 
 export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
@@ -14,6 +15,7 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const { login, token } = useContext(AuthContext);
 
+  const navigate = useNavigate();
   useEffect(() => {
     const isValid = email && password;
     console.log(isValid);
@@ -43,8 +45,10 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
         //data.token would give you the token, we need to navigate to the next page with this token, this token contains the userId which we'll use on the next page
         // setToken(data.token)
         // localStorage.setItem("token", data.token);
-        login(data.token);
-        console.log(token, "token");
+        const dataToken = data.token;
+        login(dataToken);
+
+        navigate('/setup-profile-1');
       })
       .catch((error) => console.log(error));
   };

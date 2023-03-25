@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useMemo } from "react";
 
 export const AuthContext = createContext();
 
@@ -14,8 +14,13 @@ export const AuthProvider = ({ children }) => {
     setToken(null);
   };
 
+  const contextValue = useMemo(() => {
+    return { token, login, logout };
+  }, [token]);
+
+
   return (
-    <AuthContext.Provider value={{ token, login, logout }}>
+    <AuthContext.Provider value={contextValue}>
       {children}
     </AuthContext.Provider>
   );

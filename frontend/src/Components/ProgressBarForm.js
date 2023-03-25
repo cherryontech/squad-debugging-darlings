@@ -11,43 +11,39 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 
 const ProgressBarForm = () => {
-  // const token = localStorage.getItem("token");
-  // const decoded = jwt_decode(token);
-  // console.log(decoded.userId, "decoded");
-  // console.log(token, "token");
   const { token } = useContext(AuthContext);
   const decoded = jwt_decode(token);
-  console.log(token);
   const [userId, setUserId] = useState(decoded.userId);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [isValid, setIsValid] = useState(false);
 
-  // const getUserProfile = async () => {
-  //   try {
-  //     const response = await axios.get(
-  //       `http://localhost:3000/users/userProfile/${userId}`,
-  //       {
-  //         firstName: firstName,
-  //         lastName: lastName,
-  //       }
-  //     );
-  //     console.log(response, "response, lalalal");
-  //     const { firstName, lastName, id } = response.data;
-  //     console.log(response.data, "lalalalala");
-  //     setFirstName(firstName);
-  //     setLastName(lastName);
-  //     setUserId(id);
-  //     setIsValid(validateInput(firstName, lastName));
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  const getUserProfile = async () => {
+    try {
+      let config = {
+        method: "get",
+        maxBodyLength: Infinity,
+        url: `http://localhost:3000/users/userProfile/${userId}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        }
+      };
+      const response = await axios.request(config);
+    
+      const { firstName, lastName } = response.data;
+      setFirstName(firstName);
+      setLastName(lastName);
+      setIsValid(validateInput(firstName, lastName));
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  // //put the useEffect in here and invoke the fetchuserprofile
-  // useEffect(() => {
-  //   getUserProfile();
-  // }, [userId, firstName, lastName]);
+  //put the useEffect in here and invoke the fetchuserprofile
+  useEffect(() => {
+    getUserProfile();
+  }, []);
 
   const handleFirstNameChange = (event) => {
     setFirstName(event.target.value);

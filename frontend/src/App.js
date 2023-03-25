@@ -13,7 +13,6 @@ const App = () => {
 
   return (
     <AuthProvider>
-      <div>
         <Routes>
           <Route
             path="/signup"
@@ -29,7 +28,6 @@ const App = () => {
           <Route path="/setup-profile-2" element={<SecondProgressBarForm />} />
           <Route path="/setup-profile-3" element={<ThirdProgressBarForm />} />
         </Routes>
-      </div>
     </AuthProvider>
   );
 };
