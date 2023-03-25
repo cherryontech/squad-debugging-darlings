@@ -6,8 +6,48 @@ const mongoose = require('mongoose');
 const auth = require('../auth');
 const User = require("../models/User");
 
-// TODO: NEED A GET METHOD HERE TO FETCH USER DETAILS
+// Get user data
+router.get('/userProfile/:userId', auth, async (req, res) => {
+    //Jinju will provide confidential
+    const uri = "";
+    await mongoose.connect(process.env.MONGO_URI || uri,{
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
+    try {
+        const userId = req.params.userId;
 
+        // Check if user has permission to access this profile
+        if (req.user.userId !== userId) {
+            return res.status(401).json({
+                message: 'Unauthorized'
+            });
+        }
+
+        // Find user information in database
+        const user = await User.findOne({ userId: userId });
+        if (!user) {
+            return res.status(404).json({
+                message: 'User not found'
+            });
+        }
+
+        res.json({
+            firstName: user.firstName,
+            lastName: user.lastName,
+            role: user.role,
+            pronouns: user.pronouns
+        });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            message: 'Internal server error'
+        });
+    }
+});
+
+// Update user data
 router.patch('/userProfile/:userId', auth, async (req, res) => {
     //Jinju will provide confidential
     const uri = "";
