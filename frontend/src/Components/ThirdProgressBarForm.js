@@ -5,7 +5,9 @@ import MentorCard from "./MentorCard";
 import MenteeCard from "./MenteeCard";
 import "../CSS/ThirdProgressBarForm.css";
 import Button from "@mui/material/Button";
-// import { Link } from "react-router-dom";
+import FormControl from "@mui/material/FormControl";
+
+import { Link } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
@@ -14,7 +16,6 @@ const ThirdProgressBarForm = () => {
   const { token } = useContext(AuthContext);
   const decoded = jwt_decode(token);
   const [userId, setUserId] = useState(decoded.userId);
-  const [selectedRole, setSelectedRole] = useState("");
   const [role, setRole] = useState("");
 
   const getUserProfile = async () => {
@@ -36,23 +37,24 @@ const ThirdProgressBarForm = () => {
       console.error(error);
     }
   };
+
+  //put the useEffect in here and invoke the fetchuserprofile
   useEffect(() => {
     getUserProfile();
   }, []);
 
-  // const handleChange = (event) => {
-  //   setRole(event.target.value);
-  // };
-
-  const handleCardClick = (role) => {
-    setSelectedRole(role);
+  const handleMentorClick = () => {
+    setRole("Mentor");
   };
 
+  const handleMenteeClick = () => {
+    setRole("Mentee");
+  };
   const handleContinueClick = async () => {
     // handle continue button click
     try {
       let data = JSON.stringify({
-        role: selectedRole,
+        role,
       });
       let config = {
         method: "patch",
@@ -72,8 +74,6 @@ const ThirdProgressBarForm = () => {
     }
   };
 
-  // const isContinueButtonDisabled = !role;
-
   return (
     <>
       <Nav showLogoutButton={true} />
@@ -83,15 +83,13 @@ const ThirdProgressBarForm = () => {
       <div className="mode-container"></div>
       <p>Choose a mode to get started!</p>
       <div className="card-container">
-        <MentorCard onClick={() => handleCardClick("mentor")} />
-        <MenteeCard onClick={() => handleCardClick("mentee")} />
+        <FormControl>
+          <MentorCard value={"Mentor"} onClick={handleMentorClick} />
+          <MenteeCard value={"Mentee"} onClick={handleMenteeClick} />
+        </FormControl>
       </div>
       <Button variant="contained">Back</Button>
-      <Button
-        variant="contained"
-        disabled={!selectedRole}
-        onClick={handleContinueClick}
-      >
+      <Button variant="contained" onClick={handleContinueClick}>
         Continue
       </Button>
     </>
