@@ -12,7 +12,10 @@ const userSchema = new Schema({
         enum: ['Mentor', 'Mentee'],
         // default: 'Mentee'
     },
-    bio: String,
+    pronouns: {
+        type: String,
+        enum: ['She/Her', 'He/Him', 'They/Them', 'Xe/Xem', 'Ze/Zir'],
+    },
     password: String,
 });
 
