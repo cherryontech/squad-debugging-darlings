@@ -57,7 +57,7 @@ router.patch('/userProfile/:userId', auth, async (req, res) => {
     });
     try {
         const userId = req.params.userId;
-        const { firstName, lastName, role, bio } = req.body;
+        const { firstName, lastName, role, pronouns } = req.body;
 
         // Check if user has permission to update this profile
         if (req.user.userId !== userId) {
@@ -83,8 +83,8 @@ router.patch('/userProfile/:userId', auth, async (req, res) => {
         if (role) {
             user.role = role;
         }
-        if (bio) {
-            user.bio = bio;
+        if (pronouns) {
+            user.pronouns = pronouns;
         }
 
         await user.save();
