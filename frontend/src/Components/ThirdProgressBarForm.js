@@ -42,13 +42,18 @@ const ThirdProgressBarForm = () => {
     getUserProfile();
   }, []);
 
-  const handleMentorClick = () => {
-    setRole("Mentor");
+  // const handleMentorClick = () => {
+  //   setRole("Mentor");
+  // };
+
+  // const handleMenteeClick = () => {
+  //   setRole("Mentee");
+  // };
+
+  const handleClick = (event) => {
+    setRole(event.currentTarget.value);
   };
 
-  const handleMenteeClick = () => {
-    setRole("Mentee");
-  };
   const handleContinueClick = async () => {
     // handle continue button click
     try {
@@ -83,10 +88,10 @@ const ThirdProgressBarForm = () => {
       <p>Choose a mode to get started!</p>
       <div className="card-container">
         <FormControl>
-          <Card value={"Mentor"} onClick={handleMentorClick}>
+          <Card value={"Mentor"} onClick={handleClick}>
             <MentorCard />
           </Card>
-          <Card value={"Mentor"} onClick={handleMenteeClick}>
+          <Card value={"Mentor"} onClick={handleClick}>
             <MenteeCard />
           </Card>
         </FormControl>
