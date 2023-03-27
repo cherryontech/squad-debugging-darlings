@@ -17,7 +17,7 @@ const SecondProgressBarForm = () => {
   const { token } = useContext(AuthContext);
   const decoded = jwt_decode(token);
   const [userId, setUserId] = useState(decoded.userId);
-  const [pronoun, setPronoun] = React.useState("");
+  const [pronouns, setPronouns] = React.useState("");
 
   const getUserProfile = async () => {
     try {
@@ -32,8 +32,8 @@ const SecondProgressBarForm = () => {
       };
       const response = await axios.request(config);
 
-      const { pronoun } = response.data;
-      setPronoun(pronoun);
+      const { pronouns } = response.data;
+      setPronouns(pronouns);
     } catch (error) {
       console.error(error);
     }
@@ -45,7 +45,7 @@ const SecondProgressBarForm = () => {
   }, []);
 
   const handleChange = (event) => {
-    setPronoun(event.target.value);
+    setPronouns(event.target.value);
   };
 
   const handleBackClick = () => {
@@ -56,7 +56,7 @@ const SecondProgressBarForm = () => {
     // handle continue button click
     try {
       let data = JSON.stringify({
-        pronoun,
+        pronouns,
       });
       let config = {
         method: "patch",
@@ -76,7 +76,7 @@ const SecondProgressBarForm = () => {
     }
   };
 
-  const isContinueButtonDisabled = !pronoun;
+  const isContinueButtonDisabled = !pronouns;
 
   return (
     <>
@@ -95,7 +95,7 @@ const SecondProgressBarForm = () => {
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={pronoun || ""}
+                value={pronouns || ""}
                 label="Pronouns"
                 onChange={handleChange}
                 style={{ width: "674px" }}
