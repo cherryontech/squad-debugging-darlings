@@ -27,10 +27,10 @@ const ProgressBarForm = () => {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
-        }
+        },
       };
       const response = await axios.request(config);
-    
+
       const { firstName, lastName } = response.data;
       setFirstName(firstName);
       setLastName(lastName);
