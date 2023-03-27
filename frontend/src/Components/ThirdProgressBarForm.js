@@ -4,8 +4,7 @@ import Nav from "./Nav";
 import MentorCard from "./MentorCard";
 import MenteeCard from "./MenteeCard";
 import "../CSS/ThirdProgressBarForm.css";
-import Button from "@mui/material/Button";
-import FormControl from "@mui/material/FormControl";
+import { Button, FormControl, Card } from "@mui/material";
 
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
@@ -84,8 +83,12 @@ const ThirdProgressBarForm = () => {
       <p>Choose a mode to get started!</p>
       <div className="card-container">
         <FormControl>
-          <MentorCard value={"Mentor"} onClick={handleMentorClick} />
-          <MenteeCard value={"Mentee"} onClick={handleMenteeClick} />
+          <Card value={"Mentor"} onClick={handleMentorClick}>
+            <MentorCard />
+          </Card>
+          <Card value={"Mentor"} onClick={handleMenteeClick}>
+            <MenteeCard />
+          </Card>
         </FormControl>
       </div>
       <Button variant="contained">Back</Button>
