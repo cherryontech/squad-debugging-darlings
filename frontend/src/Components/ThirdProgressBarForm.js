@@ -1,12 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import { LinearDeterminate } from "./ProgressBar";
 import Nav from "./Nav";
-import MentorCard from "./MentorCard";
-import MenteeCard from "./MenteeCard";
+import RoleCard from "../common/RoleCard";
 import "../CSS/ThirdProgressBarForm.css";
 import { Button, FormControl, Card } from "@mui/material";
-
-import { Link } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
@@ -42,17 +39,9 @@ const ThirdProgressBarForm = () => {
     getUserProfile();
   }, []);
 
-  // const handleMentorClick = () => {
-  //   setRole("Mentor");
-  // };
-
-  // const handleMenteeClick = () => {
-  //   setRole("Mentee");
-  // };
-
-  const handleClick = (event) => {
-    setRole(event.currentTarget.value);
-  };
+  const handleClick = useCallback((role) => () => {
+    setRole(role);
+  }, [setRole]);
 
   const handleContinueClick = async () => {
     // handle continue button click
@@ -88,11 +77,11 @@ const ThirdProgressBarForm = () => {
       <p>Choose a mode to get started!</p>
       <div className="card-container">
         <FormControl>
-          <Card value={"Mentor"} onClick={handleClick}>
-            <MentorCard />
+          <Card value={"Mentor"} onClick={handleClick("Mentor")}>
+            <RoleCard value={"Mentor"} />
           </Card>
-          <Card value={"Mentor"} onClick={handleClick}>
-            <MenteeCard />
+          <Card value={"Mentee"} onClick={handleClick("Mentee")}>
+            <RoleCard value={"Mentee"} />
           </Card>
         </FormControl>
       </div>

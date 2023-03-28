@@ -5,20 +5,21 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import mentor from "../mentor.png";
+import mentee from "../mentee.png";
 
-export default function ActionAreaCard() {
+export default function ActionAreaCard({ value }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="140"
-          image={mentor}
+          image={value === 'Mentor' ? mentor: mentee}
           alt="green iguana"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            As a Mentor
+            As a {value}
           </Typography>
         </CardContent>
       </CardActionArea>
