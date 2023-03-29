@@ -89,9 +89,10 @@ const SecondProgressBarForm = () => {
           <label> What are your pronouns? </label>
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
-              <InputLabel shrink={false} id="demo-simple-select-label">
-                Pronouns
-              </InputLabel>
+              <InputLabel
+                shrink={false}
+                id="demo-simple-select-label"
+              ></InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
