@@ -151,3 +151,26 @@ input {
     margin: 0;
 }
 
+/* Desktop styles */
+@media only screen and (min-width: 1440px) {
+  /* Add your desktop styles here */
+  .signup-container {
+    margin: 0 auto;
+  }
+}
+
+/* Tablet styles */
+@media only screen and (min-width: 768px) {
+  /* Add your tablet styles here */
+    .signup-container {
+        margin: 0 auto;
+      }
+}
+
+/* Mobile styles */
+@media only screen and (min-width: 320px) {
+  /* Add your mobile styles here */
+    .signup-container {
+        margin: 0 auto;
+      }
+}
