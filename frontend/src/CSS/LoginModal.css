@@ -128,6 +128,26 @@ font-family: 'SF Pro', sans-serif;
     border-radius: 0px;
     
 }
+.login-button-enabled {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 18px 16px;
+  gap: 10px;
+  text-align: center;
+  width: 327px;
+  height: 80px;
+  background: #027800;
+  border-radius: 10px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.408px;
+  border: none;
+  color: #FFFFFF;
+}
 
 .login-button-disabled {
 display: flex;
@@ -183,4 +203,31 @@ display: flex;
     justify-content: center;
   
     color: #000000;
+}
+
+
+@media only screen and (min-width: 1440px) {
+
+  /* Add your desktop styles here */
+  .modal {
+    margin: 0 auto;
+  }
+}
+
+/* Tablet styles */
+@media only screen and (min-width: 768px) {
+
+  /* Add your tablet styles here */
+  .modal {
+    margin: 0 auto;
+  }
+}
+
+/* Mobile styles */
+@media only screen and (min-width: 320px) {
+
+  /* Add your mobile styles here */
+  .modal{
+    margin: 0 auto;
+  }
 }
