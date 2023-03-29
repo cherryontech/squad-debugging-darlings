@@ -20,6 +20,9 @@ const useStyles = makeStyles({
   button: {
     height: "60px",
     width: "245px",
+    borderRadius: "10px",
+    textTransform: "none",
+    fontSize: "20px",
   },
 });
 
@@ -29,6 +32,7 @@ const ThirdProgressBarForm = () => {
   const decoded = jwt_decode(token);
   const [userId, setUserId] = useState(decoded.userId);
   const [role, setRole] = useState("");
+  const [isCardSelected, setIsCardSelected] = useState(false);
 
   const getUserProfile = async () => {
     try {
@@ -58,6 +62,7 @@ const ThirdProgressBarForm = () => {
   const handleClick = useCallback(
     (role) => () => {
       setRole(role);
+      setIsCardSelected(true);
     },
     [setRole]
   );
@@ -105,13 +110,23 @@ const ThirdProgressBarForm = () => {
           </Card>
         </FormControl>
         <Box display="flex" justifyContent="space-evenly" width="40%">
-          <Button className={classes.button} variant="contained">
+          <Button
+            className={classes.button}
+            variant="outlined"
+            style={{
+              backgroundColor: "white",
+              border: "3px solid #027800",
+              color: "green",
+            }}
+          >
             Back
           </Button>
           <Button
             className={classes.button}
             variant="contained"
             onClick={handleContinueClick}
+            disabled={!isCardSelected}
+            style={{ backgroundColor: isCardSelected ? "green" : "" }}
           >
             Continue
           </Button>
