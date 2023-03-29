@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { LinearDeterminate } from "./ProgressBar";
 import Nav from "./Nav";
 import TextField from "@mui/material/TextField";
@@ -6,28 +6,44 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import "../CSS/ProgressBarForm.css";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 
 const ProgressBarForm = () => {
-  const [userId, setUserId] = useState("");
+  const { token } = useContext(AuthContext);
+  const decoded = jwt_decode(token);
+  const [userId, setUserId] = useState(decoded.userId);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [isValid, setIsValid] = useState(false);
 
-  const fetchUserProfile = async () => {
+  const getUserProfile = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:3000/users/userProfile/${userId}`
-      );
-      const { firstName, lastName, id } = response.data;
+      let config = {
+        method: "get",
+        maxBodyLength: Infinity,
+        url: `http://localhost:3000/users/userProfile/${userId}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      };
+      const response = await axios.request(config);
+
+      const { firstName, lastName } = response.data;
       setFirstName(firstName);
       setLastName(lastName);
-      setUserId(id);
       setIsValid(validateInput(firstName, lastName));
     } catch (error) {
       console.error(error);
     }
   };
+
+  //put the useEffect in here and invoke the fetchuserprofile
+  useEffect(() => {
+    getUserProfile();
+  }, []);
 
   const handleFirstNameChange = (event) => {
     setFirstName(event.target.value);
@@ -46,14 +62,21 @@ const ProgressBarForm = () => {
 
   const handleContinueClick = async () => {
     try {
-      await fetchUserProfile();
-      const response = await axios.patch(
-        `http://localhost:3000/users/userProfile/${userId}`,
-        {
-          firstName,
-          lastName,
-        }
-      );
+      let data = JSON.stringify({
+        firstName,
+        lastName,
+      });
+      let config = {
+        method: "patch",
+        maxBodyLength: Infinity,
+        url: `http://localhost:3000/users/userProfile/${userId}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        data: data,
+      };
+      const response = await axios.request(config);
       console.log(response.data);
       // move to next step of questionnaire
     } catch (error) {
