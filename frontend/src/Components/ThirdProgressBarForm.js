@@ -8,6 +8,7 @@ import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { makeStyles } from "@mui/styles";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -110,17 +111,19 @@ const ThirdProgressBarForm = () => {
           </Card>
         </FormControl>
         <Box display="flex" justifyContent="space-evenly" width="40%">
-          <Button
-            className={classes.button}
-            variant="outlined"
-            style={{
-              backgroundColor: "white",
-              border: "3px solid #027800",
-              color: "green",
-            }}
-          >
-            Back
-          </Button>
+          <Link to="/setup-profile-2" style={{ textDecoration: "none" }}>
+            <Button
+              className={classes.button}
+              variant="outlined"
+              style={{
+                backgroundColor: "white",
+                border: "3px solid #027800",
+                color: "green",
+              }}
+            >
+              Back
+            </Button>
+          </Link>
           <Button
             className={classes.button}
             variant="contained"
