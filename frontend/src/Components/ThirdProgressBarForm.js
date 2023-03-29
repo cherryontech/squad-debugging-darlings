@@ -3,12 +3,28 @@ import { LinearDeterminate } from "./ProgressBar";
 import Nav from "./Nav";
 import RoleCard from "../common/RoleCard";
 import "../CSS/ThirdProgressBarForm.css";
-import { Button, FormControl, Card } from "@mui/material";
+import { Button, FormControl, Card, Box } from "@mui/material";
 import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles({
+  root: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    width: "40%",
+  },
+  button: {
+    height: "60px",
+    width: "245px",
+  },
+});
 
 const ThirdProgressBarForm = () => {
+  const classes = useStyles();
   const { token } = useContext(AuthContext);
   const decoded = jwt_decode(token);
   const [userId, setUserId] = useState(decoded.userId);
@@ -39,9 +55,12 @@ const ThirdProgressBarForm = () => {
     getUserProfile();
   }, []);
 
-  const handleClick = useCallback((role) => () => {
-    setRole(role);
-  }, [setRole]);
+  const handleClick = useCallback(
+    (role) => () => {
+      setRole(role);
+    },
+    [setRole]
+  );
 
   const handleContinueClick = async () => {
     // handle continue button click
@@ -70,13 +89,14 @@ const ThirdProgressBarForm = () => {
   return (
     <>
       <Nav showLogoutButton={true} />
-      <LinearDeterminate page={3} />
-      <h1 className="welcome">Hello, welcome to Cherry on Tech!</h1>
-      <h2 className="tellus">Tell us a little bit about yourself.</h2>
-      <div className="mode-container"></div>
-      <p>Choose a mode to get started!</p>
-      <div className="card-container">
-        <FormControl>
+      <div className="third-progress-bar-form-container">
+        <LinearDeterminate page={3} />
+        <h1 className="welcome">Hello, welcome to Cherry on Tech!</h1>
+        <h2 className="tellus">Tell us a little bit about yourself.</h2>
+        <div className="mode-container"></div>
+        <p>Choose a mode to get started!</p>
+
+        <FormControl className={classes.root}>
           <Card value={"Mentor"} onClick={handleClick("Mentor")}>
             <RoleCard value={"Mentor"} />
           </Card>
@@ -84,11 +104,19 @@ const ThirdProgressBarForm = () => {
             <RoleCard value={"Mentee"} />
           </Card>
         </FormControl>
+        <Box display="flex" justifyContent="space-evenly" width="40%">
+          <Button className={classes.button} variant="contained">
+            Back
+          </Button>
+          <Button
+            className={classes.button}
+            variant="contained"
+            onClick={handleContinueClick}
+          >
+            Continue
+          </Button>
+        </Box>
       </div>
-      <Button variant="contained">Back</Button>
-      <Button variant="contained" onClick={handleContinueClick}>
-        Continue
-      </Button>
     </>
   );
 };
