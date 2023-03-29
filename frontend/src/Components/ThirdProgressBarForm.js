@@ -25,6 +25,9 @@ const useStyles = makeStyles({
     textTransform: "none",
     fontSize: "20px",
   },
+  selectedCard: {
+    border: "2px solid green",
+  },
 });
 
 const ThirdProgressBarForm = () => {
@@ -103,10 +106,22 @@ const ThirdProgressBarForm = () => {
         <p>Choose a mode to get started!</p>
 
         <FormControl className={classes.root}>
-          <Card value={"Mentor"} onClick={handleClick("Mentor")}>
+          <Card
+            value={"Mentor"}
+            onClick={handleClick("Mentor")}
+            className={
+              isCardSelected && role === "Mentor" ? classes.selectedCard : ""
+            }
+          >
             <RoleCard value={"Mentor"} />
           </Card>
-          <Card value={"Mentee"} onClick={handleClick("Mentee")}>
+          <Card
+            value={"Mentee"}
+            onClick={handleClick("Mentee")}
+            className={
+              isCardSelected && role === "Mentee" ? classes.selectedCard : ""
+            }
+          >
             <RoleCard value={"Mentee"} />
           </Card>
         </FormControl>
