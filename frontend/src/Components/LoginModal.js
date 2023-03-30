@@ -1,11 +1,9 @@
 import "../CSS/LoginModal.css";
 import { useState, useEffect, useContext } from "react";
-import { Paper, Alert } from "@mui/material";
+import { Alert } from "@mui/material";
 import Nav from "./Nav";
 import { AlertSeverity } from "../constants/AlertSeverity";
 import { SignupModal } from "./SignupModal";
-import { Link } from "react-router-dom";
-import { ProgressBarForm } from "./ProgressBarForm";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 
@@ -18,7 +16,7 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
   const navigate = useNavigate();
   useEffect(() => {
     const isValid = email && password;
-    console.log(isValid);
+    // console.log(isValid);
     setIsButtonDisabled(!isValid);
   });
 
@@ -46,9 +44,13 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
         // setToken(data.token)
         // localStorage.setItem("token", data.token);
         const dataToken = data.token;
-        login(dataToken);
-
-        navigate('/setup-profile-1');
+        console.log(dataToken, "data token");
+        if (!dataToken) {
+          window.reload;
+        } else {
+          login(dataToken);
+          navigate("/setup-profile-1");
+        }
       })
       .catch((error) => console.log(error));
   };

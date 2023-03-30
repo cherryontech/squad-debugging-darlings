@@ -92,7 +92,7 @@ const ProgressBarForm = () => {
         <h1 className="welcome">Hello, welcome to Cherry on Tech!</h1>
         <h2 className="tellus">Tell us a bit about yourself.</h2>
         <div className="input-container">
-          <label> First Name</label>
+          {/* <label> First Name</label> */}
           <TextField
             id="outlined-basic"
             label="First Name"
@@ -101,7 +101,7 @@ const ProgressBarForm = () => {
             onChange={handleFirstNameChange}
             sx={{ width: "671.85px", marginBottom: "2rem" }}
           />
-          <label> Last Name</label>
+          {/* <label> Last Name</label> */}
           <TextField
             id="outlined-basic"
             label="Last Name"
