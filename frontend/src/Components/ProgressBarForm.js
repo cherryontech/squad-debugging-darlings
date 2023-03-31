@@ -10,6 +10,7 @@ import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { api } from "../api/api";
+import { Grid, Paper } from "@mui/material";
 
 const ProgressBarForm = () => {
   const { token } = useContext(AuthContext);
@@ -92,6 +93,7 @@ const ProgressBarForm = () => {
         <LinearDeterminate page={1} />
         <h1 className="welcome">Hello, welcome to Cherry on Tech!</h1>
         <h2 className="tellus">Tell us a bit about yourself.</h2>
+
         <div className="input-container">
           {/* <label> First Name</label> */}
           <TextField
@@ -127,6 +129,7 @@ const ProgressBarForm = () => {
                   width: "245px",
                   height: "60px",
                   marginTop: "4rem",
+                  "&:hover": { backgroundColor: "#027800" }
                 }}
               >
                 Continue
@@ -134,7 +137,7 @@ const ProgressBarForm = () => {
             </Box>
           </Link>
         </div>
-      </div>
+      </div >
     </>
   );
 };

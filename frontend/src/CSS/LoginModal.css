@@ -49,7 +49,7 @@ font-family: 'SF Pro', sans-serif;
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 7px 0px;
+    padding: 5pt;
     gap: 12px;
     width: 672px;
     height: 56px;

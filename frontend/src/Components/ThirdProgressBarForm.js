@@ -9,6 +9,7 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
+import { api } from "../api/api";
 
 const useStyles = makeStyles({
   root: {
@@ -16,7 +17,6 @@ const useStyles = makeStyles({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",
-    width: "40%",
   },
   button: {
     height: "60px",
@@ -98,7 +98,7 @@ const ThirdProgressBarForm = () => {
   return (
     <>
       <Nav showLogoutButton={true} />
-      <div className="third-progress-bar-form-container">
+      <div className="progress-bar-form-container">
         <LinearDeterminate page={3} />
         <h1 className="welcome">Hello, welcome to Cherry on Tech!</h1>
         <h2 className="tellus">Tell us a little bit about yourself.</h2>
@@ -125,7 +125,7 @@ const ThirdProgressBarForm = () => {
             <RoleCard value={"Mentee"} />
           </Card>
         </FormControl>
-        <Box display="flex" justifyContent="space-evenly" width="40%">
+        <Box display="flex" justifyContent="space-evenly" mt={"15pt"}>
           <Link to="/setup-profile-2" style={{ textDecoration: "none" }}>
             <Button
               className={classes.button}

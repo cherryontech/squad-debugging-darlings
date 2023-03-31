@@ -4,25 +4,22 @@ import { Alert } from "@mui/material";
 import Nav from "./Nav";
 import { AlertSeverity } from "../constants/AlertSeverity";
 import { SignupModal } from "./SignupModal";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 import { api } from "../api/api";
 
-export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
+export const LoginModal = ({ alertMsg, setAlertMsg }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const { login, token } = useContext(AuthContext);
-
+  const location = useLocation();
+  setAlertMsg(location?.state?.msg);
   const navigate = useNavigate();
   useEffect(() => {
     const isValid = email && password;
     setIsButtonDisabled(!isValid);
   });
-
-  const showSignupModal = () => {
-    open(SignupModal, "_self");
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,7 +35,7 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
       .then((response) => response.json())
       .then((data) => {
         setAlertMsg(data.message);
-        
+
         const dataToken = data.token;
         if (!dataToken) {
           window.reload;
@@ -58,7 +55,7 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
           <div className="title-login">
             <h1>Welcome back to Cherry on Tech!</h1>
             <p>Log in with your email</p>
-            {alertMsg != "" ? (
+            {alertMsg ? (
               <Alert severity={AlertSeverity[alertMsg]}>{alertMsg}</Alert>
             ) : (
               <></>
@@ -103,9 +100,9 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
           </form>
           <div className="register-account">
             <p>Not a member yet?</p>
-            <button className="register-button" onClick={showSignupModal}>
+            <Link className="register-button" to="/signup">
               Register Now
-            </button>
+            </Link>
           </div>
         </div>
       </div>

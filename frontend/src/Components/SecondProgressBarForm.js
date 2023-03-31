@@ -82,7 +82,7 @@ const SecondProgressBarForm = () => {
   return (
     <>
       <Nav showLogoutButton={true} />
-      <div className="second-progress-bar-form-container">
+      <div className="progress-bar-form-container">
         <LinearDeterminate page={2} />
         <h1 className="welcome">Hello, welcome to Cherry on Tech!</h1>
         <h2 className="tellus">Tell us a little bit about yourself.</h2>
@@ -111,23 +111,21 @@ const SecondProgressBarForm = () => {
             </FormControl>
             <div className="button-div">
               <Link
-                className="back-button"
                 to="/setup-profile-1"
                 style={{ textDecoration: "none" }}
               >
                 <Button
-                  sx={{
+                  variant="outlined"
+                  style={{
                     backgroundColor: "white",
-                    border: "3px solid green",
-                    width: "245px",
+                    border: "3px solid #027800",
+                    color: "green",
                     height: "60px",
+                    width: "245px",
+                    borderRadius: "10px",
                     textTransform: "none",
                     fontSize: "20px",
-                    color: "green",
-                    borderRadius: "10px",
                   }}
-                  variant="outlined"
-                  onClick={handleBackClick}
                 >
                   Back
                 </Button>
@@ -139,14 +137,12 @@ const SecondProgressBarForm = () => {
               >
                 <Button
                   sx={{
+                    backgroundColor: "#027800",
+                    color: "#FFFFFF",
+                    fontWeight: "500",
                     width: "245px",
-                    fontSize: "20px",
-                    color: "white",
                     height: "60px",
-                    textTransform: "none",
-                    backgroundColor: isContinueButtonDisabled
-                      ? "#DBDBDC"
-                      : "green",
+                    "&:hover": {backgroundColor: "#027800" }
                   }}
                   disabled={isContinueButtonDisabled}
                   onClick={handleContinueClick}

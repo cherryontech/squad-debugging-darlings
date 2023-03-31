@@ -10,11 +10,14 @@ import mentee from "../mentee.png";
 export default function ActionAreaCard({ value }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
+      <CardActionArea sx={{
+        alignItems: "center",
+        justifyContent: "center"
+      }}>
         <CardMedia
           component="img"
           height="140"
-          image={value === 'Mentor' ? mentor: mentee}
+          image={value === 'Mentor' ? mentor : mentee}
           alt="green iguana"
         />
         <CardContent>
