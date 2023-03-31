@@ -144,7 +144,10 @@ const ThirdProgressBarForm = () => {
             variant="contained"
             onClick={handleContinueClick}
             disabled={!isCardSelected}
-            style={{ backgroundColor: isCardSelected ? "green" : "" }}
+            style={{
+              backgroundColor: isCardSelected && role ? "green" : "",
+              color: isCardSelected && role ? "white" : ""
+            }}
           >
             Continue
           </Button>
