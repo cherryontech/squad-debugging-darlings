@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import "../CSS/SignupModal.css";
-import { LoginModal } from "./LoginModal";
 import { Link, useNavigate } from "react-router-dom";
 import Nav from "./Nav";
+import { api } from "../api/api";
+import { Alert } from "@mui/material";
+import { AlertSeverity } from "../constants/AlertSeverity";
 
-export const SignupModal = ({ setAlertMsg }) => {
+export const SignupModal = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,6 +14,7 @@ export const SignupModal = ({ setAlertMsg }) => {
   const [message, setMessage] = useState("");
   const [emailMatchError, setEmailMatchError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [alertMsg, setAlertMsg] = useState("");
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -33,7 +36,6 @@ export const SignupModal = ({ setAlertMsg }) => {
   };
 
   const showLoginModal = () => {
-    console.log("Are we here");
     navigate("/login", { alertMsg: alertMsg });
   };
 
@@ -48,7 +50,7 @@ export const SignupModal = ({ setAlertMsg }) => {
         password_confirm: passwordConfirm,
       }),
     };
-    fetch("http://localhost:3000/users/signup", requestOptions)
+    fetch(api.users.signup, requestOptions)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -75,6 +77,12 @@ export const SignupModal = ({ setAlertMsg }) => {
           <div className="signup-title">
             <h1>Get Started with Cherry on Tech!</h1>
             <p>Register with your email</p>
+            <p>Log in with your email</p>
+            {alertMsg != "" ? (
+              <Alert severity={AlertSeverity[alertMsg]}>{alertMsg}</Alert>
+            ) : (
+              <></>
+            )}
           </div>
           <form className="form" onSubmit={handleSubmit}>
             <label>Email</label>

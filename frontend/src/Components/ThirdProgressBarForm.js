@@ -43,7 +43,7 @@ const ThirdProgressBarForm = () => {
       let config = {
         method: "get",
         maxBodyLength: Infinity,
-        url: `http://localhost:3000/users/userProfile/${userId}`,
+        url: `${api.users.userProfile}/${userId}`,
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -80,7 +80,7 @@ const ThirdProgressBarForm = () => {
       let config = {
         method: "patch",
         maxBodyLength: Infinity,
-        url: `http://localhost:3000/users/userProfile/${userId}`,
+        url: `${api.users.userProfile}/${userId}`,
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",

@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import { api } from "../api/api";
 
 const SecondProgressBarForm = () => {
   const { token } = useContext(AuthContext);
@@ -24,7 +25,7 @@ const SecondProgressBarForm = () => {
       let config = {
         method: "get",
         maxBodyLength: Infinity,
-        url: `http://localhost:3000/users/userProfile/${userId}`,
+        url: `${api.users.userProfile}/${userId}`,
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -61,7 +62,7 @@ const SecondProgressBarForm = () => {
       let config = {
         method: "patch",
         maxBodyLength: Infinity,
-        url: `http://localhost:3000/users/userProfile/${userId}`,
+        url: `${api.users.userProfile}/${userId}`,
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",

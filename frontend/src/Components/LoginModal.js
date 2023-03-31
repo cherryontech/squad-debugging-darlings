@@ -6,6 +6,7 @@ import { AlertSeverity } from "../constants/AlertSeverity";
 import { SignupModal } from "./SignupModal";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
+import { api } from "../api/api";
 
 export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
   const [email, setEmail] = useState("");
@@ -16,12 +17,10 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
   const navigate = useNavigate();
   useEffect(() => {
     const isValid = email && password;
-    // console.log(isValid);
     setIsButtonDisabled(!isValid);
   });
 
   const showSignupModal = () => {
-    // closeLoginModal(true);
     open(SignupModal, "_self");
   };
 
@@ -35,16 +34,12 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
         password,
       }),
     };
-    fetch("http://localhost:3000/users/signin", requestOptions)
+    fetch(api.users.signin, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data, "data");
         setAlertMsg(data.message);
-        //data.token would give you the token, we need to navigate to the next page with this token, this token contains the userId which we'll use on the next page
-        // setToken(data.token)
-        // localStorage.setItem("token", data.token);
+        
         const dataToken = data.token;
-        console.log(dataToken, "data token");
         if (!dataToken) {
           window.reload;
         } else {
@@ -93,8 +88,6 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
               />
             </div>
             <div className="login-btn-div">
-              {/* <Link to="/setup-profile-1" style={{ textDecoration: "none" }}> see how to send props on this part, send this token to the next page, maybe use the Link or maybe use the useNavigate hook to do that. So we can dyncially invole each user */}
-
               <button
                 className={
                   isButtonDisabled
@@ -106,7 +99,6 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
               >
                 Log In
               </button>
-              {/* </Link> */}
             </div>
           </form>
           <div className="register-account">
