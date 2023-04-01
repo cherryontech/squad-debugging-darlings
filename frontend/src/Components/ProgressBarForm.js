@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import { api } from "../api/api";
+import { Grid, Paper } from "@mui/material";
 
 const ProgressBarForm = () => {
   const { token } = useContext(AuthContext);
@@ -23,7 +25,7 @@ const ProgressBarForm = () => {
       let config = {
         method: "get",
         maxBodyLength: Infinity,
-        url: `http://localhost:3000/users/userProfile/${userId}`,
+        url: `${api.users.userProfile}/${userId}`,
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -69,7 +71,7 @@ const ProgressBarForm = () => {
       let config = {
         method: "patch",
         maxBodyLength: Infinity,
-        url: `http://localhost:3000/users/userProfile/${userId}`,
+        url: `${api.users.userProfile}/${userId}`,
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -91,8 +93,9 @@ const ProgressBarForm = () => {
         <LinearDeterminate page={1} />
         <h1 className="welcome">Hello, welcome to Cherry on Tech!</h1>
         <h2 className="tellus">Tell us a bit about yourself.</h2>
+
         <div className="input-container">
-          <label> First Name</label>
+          {/* <label> First Name</label> */}
           <TextField
             id="outlined-basic"
             label="First Name"
@@ -101,7 +104,7 @@ const ProgressBarForm = () => {
             onChange={handleFirstNameChange}
             sx={{ width: "671.85px", marginBottom: "2rem" }}
           />
-          <label> Last Name</label>
+          {/* <label> Last Name</label> */}
           <TextField
             id="outlined-basic"
             label="Last Name"
@@ -126,6 +129,7 @@ const ProgressBarForm = () => {
                   width: "245px",
                   height: "60px",
                   marginTop: "4rem",
+                  "&:hover": { backgroundColor: "#027800" }
                 }}
               >
                 Continue
@@ -133,7 +137,7 @@ const ProgressBarForm = () => {
             </Box>
           </Link>
         </div>
-      </div>
+      </div >
     </>
   );
 };

@@ -3,23 +3,47 @@ import { LinearDeterminate } from "./ProgressBar";
 import Nav from "./Nav";
 import RoleCard from "../common/RoleCard";
 import "../CSS/ThirdProgressBarForm.css";
-import { Button, FormControl, Card } from "@mui/material";
+import { Button, FormControl, Card, Box } from "@mui/material";
 import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import { makeStyles } from "@mui/styles";
+import { Link } from "react-router-dom";
+import { api } from "../api/api";
+
+const useStyles = makeStyles({
+  root: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  },
+  button: {
+    height: "60px",
+    width: "245px",
+    borderRadius: "10px",
+    textTransform: "none",
+    fontSize: "20px",
+  },
+  selectedCard: {
+    border: "2px solid green",
+  },
+});
 
 const ThirdProgressBarForm = () => {
+  const classes = useStyles();
   const { token } = useContext(AuthContext);
   const decoded = jwt_decode(token);
   const [userId, setUserId] = useState(decoded.userId);
   const [role, setRole] = useState("");
+  const [isCardSelected, setIsCardSelected] = useState(false);
 
   const getUserProfile = async () => {
     try {
       let config = {
         method: "get",
         maxBodyLength: Infinity,
-        url: `http://localhost:3000/users/userProfile/${userId}`,
+        url: `${api.users.userProfile}/${userId}`,
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -39,9 +63,13 @@ const ThirdProgressBarForm = () => {
     getUserProfile();
   }, []);
 
-  const handleClick = useCallback((role) => () => {
-    setRole(role);
-  }, [setRole]);
+  const handleClick = useCallback(
+    (role) => () => {
+      setRole(role);
+      setIsCardSelected(true);
+    },
+    [setRole]
+  );
 
   const handleContinueClick = async () => {
     // handle continue button click
@@ -52,7 +80,7 @@ const ThirdProgressBarForm = () => {
       let config = {
         method: "patch",
         maxBodyLength: Infinity,
-        url: `http://localhost:3000/users/userProfile/${userId}`,
+        url: `${api.users.userProfile}/${userId}`,
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
@@ -70,25 +98,61 @@ const ThirdProgressBarForm = () => {
   return (
     <>
       <Nav showLogoutButton={true} />
-      <LinearDeterminate page={3} />
-      <h1 className="welcome">Hello, welcome to Cherry on Tech!</h1>
-      <h2 className="tellus">Tell us a little bit about yourself.</h2>
-      <div className="mode-container"></div>
-      <p>Choose a mode to get started!</p>
-      <div className="card-container">
-        <FormControl>
-          <Card value={"Mentor"} onClick={handleClick("Mentor")}>
+      <div className="progress-bar-form-container">
+        <LinearDeterminate page={3} />
+        <h1 className="welcome">Hello, welcome to Cherry on Tech!</h1>
+        <h2 className="tellus">Tell us a little bit about yourself.</h2>
+        <div className="mode-container"></div>
+        <p>Choose a mode to get started!</p>
+
+        <FormControl className={classes.root}>
+          <Card
+            value={"Mentor"}
+            onClick={handleClick("Mentor")}
+            className={
+              isCardSelected && role === "Mentor" ? classes.selectedCard : ""
+            }
+          >
             <RoleCard value={"Mentor"} />
           </Card>
-          <Card value={"Mentee"} onClick={handleClick("Mentee")}>
+          <Card
+            value={"Mentee"}
+            onClick={handleClick("Mentee")}
+            className={
+              isCardSelected && role === "Mentee" ? classes.selectedCard : ""
+            }
+          >
             <RoleCard value={"Mentee"} />
           </Card>
         </FormControl>
+        <Box display="flex" justifyContent="space-evenly" mt={"15pt"}>
+          <Link to="/setup-profile-2" style={{ textDecoration: "none" }}>
+            <Button
+              className={classes.button}
+              variant="outlined"
+              style={{
+                backgroundColor: "white",
+                border: "3px solid #027800",
+                color: "green",
+              }}
+            >
+              Back
+            </Button>
+          </Link>
+          <Button
+            className={classes.button}
+            variant="contained"
+            onClick={handleContinueClick}
+            disabled={!isCardSelected}
+            style={{
+              backgroundColor: isCardSelected && role ? "green" : "",
+              color: isCardSelected && role ? "white" : ""
+            }}
+          >
+            Continue
+          </Button>
+        </Box>
       </div>
-      <Button variant="contained">Back</Button>
-      <Button variant="contained" onClick={handleContinueClick}>
-        Continue
-      </Button>
     </>
   );
 };
