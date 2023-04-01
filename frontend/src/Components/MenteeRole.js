@@ -6,7 +6,8 @@ import Button from "@mui/material/Button";
 import PMCard from "./PMCard"
 import DeveloperCard from "./DeveloperCard"
 import DesignerCard from "./DesignerCard"
-
+import { Link } from "react-router-dom";
+import { Box } from "@mui/material";
 
 const MenteeRole = () => {
   const [selectedCard, setSelectedCard] = useState(null);
@@ -28,10 +29,21 @@ const MenteeRole = () => {
         <DeveloperCard onSelect={handleCardSelect} />
         <DesignerCard onSelect={handleCardSelect} />
       </div>
-      <Button variant="contained" onClick={() => window.location.href = "/setup-profile-3"}>
-        Back
-      </Button>
+      <Box display="flex" justifyContent="space-evenly" mt={"15pt"}>
+          <Link to="/setup-profile-3" style={{ textDecoration: "none" }}>
+            <Button
+              variant="outlined"
+              style={{
+                backgroundColor: "white",
+                border: "3px solid #027800",
+                color: "green",
+              }}
+            >
+              Back
+            </Button>
+          </Link>
       <Button variant="contained" disabled={!selectedCard}>Continue</Button>
+      </Box>
     </>
   );
 };
