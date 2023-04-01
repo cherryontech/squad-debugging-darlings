@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import "../CSS/SignupModal.css";
-import { LoginModal } from "./LoginModal";
 import { Link, useNavigate } from "react-router-dom";
 import Nav from "./Nav";
+import { api } from "../api/api";
+import { Alert } from "@mui/material";
+import { AlertSeverity } from "../constants/AlertSeverity";
 
-export const SignupModal = ({ setAlertMsg }) => {
+export const SignupModal = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,6 +14,7 @@ export const SignupModal = ({ setAlertMsg }) => {
   const [message, setMessage] = useState("");
   const [emailMatchError, setEmailMatchError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [alertMsg, setAlertMsg] = useState("");
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -32,9 +35,8 @@ export const SignupModal = ({ setAlertMsg }) => {
     console.log(passwordError);
   };
 
-  const showLoginModal = () => {
-    console.log("Are we here");
-    navigate("/login", { alertMsg: alertMsg });
+  const showLoginModal = (msg) => {
+    navigate("/login", { state: { msg } });
   };
 
   const handleSubmit = (event) => {
@@ -48,20 +50,15 @@ export const SignupModal = ({ setAlertMsg }) => {
         password_confirm: passwordConfirm,
       }),
     };
-    fetch("http://localhost:3000/users/signup", requestOptions)
+    fetch(api.users.signup, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        if (data.message === "Email already exists") {
-          console.log("we are in this block");
-          setAlertMsg("Email already exists. Please login!");
-          showLoginModal();
-        } else {
-          setEmail("");
-          setPassword("");
-          setPasswordConfirm("");
-          setAlertMsg("Account successfully created!");
-          showLoginModal();
+        const msg = data.message
+        setAlertMsg(msg);
+        if (data.message === "Email already exists"
+          || data.message === "User created successfully") {
+
+          showLoginModal(msg);
         }
       })
       .catch((error) => console.log(error));
@@ -75,26 +72,37 @@ export const SignupModal = ({ setAlertMsg }) => {
           <div className="signup-title">
             <h1>Get Started with Cherry on Tech!</h1>
             <p>Register with your email</p>
+            {alertMsg != "" ? (
+              <Alert severity={AlertSeverity[alertMsg]}>{alertMsg}</Alert>
+            ) : (
+              <></>
+            )}
           </div>
           <form className="form" onSubmit={handleSubmit}>
-            <label>Email</label>
-            <input
-              type="email"
-              value={email}
-              placeholder="info@cherry.com"
-              onChange={(e) => setEmail(e.target.value)}
-            />
+            <div className="form-group-login">
+              <label>Email</label>
+              <input
+                type="email"
+                value={email}
+                placeholder="info@cherry.com"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
             {emailMatchError && (
               <p className="error-message">This value is not a valid email.</p>
             )}
-            <label>Password</label>
-            <input
-              type="password"
-              value={password}
-              placeholder="your password"
-              onChange={(e) => setPassword(e.target.value)}
-              onInput={(e) => validatePassword(e.target.value)}
-            />
+            <div className="form-group-login">
+              <label>Password</label>
+              <input
+                type="password"
+                value={password}
+                placeholder="your password"
+                onChange={(e) => setPassword(e.target.value)}
+                onInput={(e) => validatePassword(e.target.value)}
+              />
+            </div>
+
             <div className="yes-error">
               <p className={passwordError && password ? "error-message" : "i"}>
                 <span>&#9432;</span>At least 8 characters and a mix of numbers.
@@ -108,15 +116,18 @@ export const SignupModal = ({ setAlertMsg }) => {
             </div>
 
             <br />
-            <label>Confirm Password</label>
-            <input
-              type="password"
-              value={passwordConfirm}
-              placeholder="your password"
-              onChange={(e) => setPasswordConfirm(e.target.value)}
-            />
+            <div className="form-group-login">
+              <label>Confirm Password</label>
+              <input
+                type="password"
+                value={passwordConfirm}
+                placeholder="your password"
+                onChange={(e) => setPasswordConfirm(e.target.value)}
+              />
+            </div>
+
             <br />
-            <div className="button-div">
+            <div className="login-btn-div">
               <button
                 disabled={isButtonDisabled}
                 className={
@@ -130,10 +141,9 @@ export const SignupModal = ({ setAlertMsg }) => {
               </button>
             </div>
           </form>
-          {message && <p>{message}</p>}
-          <div className="login-account">
+          <div className="register-account">
             <p>Already have an account?</p>
-            <Link className="log-in-button" to="/login">
+            <Link className="register-button" to="/login">
               Log In
             </Link>
           </div>

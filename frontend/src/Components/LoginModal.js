@@ -1,27 +1,25 @@
 import "../CSS/LoginModal.css";
-import { useState, useEffect } from "react";
-import { Paper, Alert } from "@mui/material";
+import { useState, useEffect, useContext } from "react";
+import { Alert } from "@mui/material";
 import Nav from "./Nav";
 import { AlertSeverity } from "../constants/AlertSeverity";
 import { SignupModal } from "./SignupModal";
-import { Link } from "react-router-dom";
-import { ProgressBarForm } from "./ProgressBarForm";
+import { useNavigate, useLocation, Link } from "react-router-dom";
+import { AuthContext } from "../Context/AuthContext";
+import { api } from "../api/api";
 
-export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
+export const LoginModal = ({ alertMsg, setAlertMsg }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-
+  const { login, token } = useContext(AuthContext);
+  const location = useLocation();
+  setAlertMsg(location?.state?.msg);
+  const navigate = useNavigate();
   useEffect(() => {
     const isValid = email && password;
-    console.log(isValid);
     setIsButtonDisabled(!isValid);
   });
-
-  const showSignupModal = () => {
-    // closeLoginModal(true);
-    open(SignupModal, "_self");
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -33,11 +31,18 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
         password,
       }),
     };
-    fetch("http://localhost:3000/users/signin", requestOptions)
+    fetch(api.users.signin, requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setAlertMsg(data.message);
+
+        const dataToken = data.token;
+        if (!dataToken) {
+          window.reload;
+        } else {
+          login(dataToken);
+          navigate("/setup-profile-1");
+        }
       })
       .catch((error) => console.log(error));
   };
@@ -50,7 +55,7 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
           <div className="title-login">
             <h1>Welcome back to Cherry on Tech!</h1>
             <p>Log in with your email</p>
-            {alertMsg != "" ? (
+            {alertMsg ? (
               <Alert severity={AlertSeverity[alertMsg]}>{alertMsg}</Alert>
             ) : (
               <></>
@@ -80,26 +85,24 @@ export const LoginModal = ({ closeLoginModal, alertMsg, setAlertMsg }) => {
               />
             </div>
             <div className="login-btn-div">
-              <Link to="/setup-profile-1" style={{ textDecoration: "none" }}>
-                <button
-                  className={
-                    isButtonDisabled
-                      ? "login-button-disabled"
-                      : "login-button-enabled"
-                  }
-                  disabled={isButtonDisabled}
-                  type="submit"
-                >
-                  Log In
-                </button>
-              </Link>
+              <button
+                className={
+                  isButtonDisabled
+                    ? "login-button-disabled"
+                    : "login-button-enabled"
+                }
+                disabled={isButtonDisabled}
+                type="submit"
+              >
+                Log In
+              </button>
             </div>
           </form>
           <div className="register-account">
             <p>Not a member yet?</p>
-            <button className="register-button" onClick={showSignupModal}>
+            <Link className="register-button" to="/signup">
               Register Now
-            </button>
+            </Link>
           </div>
         </div>
       </div>
