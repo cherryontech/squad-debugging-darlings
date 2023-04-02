@@ -6,6 +6,9 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import mentor from "../mentor.png";
 import mentee from "../mentee.png";
+import pm from "../pm.png";
+import developer from "../developer.png";
+import designer from "../desginer.png";
 
 export default function ActionAreaCard({ value }) {
   return (
@@ -18,7 +21,7 @@ export default function ActionAreaCard({ value }) {
           component="img"
           height="140"
           image={value === 'Mentor' ? mentor : mentee}
-          alt="green iguana"
+          // alt={}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
