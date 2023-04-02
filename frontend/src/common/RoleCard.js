@@ -8,7 +8,7 @@ import mentor from "../mentor.png";
 import mentee from "../mentee.png";
 import pm from "../pm.png";
 import developer from "../developer.png";
-import designer from "../desginer.png";
+import designer from "../designer.png";
 
 export default function ActionAreaCard({ value }) {
   return (
@@ -20,7 +20,12 @@ export default function ActionAreaCard({ value }) {
         <CardMedia
           component="img"
           height="140"
-          image={value === 'Mentor' ? mentor : mentee}
+          image={value === 'Mentor' ? mentor :
+                value === 'Product Manager' ? pm :
+                value === 'Designer' ? designer :
+                value === 'Developer' ? developer :
+                mentee}
+          // image={value === 'Mentor' ? mentor : mentee}
           // alt={}
         />
         <CardContent>

@@ -14,12 +14,13 @@ export const LoginModal = ({ alertMsg, setAlertMsg }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const { login, token } = useContext(AuthContext);
   const location = useLocation();
-  setAlertMsg(location?.state?.msg);
   const navigate = useNavigate();
+
   useEffect(() => {
     const isValid = email && password;
     setIsButtonDisabled(!isValid);
-  });
+    setAlertMsg(location?.state?.msg);
+  }, [email, password, setAlertMsg]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

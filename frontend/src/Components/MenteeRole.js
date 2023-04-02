@@ -32,33 +32,33 @@ const useStyles = makeStyles({
 
 const MenteeRole = () => {
   const classes = useStyles();
-  const { token } = useContext(AuthContext);
-  const decoded = jwt_decode(token);
-  const [userId, setUserId] = useState(decoded.userId);
-  const [menteePath, setMenteePath] = useState("");
+  // const { token } = useContext(AuthContext);
+  // const decoded = jwt_decode(token);
+  // const [userId, setUserId] = useState(decoded.userId);
+  const [role, setRole] = useState("");
   const [isCardSelected, setIsCardSelected] = useState(false);
 
-  const getUserProfile = async () => {
-    try {
-      let config = {
-        method: "get",
-        maxBodyLength: Infinity,
-        url: `${api.users.userProfile}/${userId}`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      };
-      const response = await axios.request(config);
+  // const getUserProfile = async () => {
+  //   try {
+  //     let config = {
+  //       method: "get",
+  //       maxBodyLength: Infinity,
+  //       url: `${api.users.userProfile}/${userId}`,
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //         "Content-Type": "application/json",
+  //       },
+  //     };
+  //     const response = await axios.request(config);
 
-      const { menteePath } = response.data;
-      setMenteePath(menteePath);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  //     const { role } = response.data;
+  //     setRole(role);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
-  //put the useEffect in here and invoke the fetchuserprofile
+  // put the useEffect in here and invoke the fetchuserprofile
   // useEffect(() => {
   //   getUserProfile();
   // }, []);
@@ -108,7 +108,7 @@ const MenteeRole = () => {
         <FormControl className={classes.root}>
           <Card
             value={"Product Manager"}
-            onClick={handleClick("Product Manager")}
+            // onClick={handleClick("Product Manager")}
             className={
               isCardSelected && role === "Product Manager" ? classes.selectedCard : ""
             }
@@ -117,7 +117,7 @@ const MenteeRole = () => {
           </Card>
           <Card
             value={"Developer"}
-            onClick={handleClick("Developer")}
+            // onClick={handleClick("Developer")}
             className={
               isCardSelected && role === "Developer" ? classes.selectedCard : ""
             }
@@ -126,7 +126,7 @@ const MenteeRole = () => {
           </Card>
           <Card
             value={"Designer"}
-            onClick={handleClick("Designer")}
+            // onClick={handleClick("Designer")}
             className={
               isCardSelected && role === "Designer" ? classes.selectedCard : ""
             }
@@ -151,7 +151,7 @@ const MenteeRole = () => {
           <Button
             className={classes.button}
             variant="contained"
-            onClick={handleContinueClick}
+            // onClick={handleContinueClick}
             disabled={!isCardSelected}
             style={{
               backgroundColor: isCardSelected && role ? "green" : "",
