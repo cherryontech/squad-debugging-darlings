@@ -2,7 +2,8 @@ import React, { useState, useEffect, useContext, useCallback } from "react";
 import { LinearDeterminate } from "./ProgressBar";
 import Nav from "./Nav";
 import RoleCard from "../common/RoleCard";
-import "../CSS/ProgressBarForm.css";
+// import "../CSS/ProgressBarForm.css";
+import "../CSS/MenteeRole.css"
 import { Button, FormControl, Card, Box } from "@mui/material";
 import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
@@ -39,7 +40,7 @@ const MenteeRole = () => {
   return (
     <>
       <Nav showLogoutButton={true} />
-      <div className="progress-bar-form-container">
+      <div className="menteeRoleContainer">
         <LinearDeterminate page={1} />
         <h1 className="welcome">Hello, welcome to Cherry on Tech!</h1>
         <h2 className="tellus">Answer the following questions to get matched with a compatible mentor.</h2>
