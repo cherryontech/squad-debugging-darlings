@@ -7,8 +7,9 @@ import ProgressBarForm from "./Components/ProgressBarForm";
 import SecondProgressBarForm from "./Components/SecondProgressBarForm";
 import ThirdProgressBarForm from "./Components/ThirdProgressBarForm";
 import { AuthProvider } from "./Context/AuthContext";
-import MenteeRole from "./Components/MenteeRole";
-import MentorRole from "./Components/MentorRole";
+// import MenteeRole from "./Components/MenteeRole";
+// import MentorRole from "./Components/MentorRole";
+import RoleSelection from "./Components/RoleSelection";
 
 const App = () => {
   const [alertMsg, setAlertMsg] = useState("");
@@ -27,8 +28,24 @@ const App = () => {
         <Route path="/setup-profile-1" element={<ProgressBarForm />} />
         <Route path="/setup-profile-2" element={<SecondProgressBarForm />} />
         <Route path="/setup-profile-3" element={<ThirdProgressBarForm />} />
-        <Route path="/mentee-flow-1" element={<MenteeRole />} />
-        <Route path="/mentor-flow-1" element={<MentorRole />} />
+        <Route
+          path="/mentee-flow-1"
+          element={
+            <RoleSelection
+              lala="mentor"
+              question="What role are you interested in pursuing?"
+            />
+          }
+        />
+        <Route
+          path="/mentor-flow-1"
+          element={
+            <RoleSelection
+              lala="mentee"
+              question="What is your current role?"
+            />
+          }
+        />
       </Routes>
     </AuthProvider>
   );
