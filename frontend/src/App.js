@@ -32,7 +32,7 @@ const App = () => {
           path="/mentee-flow-1"
           element={
             <RoleSelection
-              lala="mentor"
+              matchedWith="mentor"
               question="What role are you interested in pursuing?"
             />
           }
@@ -41,7 +41,7 @@ const App = () => {
           path="/mentor-flow-1"
           element={
             <RoleSelection
-              lala="mentee"
+              matchedWith="mentee"
               question="What is your current role?"
             />
           }

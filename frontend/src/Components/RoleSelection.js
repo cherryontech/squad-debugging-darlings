@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   },
 });
 
-const RoleSelection = ({ question, lala }) => {
+const RoleSelection = ({ question, matchedWith }) => {
   const classes = useStyles();
   const [role, setRole] = useState("");
   const [isCardSelected, setIsCardSelected] = useState(false);
@@ -42,8 +42,8 @@ const RoleSelection = ({ question, lala }) => {
         <LinearDeterminate page={1} />
         <h1 className="welcome">Hello, welcome to Cherry on Tech!</h1>
         <h2 className="tellus">
-          Answer the following questions to get matched with a compatible {lala}
-          .
+          Answer the following questions to get matched with a compatible{" "}
+          {matchedWith}.
         </h2>
         <div className="mode-container"></div>
         <p>{question}</p>
