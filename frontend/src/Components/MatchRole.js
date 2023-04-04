@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { LinearDeterminate } from "./ProgressBar";
 import Nav from "./Nav";
 import RoleCard from "../common/RoleCard";
-import "../CSS/MentorRole.css";
+// import "../CSS/MentorRole.css";
 
 import { Button, FormControl, Card, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
@@ -38,9 +38,7 @@ const MatchRole = (props) => {
       <div className="progress-bar-form-container">
         <LinearDeterminate page={1} />
         <h1 className="welcome">Hello, welcome to Cherry on Tech!</h1>
-        <h2 className="tellus">
-          {props.header}
-        </h2>
+        <h2 className="tellus">{props.header}</h2>
         <div className="mode-container"></div>
         <p>{props.ques}</p>
         <FormControl className={classes.root}>

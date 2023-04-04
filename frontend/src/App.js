@@ -10,7 +10,7 @@ import {
   ThirdProgressBarForm,
   ProgressBarForm,
 } from "./Components";
-import MatchFlow from "./constants/MatchFlow";
+// import MatchFlow from "./constants/MatchFlow";
 
 const App = () => {
   const [alertMsg, setAlertMsg] = useState("");
@@ -33,8 +33,8 @@ const App = () => {
           path="/mentor-flow-1"
           element={
             <RoleSelection
-              matchedWith="mentor"
-              question="What role are you interested in pursuing?"
+              matchedWith="mentee"
+              question="What is your current role?"
             />
           }
         />
@@ -42,8 +42,8 @@ const App = () => {
           path="/mentee-flow-1"
           element={
             <RoleSelection
-              matchedWith="mentee"
-              question="What is your current role?"
+              matchedWith="mentor"
+              question="What role are you interested in pursuing?"
             />
           }
         />
