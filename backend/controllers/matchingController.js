@@ -10,7 +10,7 @@ const User = require("../models/User");
 
 const baseURL = process.env.BASE_URL || 'http://localhost:3000';
 
-// 1. Matching by role
+// 1. Matching by role and title
 router.get('/lists', auth, async (req, res) => {
     const userId = req.user.userId;
     const userProfileUrl = `${baseURL}/users/userProfile/${userId}`;
@@ -24,6 +24,7 @@ router.get('/lists', auth, async (req, res) => {
         });
 
         const role = response.data.role;
+        const title = response.data.title;
 
         const matchingRole = role === 'Mentee' ? 'Mentor' : role === 'Mentor' ? 'Mentee' : null;
 
@@ -32,7 +33,7 @@ router.get('/lists', auth, async (req, res) => {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
             });
-            const users = await User.find({ role: matchingRole });
+            const users = await User.find({ role: matchingRole, title: title });
             return res.json(users);
         } else {
             // If user does not have role yet
