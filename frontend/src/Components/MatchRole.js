@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import { LinearDeterminate } from "./ProgressBar";
 import Nav from "./Nav";
 import RoleCard from "../common/RoleCard";
+import "../CSS/MentorRole.css";
+
 import { Button, FormControl, Card, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
-import "../CSS/RoleSelection.css";
 
 const useStyles = makeStyles({
   root: {
     display: "flex",
+
     alignItems: "center",
     justifyContent: "space-evenly",
   },
@@ -25,15 +27,10 @@ const useStyles = makeStyles({
   },
 });
 
-const RoleSelection = ({ question, roleName }) => {
+const MatchRole = (props) => {
   const classes = useStyles();
   const [role, setRole] = useState("");
   const [isCardSelected, setIsCardSelected] = useState(false);
-
-  const handleClick = (value) => () => {
-    setIsCardSelected(true);
-    setRole(value);
-  };
 
   return (
     <>
@@ -42,15 +39,15 @@ const RoleSelection = ({ question, roleName }) => {
         <LinearDeterminate page={1} />
         <h1 className="welcome">Hello, welcome to Cherry on Tech!</h1>
         <h2 className="tellus">
-          Answer the following questions to get matched with a compatible {roleName}
+          {props.header}
         </h2>
         <div className="mode-container"></div>
-        <p>{question}</p>
+        <p>{props.ques}</p>
         <FormControl className={classes.root}>
           <div className="cardsContainer">
             <Card
               value={"Product Manager"}
-              onClick={handleClick("Product Manager")}
+              // onClick={handleClick("Mentor")}
               className={
                 isCardSelected && role === "Product Manager"
                   ? classes.selectedCard
@@ -61,7 +58,7 @@ const RoleSelection = ({ question, roleName }) => {
             </Card>
             <Card
               value={"Developer"}
-              onClick={handleClick("Developer")}
+              // onClick={handleClick("Mentee")}
               className={
                 isCardSelected && role === "Developer"
                   ? classes.selectedCard
@@ -72,7 +69,7 @@ const RoleSelection = ({ question, roleName }) => {
             </Card>
             <Card
               value={"Designer"}
-              onClick={handleClick("Designer")}
+              // onClick={handleClick("Mentor")}
               className={
                 isCardSelected && role === "Designer"
                   ? classes.selectedCard
@@ -84,7 +81,7 @@ const RoleSelection = ({ question, roleName }) => {
           </div>
         </FormControl>
         <Box display="flex" justifyContent="space-evenly" mt={"15pt"}>
-          <Link to="/setup-profile-2" style={{ textDecoration: "none" }}>
+          <Link to="/setup-profile-3" style={{ textDecoration: "none" }}>
             <Button
               className={classes.button}
               variant="outlined"
@@ -100,6 +97,7 @@ const RoleSelection = ({ question, roleName }) => {
           <Button
             className={classes.button}
             variant="contained"
+            // onClick={handleContinueClick}
             disabled={!isCardSelected}
             style={{
               backgroundColor: isCardSelected && role ? "green" : "",
@@ -114,4 +112,4 @@ const RoleSelection = ({ question, roleName }) => {
   );
 };
 
-export default RoleSelection;
+export default MatchRole;
