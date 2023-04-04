@@ -8,6 +8,7 @@ import SecondProgressBarForm from "./Components/SecondProgressBarForm";
 import ThirdProgressBarForm from "./Components/ThirdProgressBarForm";
 import { AuthProvider } from "./Context/AuthContext";
 import MenteeRole from "./Components/MenteeRole";
+import IndustrySelection from "./Components/IndustrySelection";
 
 const App = () => {
   const [alertMsg, setAlertMsg] = useState("");
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/setup-profile-2" element={<SecondProgressBarForm />} />
           <Route path="/setup-profile-3" element={<ThirdProgressBarForm />} />
           <Route path="/mentee-flow-1" element={<MenteeRole />} />
+          <Route path="/industry-selection" element={<IndustrySelection />} />
       </Routes>
     </AuthProvider>
   );
