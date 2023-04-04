@@ -43,7 +43,7 @@ const MentorRole = () => {
           mentee.
         </h2>
         <div className="mode-container"></div>
-        <p>What role are you interested in pursuing?</p>
+        <p>What is your current role?</p>
         <FormControl className={classes.root}>
           <div className="cardsContainer">
             <Card
