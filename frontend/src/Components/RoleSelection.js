@@ -163,6 +163,7 @@ const RoleSelection = ({ question, matchedWith }) => {
           <Button
             className={classes.button}
             variant="contained"
+            onClick={handleContinueClick}
             disabled={!isCardSelected}
             style={{
               backgroundColor: isCardSelected && title ? "green" : "",
