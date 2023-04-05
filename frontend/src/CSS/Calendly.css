@@ -9,12 +9,23 @@
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-       
+
 }
+
 .welcome {
     margin-bottom: 0em;
 }
+
 .tellus {
     margin-top: 0em;
 }
 
+.button-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 5%;
+}
+.backBtn{
+    margin-top: 0%;
+}

@@ -96,18 +96,18 @@ const ProgressBarForm = () => {
 
         <div className="input-container">
           {/* <label> First Name</label> */}
+          <p>First Name</p>
           <TextField
             id="outlined-basic"
-            label="First Name"
             variant="outlined"
             value={firstName}
             onChange={handleFirstNameChange}
             sx={{ width: "671.85px", marginBottom: "2rem" }}
           />
           {/* <label> Last Name</label> */}
+          <p>Last Name</p>
           <TextField
             id="outlined-basic"
-            label="Last Name"
             variant="outlined"
             value={lastName}
             onChange={handleLastNameChange}
@@ -129,7 +129,7 @@ const ProgressBarForm = () => {
                   width: "245px",
                   height: "60px",
                   marginTop: "4rem",
-                  "&:hover": { backgroundColor: "#027800" }
+                  "&:hover": { backgroundColor: "#027800" },
                 }}
               >
                 Continue
@@ -137,7 +137,7 @@ const ProgressBarForm = () => {
             </Box>
           </Link>
         </div>
-      </div >
+      </div>
     </>
   );
 };

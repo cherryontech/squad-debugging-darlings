@@ -8,27 +8,27 @@ import SecondProgressBarForm from "./Components/SecondProgressBarForm";
 import ThirdProgressBarForm from "./Components/ThirdProgressBarForm";
 import { AuthProvider } from "./Context/AuthContext";
 import MenteeRole from "./Components/MenteeRole";
+import Calendly from "./Components/Calendly";
 
 const App = () => {
   const [alertMsg, setAlertMsg] = useState("");
 
   return (
     <AuthProvider>
-        <Routes>
-          <Route
-            path="/signup"
-            element={<SignupModal setAlertMsg={setAlertMsg} />}
-          />
-          <Route
-            path="/login"
-            element={
-              <LoginModal alertMsg={alertMsg} setAlertMsg={setAlertMsg} />
-            }
-          />
-          <Route path="/setup-profile-1" element={<ProgressBarForm />} />
-          <Route path="/setup-profile-2" element={<SecondProgressBarForm />} />
-          <Route path="/setup-profile-3" element={<ThirdProgressBarForm />} />
-          <Route path="/mentee-flow-1" element={<MenteeRole />} />
+      <Routes>
+        <Route
+          path="/signup"
+          element={<SignupModal setAlertMsg={setAlertMsg} />}
+        />
+        <Route
+          path="/login"
+          element={<LoginModal alertMsg={alertMsg} setAlertMsg={setAlertMsg} />}
+        />
+        <Route path="/setup-profile-1" element={<ProgressBarForm />} />
+        <Route path="/setup-profile-2" element={<SecondProgressBarForm />} />
+        <Route path="/setup-profile-3" element={<ThirdProgressBarForm />} />
+        <Route path="/mentee-flow-1" element={<MenteeRole />} />
+        <Route path="/mentor-flow-3" element={<Calendly />} />
       </Routes>
     </AuthProvider>
   );
