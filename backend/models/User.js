@@ -12,9 +12,24 @@ const userSchema = new Schema({
         enum: ['Mentor', 'Mentee'],
         // default: 'Mentee'
     },
+    title: {
+        type: String,
+        enum: ['PM', 'Designer', 'Developer'],
+    },
     pronouns: {
         type: String,
         enum: ['She/Her', 'He/Him', 'They/Them', 'Xe/Xem', 'Ze/Zir'],
+    },
+    calendly: {
+        type: String,
+    },
+    industry: {
+        type: [String],
+        default: [],
+    },
+    mentorship: {
+        type: [String],
+        default: [],
     },
     password: String,
 });
