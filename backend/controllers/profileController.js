@@ -61,7 +61,7 @@ router.patch('/userProfile/:userId', auth, async (req, res) => {
     try {
         const userId = req.params.userId;
         const { firstName, lastName, role, title, pronouns, calendly, industry, mentorship } = req.body;
-        console.log(req.body);
+        
         // Check if user has permission to update this profile
         if (req.user.userId !== userId) {
             return res.status(401).json({
