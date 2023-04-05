@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import { LinearDeterminate } from "./ProgressBar";
 import Nav from "./Nav";
 import RoleCard from "../common/RoleCard";
@@ -6,6 +6,10 @@ import { Button, FormControl, Card, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
 import "../CSS/RoleSelection.css";
+import { AuthContext } from "../Context/AuthContext";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+import { api } from "../api/api";
 
 const useStyles = makeStyles({
   root: {
@@ -27,12 +31,70 @@ const useStyles = makeStyles({
 
 const RoleSelection = ({ question, matchedWith }) => {
   const classes = useStyles();
-  const [role, setRole] = useState("");
+  const { token } = useContext(AuthContext);
+  const decoded = jwt_decode(token);
+  const [userId, setUserId] = useState(decoded.userId);
+  const [title, setTitle] = useState("");
   const [isCardSelected, setIsCardSelected] = useState(false);
 
-  const handleClick = (value) => () => {
-    setIsCardSelected(true);
-    setRole(value);
+  const getUserProfile = async () => {
+    try {
+      let config = {
+        method: "get",
+        maxBodyLength: Infinity,
+        url: `${api.users.userProfile}/${userId}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      };
+      const response = await axios.request(config);
+
+      const { title } = response.data;
+      setTitle(title);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getUserProfile();
+  }, []);
+
+  const handleClick = useCallback(
+    (title) => () => {
+      setTitle(title);
+      setIsCardSelected(true);
+    },
+    [setTitle]
+  );
+
+  const handleContinueClick = async () => {
+    // handle continue button click
+    try {
+      let data = JSON.stringify({
+        title,
+      });
+      let config = {
+        method: "patch",
+        maxBodyLength: Infinity,
+        url: `${api.users.userProfile}/${userId}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        data: data,
+      };
+      const response = await axios.request(config);
+      console.log(response.data);
+      //  if (role === "Mentor") {
+      //    navigate("/mentor-flow-1");
+      //  } else if (role === "Mentee") {
+      //    navigate("/mentee-flow-1");
+      //  }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -53,7 +115,7 @@ const RoleSelection = ({ question, matchedWith }) => {
               value={"Product Manager"}
               onClick={handleClick("Product Manager")}
               className={
-                isCardSelected && role === "Product Manager"
+                isCardSelected && title === "Product Manager"
                   ? classes.selectedCard
                   : ""
               }
@@ -64,7 +126,7 @@ const RoleSelection = ({ question, matchedWith }) => {
               value={"Developer"}
               onClick={handleClick("Developer")}
               className={
-                isCardSelected && role === "Developer"
+                isCardSelected && title === "Developer"
                   ? classes.selectedCard
                   : ""
               }
@@ -75,7 +137,7 @@ const RoleSelection = ({ question, matchedWith }) => {
               value={"Designer"}
               onClick={handleClick("Designer")}
               className={
-                isCardSelected && role === "Designer"
+                isCardSelected && title === "Designer"
                   ? classes.selectedCard
                   : ""
               }
@@ -103,8 +165,8 @@ const RoleSelection = ({ question, matchedWith }) => {
             variant="contained"
             disabled={!isCardSelected}
             style={{
-              backgroundColor: isCardSelected && role ? "green" : "",
-              color: isCardSelected && role ? "white" : "",
+              backgroundColor: isCardSelected && title ? "green" : "",
+              color: isCardSelected && title ? "white" : "",
             }}
           >
             Continue
