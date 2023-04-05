@@ -36,7 +36,10 @@ router.get('/userProfile/:userId', auth, async (req, res) => {
             firstName: user.firstName,
             lastName: user.lastName,
             role: user.role,
-            pronouns: user.pronouns
+            title: user.title,
+            pronouns: user.pronouns,
+            industry: user.industry,
+            mentorship: user.mentorship,
         });
 
     } catch (err) {
