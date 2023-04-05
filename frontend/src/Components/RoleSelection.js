@@ -26,6 +26,7 @@ const useStyles = makeStyles({
   },
   selectedCard: {
     border: "2px solid green",
+    margin: 10,
   },
   wrapper: {
     margin: 10,
@@ -119,7 +120,7 @@ const RoleSelection = ({ question, matchedWith }) => {
               onClick={handleClick("Product Manager")}
               className={
                 isCardSelected && title === "Product Manager"
-                  ? classNames(classes.selectedCard, classes.wrapper)
+                  ? classes.selectedCard
                   : classes.wrapper
               }
             >
@@ -130,7 +131,7 @@ const RoleSelection = ({ question, matchedWith }) => {
               onClick={handleClick("Developer")}
               className={
                 isCardSelected && title === "Developer"
-                  ? classNames(classes.selectedCard, classes.wrapper)
+                  ? classes.selectedCard
                   : classes.wrapper
               }
             >
@@ -141,7 +142,7 @@ const RoleSelection = ({ question, matchedWith }) => {
               onClick={handleClick("Designer")}
               className={
                 isCardSelected && title === "Designer"
-                  ? classNames(classes.selectedCard, classes.wrapper)
+                  ? classes.selectedCard
                   : classes.wrapper
               }
             >
