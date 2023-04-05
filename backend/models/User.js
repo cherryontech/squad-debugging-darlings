@@ -14,7 +14,7 @@ const userSchema = new Schema({
     },
     title: {
         type: String,
-        enum: ['PM', 'Designer', 'Developer'],
+        enum: ['Product Manager', 'Designer', 'Developer'],
     },
     pronouns: {
         type: String,

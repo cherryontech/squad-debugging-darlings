@@ -6,7 +6,7 @@ import { api } from "../api/api";
 import { Alert } from "@mui/material";
 import { AlertSeverity } from "../constants/AlertSeverity";
 
-export const SignupModal = () => {
+const SignupModal = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -152,3 +152,5 @@ export const SignupModal = () => {
     </>
   );
 };
+
+export default SignupModal;
