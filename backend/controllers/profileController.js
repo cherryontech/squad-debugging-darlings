@@ -10,7 +10,7 @@ const User = require("../models/User");
 router.get('/userProfile/:userId', auth, async (req, res) => {
     //Jinju will provide confidential
     const uri = "";
-    await mongoose.connect(process.env.MONGO_URI || uri,{
+    await mongoose.connect(process.env.MONGO_URI || uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
@@ -36,7 +36,10 @@ router.get('/userProfile/:userId', auth, async (req, res) => {
             firstName: user.firstName,
             lastName: user.lastName,
             role: user.role,
-            pronouns: user.pronouns
+            title: user.title,
+            pronouns: user.pronouns,
+            industry: user.industry,
+            mentorship: user.mentorship,
         });
 
     } catch (err) {
@@ -51,14 +54,14 @@ router.get('/userProfile/:userId', auth, async (req, res) => {
 router.patch('/userProfile/:userId', auth, async (req, res) => {
     //Jinju will provide confidential
     const uri = "";
-    await mongoose.connect(process.env.MONGO_URI || uri,{
+    await mongoose.connect(process.env.MONGO_URI || uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
     try {
         const userId = req.params.userId;
         const { firstName, lastName, role, title, pronouns, calendly, industry, mentorship } = req.body;
-
+        
         // Check if user has permission to update this profile
         if (req.user.userId !== userId) {
             return res.status(401).json({
