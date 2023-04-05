@@ -104,8 +104,8 @@ const RoleSelection = ({ question, matchedWith }) => {
         <LinearDeterminate page={1} />
         <h1 className="welcome">Hello, welcome to Cherry on Tech!</h1>
         <h2 className="tellus">
-          Answer the following questions to get matched with a compatible{" "}
-          {matchedWith}.
+          Answer the following questions to get matched with a<br></br>
+          compatible {matchedWith}.
         </h2>
         <div className="mode-container"></div>
         <p>{question}</p>

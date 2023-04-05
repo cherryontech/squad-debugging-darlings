@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext, useCallback } from "react";
 import { LinearDeterminate } from "./ProgressBar";
 import Nav from "./Nav";
 import RoleCard from "../common/RoleCard";
-import "../CSS/ThirdProgressBarForm.css";
 import { Button, FormControl, Card, Box } from "@mui/material";
 import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";

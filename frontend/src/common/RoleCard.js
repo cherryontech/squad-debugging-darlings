@@ -17,8 +17,9 @@ const useStyles = makeStyles({
     // display: "flex",
     // flexDirection: "row",
     // position: "absolute",
-    // // width: "212px",
-    // // height: "258.19px",
+    width: "212px",
+    height: "220px",
+
     // background: "#F9F9F9",
     // boxshadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
     // borderradius: "16px",
