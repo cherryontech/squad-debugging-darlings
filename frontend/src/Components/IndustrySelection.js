@@ -11,7 +11,7 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     flexWrap: "wrap",
-    width: "50%",
+    width: "30%",
   },
   button: {
     height: "60px",
@@ -60,7 +60,7 @@ const IndustrySelection = ({ industryQuestion, matchedWith }) => {
         </p>
         <div className={classes.root}>
   <Box display="flex" flexWrap="wrap" justifyContent="flex-start" alignItems="center" m={-2} p={2} spacing={2}>
-    {[      "Healthcare",      "Finance",      "Web3",      "Ecommerce",      "Education",      "Game",      "Energy",      "Hospitality",      "Transportation",      "Construction",      "Media",      "Telecommunications",      "Agriculture",      "Government",      "Nonprofit",      "Other",    ].map((industry) => (
+    {[ "Healthcare", "Finance", "Web3", "Ecommerce", "Education", "Game", "Robotics", "B2B", "B2C", "Sports", "Civic tech", "Cloud", "AI", "loT", "Cyber Security", "Network Admin" ].map((industry) => (
       <Box key={industry} m={1}>
         <Chip
           label={industry}
@@ -76,7 +76,7 @@ const IndustrySelection = ({ industryQuestion, matchedWith }) => {
         />
       </Box>
     ))}
-    <Box m={1}>
+    <Box m={1} style={{ marginTop: "52px" }}>
       <Chip
         label="I'm open to any industries"
         clickable
