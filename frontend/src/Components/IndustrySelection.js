@@ -1,18 +1,26 @@
 import React, { useState } from "react";
-import { Button, Chip } from "@mui/material";
+import { Button, Chip, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
 import Nav from "./Nav";
 import "../CSS/SecondProgressBarForm.css";
 import { LinearDeterminate } from "./ProgressBar";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   root: {
     display: "flex",
     justifyContent: "center",
     flexWrap: "wrap",
+    width: "50%",
   },
-}));
+  button: {
+    height: "60px",
+    width: "245px",
+    borderRadius: "10px",
+    textTransform: "none",
+    fontSize: "20px",
+  },
+});
 
 const IndustrySelection = ({ industryQuestion, matchedWith }) => {
   const classes = useStyles();
@@ -47,7 +55,6 @@ const IndustrySelection = ({ industryQuestion, matchedWith }) => {
         <h2 className="tellus">
           Answer the following questions to get matched with a compatible {matchedWith}.
         </h2>
-        <div className="mode-container"></div>
         <p>
           {industryQuestion}
         </p>
@@ -91,16 +98,32 @@ const IndustrySelection = ({ industryQuestion, matchedWith }) => {
             color={isAnyIndustriesSelected ? "success" : undefined}
           />
         </div>
-        <Link to="">
+        <Box display="flex" justifyContent="space-evenly" mt={"15pt"}>
+        <Link to="" style={{ textDecoration: "none" }}>
+            <Button
+              className={classes.button}
+              variant="outlined"
+              style={{
+                backgroundColor: "white",
+                border: "3px solid #027800",
+                color: "green",
+              }}
+            >
+              Back
+            </Button>
+          </Link>
           <Button
+            className={classes.button}
             variant="contained"
-            color="success"
-            className="submitButton"
             disabled={!isAnyIndustriesSelected && selectedIndustries.length === 0}
+          style={{
+            backgroundColor: isAnyIndustriesSelected || selectedIndustries.length > 0 ? "green" : "",
+            color: isAnyIndustriesSelected || selectedIndustries.length > 0 ? "white" : ""
+          }}
           >
             Continue
           </Button>
-        </Link>
+          </Box>
       </div>
     </>
   );
