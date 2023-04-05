@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Button, Chip, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
 import Nav from "./Nav";
 import "../CSS/SecondProgressBarForm.css";
 import { LinearDeterminate } from "./ProgressBar";
+import { AuthContext } from "../Context/AuthContext";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+import { api } from "../api/api";
 
 const useStyles = makeStyles({
   root: {
@@ -24,8 +28,37 @@ const useStyles = makeStyles({
 
 const IndustrySelection = ({ industryQuestion, matchedWith }) => {
   const classes = useStyles();
-  const [selectedIndustries, setSelectedIndustries] = useState([]);
+  const [industry, setIndustry] = useState([]);
+  const { token } = useContext(AuthContext);
+  const decoded = jwt_decode(token);
+  const [userId, setUserId] = useState(decoded.userId);
   const [isAnyIndustriesSelected, setIsAnyIndustriesSelected] = useState(false);
+  const [selectedIndustries, setSelectedIndustries] = useState([]);
+
+
+    const getUserProfile = async () => {
+    try {
+      let config = {
+        method: "get",
+        maxBodyLength: Infinity,
+        url: `${api.users.userProfile}/${userId}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      };
+      const response = await axios.request(config);
+
+      const { industry } = response.data;
+      setIndustry(industry);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getUserProfile();
+  }, []);
 
   const handleSelectIndustry = (industry) => {
     if (selectedIndustries.length < 5 && !selectedIndustries.includes(industry)) {
@@ -44,6 +77,28 @@ const IndustrySelection = ({ industryQuestion, matchedWith }) => {
 
   const handleDeselectAnyIndustries = () => {
     setIsAnyIndustriesSelected(false);
+  };
+
+  const handleContinueClick = async () => {
+    try {
+      let data = JSON.stringify({
+        industry,
+      });
+      let config = {
+        method: "patch",
+        maxBodyLength: Infinity,
+        url: `${api.users.userProfile}/${userId}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        data: data,
+      };
+      const response = await axios.request(config);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -102,10 +157,11 @@ const IndustrySelection = ({ industryQuestion, matchedWith }) => {
             </Button>
           </Link>
           <Button
+            onClick={handleContinueClick}
             className={classes.button}
             variant="contained"
             disabled={!isAnyIndustriesSelected && selectedIndustries.length === 0}
-          style={{
+            style={{
             backgroundColor: isAnyIndustriesSelected || selectedIndustries.length > 0 ? "green" : "",
             color: isAnyIndustriesSelected || selectedIndustries.length > 0 ? "white" : ""
           }}

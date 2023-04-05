@@ -30,8 +30,13 @@ const App = () => {
           <Route path="/setup-profile-2" element={<SecondProgressBarForm />} />
           <Route path="/setup-profile-3" element={<ThirdProgressBarForm />} />
           <Route path="/mentee-flow-1" element={<MenteeRole />} />
-          <Route path="/industry-selection" element={ <IndustrySelection matchedWith="mentee" industryQuestion="In which industries do you have experience? Select up to 5!" />} />
-          <Route path="/industry-selection" element={<IndustrySelection matchedWith="mentor" industryQuestion="Select up to 5 industries of interest!" />} />
+          <Route 
+          path="/industry-selection" 
+          element={ <IndustrySelection matchedWith="mentee" industryQuestion="In which industries do you have experience? Select up to 5!" />} />
+          <Route path="/industry-selection" element={
+            <IndustrySelection
+            matchedWith="mentor"
+            industryQuestion="Select up to 5 industries of interest!" />} />
       </Routes>
     </AuthProvider>
   );
