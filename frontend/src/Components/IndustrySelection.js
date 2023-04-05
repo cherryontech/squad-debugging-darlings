@@ -59,45 +59,34 @@ const IndustrySelection = ({ industryQuestion, matchedWith }) => {
           {industryQuestion}
         </p>
         <div className={classes.root}>
-          {[
-            "Healthcare",
-            "Finance",
-            "Web3",
-            "Ecommerce",
-            "Education",
-            "Game",
-            "Energy",
-            "Hospitality",
-            "Transportation",
-            "Construction",
-            "Media",
-            "Telecommunications",
-            "Agriculture",
-            "Government",
-            "Nonprofit",
-            "Other",
-          ].map((industry) => (
-            <Chip
-              key={industry}
-              label={industry}
-              clickable
-              onClick={() => handleSelectIndustry(industry)}
-              onDelete={
-                selectedIndustries.includes(industry)
-                  ? () => handleDeleteIndustry(industry)
-                  : undefined
-              }
-              color={selectedIndustries.includes(industry) ? "success" : undefined}
-              disabled={isAnyIndustriesSelected}
-            />
-          ))}
-          <Chip
-            label="I'm open to any industries"
-            clickable
-            onClick={isAnyIndustriesSelected ? handleDeselectAnyIndustries : handleSelectAnyIndustries}
-            color={isAnyIndustriesSelected ? "success" : undefined}
-          />
-        </div>
+  <Box display="flex" flexWrap="wrap" justifyContent="flex-start" alignItems="center" m={-2} p={2} spacing={2}>
+    {[      "Healthcare",      "Finance",      "Web3",      "Ecommerce",      "Education",      "Game",      "Energy",      "Hospitality",      "Transportation",      "Construction",      "Media",      "Telecommunications",      "Agriculture",      "Government",      "Nonprofit",      "Other",    ].map((industry) => (
+      <Box key={industry} m={1}>
+        <Chip
+          label={industry}
+          clickable
+          onClick={() => handleSelectIndustry(industry)}
+          onDelete={
+            selectedIndustries.includes(industry)
+              ? () => handleDeleteIndustry(industry)
+              : undefined
+          }
+          color={selectedIndustries.includes(industry) ? "success" : undefined}
+          disabled={isAnyIndustriesSelected}
+        />
+      </Box>
+    ))}
+    <Box m={1}>
+      <Chip
+        label="I'm open to any industries"
+        clickable
+        onClick={isAnyIndustriesSelected ? handleDeselectAnyIndustries : handleSelectAnyIndustries}
+        color={isAnyIndustriesSelected ? "success" : undefined}
+      />
+    </Box>
+  </Box>
+</div>
+
         <Box display="flex" justifyContent="space-evenly" mt={"15pt"}>
         <Link to="" style={{ textDecoration: "none" }}>
             <Button
