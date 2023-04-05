@@ -85,7 +85,7 @@ const RoleSelection = ({ question, matchedWith }) => {
           </div>
         </FormControl>
         <Box display="flex" justifyContent="space-evenly" mt={"15pt"}>
-          <Link to="/setup-profile-2" style={{ textDecoration: "none" }}>
+          <Link to="/setup-profile-3" style={{ textDecoration: "none" }}>
             <Button
               className={classes.button}
               variant="outlined"

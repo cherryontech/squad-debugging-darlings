@@ -8,7 +8,7 @@ import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { makeStyles } from "@mui/styles";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { api } from "../api/api";
 
 const useStyles = makeStyles({
@@ -37,6 +37,7 @@ const ThirdProgressBarForm = () => {
   const [userId, setUserId] = useState(decoded.userId);
   const [role, setRole] = useState("");
   const [isCardSelected, setIsCardSelected] = useState(false);
+  const navigate = useNavigate();
 
   const getUserProfile = async () => {
     try {
@@ -89,7 +90,11 @@ const ThirdProgressBarForm = () => {
       };
       const response = await axios.request(config);
       console.log(response.data);
-      // move to next step of questionnaire
+      if (role === "Mentor") {
+        navigate("/mentor-flow-1");
+      } else if (role === "Mentee") {
+        navigate("/mentee-flow-1");
+      }
     } catch (error) {
       console.error(error);
     }
@@ -146,7 +151,7 @@ const ThirdProgressBarForm = () => {
             disabled={!isCardSelected}
             style={{
               backgroundColor: isCardSelected && role ? "green" : "",
-              color: isCardSelected && role ? "white" : ""
+              color: isCardSelected && role ? "white" : "",
             }}
           >
             Continue
