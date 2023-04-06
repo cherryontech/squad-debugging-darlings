@@ -93,7 +93,7 @@ const RoleSelection = ({ question, matchedWith }) => {
       const response = await axios.request(config);
       console.log(response.data);
       //  if (title === "Mentor") {
-      navigate("/mentor-flow-3");
+      navigate("/mentor-flow-4");
       //  } else if (role === "Mentee") {
       //    navigate("/mentee-flow-1");
       //  }

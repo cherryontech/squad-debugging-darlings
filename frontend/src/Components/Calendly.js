@@ -33,6 +33,7 @@ const Calendly = () => {
   const [calendly, setCalendly] = useState("");
   const [isValid, setIsValid] = useState(false);
 
+
   const getUserProfile = async () => {
     try {
       let config = {
@@ -45,7 +46,7 @@ const Calendly = () => {
         },
       };
       const response = await axios.request(config);
-
+      console.log(response.data);
       const { calendly } = response.data;
       setCalendly(calendly);
       setIsValid(validateInput(calendly));
@@ -83,8 +84,7 @@ const Calendly = () => {
         },
         data: data,
       };
-      const response = await axios.request(config);
-      console.log(response.data);
+      await axios.request(config);
       // move to next step of questionnaire
     } catch (error) {
       console.error(error);
@@ -101,18 +101,17 @@ const Calendly = () => {
           Enter your Calendly URL so that mentees can schedule<br></br>time with
           you.
         </h2>
-        <h3>Calendly URL</h3>
+        <p>Calendly URL</p>
         <div className="input-container">
           <TextField
             id="outlined-basic"
-            label="Calendly URL"
             variant="outlined"
             value={calendly || ""}
             onChange={handleURLChange}
-            sx={{ width: "671.85px", marginBottom: "2rem" }}
+            sx={{ width: "671.85px" }}
           />
           <p>
-            <a className={classes.anchor} href="https://calendly.com/">
+            <a className={classes.anchor} href="https://calendly.com/" target="_blank">
               What is Calendly?
             </a>
           </p>

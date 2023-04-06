@@ -90,15 +90,9 @@ const SecondProgressBarForm = () => {
           <label> What are your pronouns? </label>
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
-              <InputLabel
-                shrink={false}
-                id="demo-simple-select-label"
-              ></InputLabel>
               <Select
-                labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={pronouns || ""}
-                label="Pronouns"
                 onChange={handleChange}
                 style={{ width: "674px" }}
               >
@@ -142,7 +136,7 @@ const SecondProgressBarForm = () => {
                     fontWeight: "500",
                     width: "245px",
                     height: "60px",
-                    "&:hover": {backgroundColor: "#027800" }
+                    "&:hover": { backgroundColor: "#027800" }
                   }}
                   disabled={isContinueButtonDisabled}
                   onClick={handleContinueClick}

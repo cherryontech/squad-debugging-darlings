@@ -40,6 +40,7 @@ router.get('/userProfile/:userId', auth, async (req, res) => {
             pronouns: user.pronouns,
             industry: user.industry,
             mentorship: user.mentorship,
+            calendly: user.calendly,
         });
 
     } catch (err) {
