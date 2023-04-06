@@ -30,7 +30,7 @@ const Calendly = () => {
   const { token } = useContext(AuthContext);
   const decoded = jwt_decode(token);
   const [userId, setUserId] = useState(decoded.userId);
-  const [calendlyURL, setCalendlyURL] = useState("");
+  const [calendly, setCalendly] = useState("");
   const [isValid, setIsValid] = useState(false);
 
   const getUserProfile = async () => {
@@ -46,9 +46,9 @@ const Calendly = () => {
       };
       const response = await axios.request(config);
 
-      const { calendlyURL } = response.data;
-      setCalendlyURL(calendlyURL);
-      setIsValid(validateInput(calendlyURL));
+      const { calendly } = response.data;
+      setCalendly(calendly);
+      setIsValid(validateInput(calendly));
     } catch (error) {
       console.error(error);
     }
@@ -59,13 +59,13 @@ const Calendly = () => {
   }, []);
 
   const handleURLChange = (event) => {
-    setCalendlyURL(event.target.value);
-    setIsValid(validateInput(event.target.value, calendlyURL));
+    setCalendly(event.target.value);
+    setIsValid(validateInput(event.target.value, calendly));
   };
-  const validateInput = (calendlyURL) => {
+  const validateInput = (calendly) => {
     const regex =
       /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i;
-    return regex.test(calendlyURL);
+    return regex.test(calendly);
   };
 
   const handleContinueClick = async () => {
@@ -107,7 +107,7 @@ const Calendly = () => {
             id="outlined-basic"
             label="Calendly URL"
             variant="outlined"
-            value={calendlyURL}
+            value={calendly || ""}
             onChange={handleURLChange}
             sx={{ width: "671.85px", marginBottom: "2rem" }}
           />
@@ -135,9 +135,10 @@ const Calendly = () => {
               className={classes.button}
               variant="contained"
               disabled={!isValid}
+              onClick={handleContinueClick}
               style={{
-                backgroundColor: isValid && calendlyURL ? "green" : "",
-                color: isValid && calendlyURL ? "white" : "",
+                backgroundColor: isValid && calendly ? "green" : "",
+                color: isValid && calendly ? "white" : "",
               }}
             >
               Continue
