@@ -4,7 +4,7 @@ import Nav from "./Nav";
 import RoleCard from "../common/RoleCard";
 import { Button, FormControl, Card, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../CSS/RoleSelection.css";
 import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
@@ -30,7 +30,7 @@ const useStyles = makeStyles({
   },
   wrapper: {
     margin: 10,
-  }
+  },
 });
 
 const RoleSelection = ({ question, matchedWith }) => {
@@ -40,6 +40,7 @@ const RoleSelection = ({ question, matchedWith }) => {
   const [userId, setUserId] = useState(decoded.userId);
   const [title, setTitle] = useState("");
   const [isCardSelected, setIsCardSelected] = useState(false);
+  const navigate = useNavigate();
 
   const getUserProfile = async () => {
     try {
@@ -91,8 +92,8 @@ const RoleSelection = ({ question, matchedWith }) => {
       };
       const response = await axios.request(config);
       console.log(response.data);
-      //  if (role === "Mentor") {
-      //    navigate("/mentor-flow-1");
+      //  if (title === "Mentor") {
+      navigate("/mentor-flow-3");
       //  } else if (role === "Mentee") {
       //    navigate("/mentee-flow-1");
       //  }

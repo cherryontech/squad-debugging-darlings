@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { LinearDeterminate } from "./ProgressBar";
 import Nav from "./Nav";
 import TextField from "@mui/material/TextField";
@@ -6,11 +6,11 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 // import { Link } from "react-router-dom";
-import "../CSS/Calendly.css";
-// import { AuthContext } from "../Context/AuthContext";
-// import axios from "axios";
-// import jwt_decode from "jwt-decode";
-// import { api } from "../api/api";
+
+import { AuthContext } from "../Context/AuthContext";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+import { api } from "../api/api";
 
 const useStyles = makeStyles({
   button: {
@@ -20,40 +20,43 @@ const useStyles = makeStyles({
     textTransform: "none",
     fontSize: "20px",
   },
+  anchor: {
+    color: "black",
+  },
 });
 
 const Calendly = () => {
   const classes = useStyles();
-  //   const { token } = useContext(AuthContext);
-  //   const decoded = jwt_decode(token);
-  //   const [userId, setUserId] = useState(decoded.userId);
+  const { token } = useContext(AuthContext);
+  const decoded = jwt_decode(token);
+  const [userId, setUserId] = useState(decoded.userId);
   const [calendlyURL, setCalendlyURL] = useState("");
   const [isValid, setIsValid] = useState(false);
 
-  //   const getUserProfile = async () => {
-  //     try {
-  //       let config = {
-  //         method: "get",
-  //         maxBodyLength: Infinity,
-  //         url: `${api.users.userProfile}/${userId}`,
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //           "Content-Type": "application/json",
-  //         },
-  //       };
-  //       const response = await axios.request(config);
+  const getUserProfile = async () => {
+    try {
+      let config = {
+        method: "get",
+        maxBodyLength: Infinity,
+        url: `${api.users.userProfile}/${userId}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      };
+      const response = await axios.request(config);
 
-  //       const { calendlyURL } = response.data;
-  //       setCalendlyURL(calendlyURL);
-  //       setIsValid(validateInput(calendlyURL));
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
+      const { calendlyURL } = response.data;
+      setCalendlyURL(calendlyURL);
+      setIsValid(validateInput(calendlyURL));
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  //   useEffect(() => {
-  //     getUserProfile();
-  //   }, []);
+  useEffect(() => {
+    getUserProfile();
+  }, []);
 
   const handleURLChange = (event) => {
     setCalendlyURL(event.target.value);
@@ -65,28 +68,28 @@ const Calendly = () => {
     return regex.test(calendlyURL);
   };
 
-  //   const handleContinueClick = async () => {
-  //     try {
-  //       let data = JSON.stringify({
-  //         calendly,
-  //       });
-  //       let config = {
-  //         method: "patch",
-  //         maxBodyLength: Infinity,
-  //         url: `${api.users.userProfile}/${userId}`,
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //           "Content-Type": "application/json",
-  //         },
-  //         data: data,
-  //       };
-  //       const response = await axios.request(config);
-  //       console.log(response.data);
-  //       // move to next step of questionnaire
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
+  const handleContinueClick = async () => {
+    try {
+      let data = JSON.stringify({
+        calendly,
+      });
+      let config = {
+        method: "patch",
+        maxBodyLength: Infinity,
+        url: `${api.users.userProfile}/${userId}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        data: data,
+      };
+      const response = await axios.request(config);
+      console.log(response.data);
+      // move to next step of questionnaire
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
@@ -95,7 +98,8 @@ const Calendly = () => {
         <LinearDeterminate page={3} />
         <h1 className="welcome">Let's get you matched!</h1>
         <h2 className="tellus">
-          Enter your Calendly URL so that mentees can schedule time with you.
+          Enter your Calendly URL so that mentees can schedule<br></br>time with
+          you.
         </h2>
         <h3>Calendly URL</h3>
         <div className="input-container">
@@ -107,7 +111,11 @@ const Calendly = () => {
             onChange={handleURLChange}
             sx={{ width: "671.85px", marginBottom: "2rem" }}
           />
-          <p>What is Calendly?</p>
+          <p>
+            <a className={classes.anchor} href="https://calendly.com/">
+              What is Calendly?
+            </a>
+          </p>
 
           <Box display="flex" justifyContent="space-evenly" mt={"15pt"}>
             {/* <Link to="/setup-profile-2" style={{ textDecoration: "none" }}> */}

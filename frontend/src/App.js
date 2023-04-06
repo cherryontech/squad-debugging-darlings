@@ -10,6 +10,7 @@ import {
   ThirdProgressBarForm,
   ProgressBarForm,
 } from "./Components";
+import Calendly from "./Components/Calendly";
 import MatchFlow from "./constants/MatchFlow";
 
 const App = () => {
@@ -47,6 +48,7 @@ const App = () => {
             />
           }
         />
+        <Route path="/mentor-flow-3" element={<Calendly />} />
       </Routes>
     </AuthProvider>
   );
