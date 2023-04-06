@@ -140,7 +140,7 @@ const Calendly = () => {
                 color: isValid && calendly ? "white" : "",
               }}
             >
-              Continue
+              Finish
             </Button>
           </Box>
           {/* </Link> */}
