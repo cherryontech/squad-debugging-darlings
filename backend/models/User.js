@@ -9,16 +9,15 @@ const userSchema = new Schema({
     lastName: String,
     role: {
         type: String,
-        enum: ['Mentor', 'Mentee'],
-        // default: 'Mentee'
+        enum: ['mentor', 'mentee'],
     },
     title: {
         type: String,
-        enum: ['PM', 'Designer', 'Developer'],
+        enum: ['product manager', 'designer', 'developer'],
     },
     pronouns: {
         type: String,
-        enum: ['She/Her', 'He/Him', 'They/Them', 'Xe/Xem', 'Ze/Zir'],
+        enum: ['she/her', 'he/him', 'they/them', 'xe/xem', 'ze/zir'],
     },
     calendly: {
         type: String,
