@@ -8,7 +8,7 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
 import { api } from "../api/api";
 
-export const LoginModal = ({ alertMsg, setAlertMsg }) => {
+const LoginModal = ({ alertMsg, setAlertMsg }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -110,3 +110,5 @@ export const LoginModal = ({ alertMsg, setAlertMsg }) => {
     </>
   );
 };
+
+export default LoginModal;

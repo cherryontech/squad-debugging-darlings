@@ -3,17 +3,17 @@ import { LinearDeterminate } from "./ProgressBar";
 import Nav from "./Nav";
 import RoleCard from "../common/RoleCard";
 import { Button, FormControl, Card, Box } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import { Link, useNavigate } from "react-router-dom";
+import "../CSS/RoleSelection.css";
 import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import { makeStyles } from "@mui/styles";
-import { Link, useNavigate } from "react-router-dom";
 import { api } from "../api/api";
 
 const useStyles = makeStyles({
   root: {
     display: "flex",
-    flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",
   },
@@ -26,15 +26,19 @@ const useStyles = makeStyles({
   },
   selectedCard: {
     border: "2px solid green",
+    margin: 10,
+  },
+  wrapper: {
+    margin: 10,
   },
 });
 
-const ThirdProgressBarForm = () => {
+const RoleSelection = ({ question, matchedWith }) => {
   const classes = useStyles();
   const { token } = useContext(AuthContext);
   const decoded = jwt_decode(token);
   const [userId, setUserId] = useState(decoded.userId);
-  const [role, setRole] = useState("");
+  const [title, setTitle] = useState("");
   const [isCardSelected, setIsCardSelected] = useState(false);
   const navigate = useNavigate();
 
@@ -51,31 +55,30 @@ const ThirdProgressBarForm = () => {
       };
       const response = await axios.request(config);
 
-      const { role } = response.data;
-      setRole(role);
+      const { title } = response.data;
+      setTitle(title);
     } catch (error) {
       console.error(error);
     }
   };
 
-  //put the useEffect in here and invoke the fetchuserprofile
   useEffect(() => {
     getUserProfile();
   }, []);
 
   const handleClick = useCallback(
-    (role) => () => {
-      setRole(role);
+    (title) => () => {
+      setTitle(title);
       setIsCardSelected(true);
     },
-    [setRole]
+    [setTitle]
   );
 
   const handleContinueClick = async () => {
     // handle continue button click
     try {
       let data = JSON.stringify({
-        role,
+        title,
       });
       let config = {
         method: "patch",
@@ -89,11 +92,11 @@ const ThirdProgressBarForm = () => {
       };
       const response = await axios.request(config);
       console.log(response.data);
-      if (role === "Mentor") {
-        navigate("/mentor-flow-1");
-      } else if (role === "Mentee") {
-        navigate("/mentee-flow-1");
-      }
+      //  if (title === "Mentor") {
+      navigate("/mentor-flow-4");
+      //  } else if (role === "Mentee") {
+      //    navigate("/mentee-flow-1");
+      //  }
     } catch (error) {
       console.error(error);
     }
@@ -103,34 +106,53 @@ const ThirdProgressBarForm = () => {
     <>
       <Nav showLogoutButton={true} />
       <div className="progress-bar-form-container">
-        <LinearDeterminate page={3} />
+        <LinearDeterminate page={1} />
         <h1 className="welcome">Hello, welcome to Cherry on Tech!</h1>
-        <h2 className="tellus">Tell us a little bit about yourself.</h2>
+        <h2 className="tellus">
+          Answer the following questions to get matched with a<br></br>
+          compatible {matchedWith}.
+        </h2>
         <div className="mode-container"></div>
-        <p>Choose a mode to get started!</p>
-
+        <p>{question}</p>
         <FormControl className={classes.root}>
-          <Card
-            value={"Mentor"}
-            onClick={handleClick("Mentor")}
-            className={
-              isCardSelected && role === "Mentor" ? classes.selectedCard : ""
-            }
-          >
-            <RoleCard value={"Mentor"} />
-          </Card>
-          <Card
-            value={"Mentee"}
-            onClick={handleClick("Mentee")}
-            className={
-              isCardSelected && role === "Mentee" ? classes.selectedCard : ""
-            }
-          >
-            <RoleCard value={"Mentee"} />
-          </Card>
+          <div className="cardsContainer">
+            <Card
+              value={"Product Manager"}
+              onClick={handleClick("Product Manager")}
+              className={
+                isCardSelected && title === "Product Manager"
+                  ? classes.selectedCard
+                  : classes.wrapper
+              }
+            >
+              <RoleCard value={"Product Manager"} />
+            </Card>
+            <Card
+              value={"Developer"}
+              onClick={handleClick("Developer")}
+              className={
+                isCardSelected && title === "Developer"
+                  ? classes.selectedCard
+                  : classes.wrapper
+              }
+            >
+              <RoleCard value={"Developer"} />
+            </Card>
+            <Card
+              value={"Designer"}
+              onClick={handleClick("Designer")}
+              className={
+                isCardSelected && title === "Designer"
+                  ? classes.selectedCard
+                  : classes.wrapper
+              }
+            >
+              <RoleCard value={"Designer"} />
+            </Card>
+          </div>
         </FormControl>
         <Box display="flex" justifyContent="space-evenly" mt={"15pt"}>
-          <Link to="/setup-profile-2" style={{ textDecoration: "none" }}>
+          <Link to="/setup-profile-3" style={{ textDecoration: "none" }}>
             <Button
               className={classes.button}
               variant="outlined"
@@ -149,8 +171,8 @@ const ThirdProgressBarForm = () => {
             onClick={handleContinueClick}
             disabled={!isCardSelected}
             style={{
-              backgroundColor: isCardSelected && role ? "green" : "",
-              color: isCardSelected && role ? "white" : "",
+              backgroundColor: isCardSelected && title ? "green" : "",
+              color: isCardSelected && title ? "white" : "",
             }}
           >
             Continue
@@ -161,4 +183,4 @@ const ThirdProgressBarForm = () => {
   );
 };
 
-export default ThirdProgressBarForm;
+export default RoleSelection;
