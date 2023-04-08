@@ -41,6 +41,7 @@ const RoleSelection = ({ question, matchedWith }) => {
   const [title, setTitle] = useState("");
   const [isCardSelected, setIsCardSelected] = useState(false);
   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const getUserProfile = async () => {
     try {
