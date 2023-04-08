@@ -26,7 +26,7 @@ const useStyles = makeStyles({
   },
 });
 
-const IndustrySelection = ({ industryQuestion, matchedWith }) => {
+const IndustrySelection = ({ question, matchedWith }) => {
   const classes = useStyles();
   const [industry, setIndustry] = useState([]);
   const { token } = useContext(AuthContext);
@@ -110,9 +110,7 @@ const IndustrySelection = ({ industryQuestion, matchedWith }) => {
         <h2 className="tellus">
           Answer the following questions to get matched with a compatible {matchedWith}.
         </h2>
-        <p>
-          {industryQuestion}
-        </p>
+        <p>{question} Select up to five industries of interest!</p>
         <div className={classes.root}>
   <Box display="flex" flexWrap="wrap" justifyContent="flex-start" alignItems="center" m={-2} p={2} spacing={2}>
     {[ "Healthcare", "Finance", "Web3", "Ecommerce", "Education", "Game", "Robotics", "B2B", "B2C", "Sports", "Civic tech", "Cloud", "AI", "loT", "Cyber Security", "Network Admin" ].map((industry) => (

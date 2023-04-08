@@ -11,7 +11,6 @@ import {
   ProgressBarForm,
 } from "./Components";
 import MatchFlow from './constants/MatchFlow';
-import MenteeRole from "./Components/MenteeRole";
 import IndustrySelection from "./Components/IndustrySelection";
 
 const App = () => {
@@ -48,6 +47,22 @@ const App = () => {
               question={MatchFlow.menteeQues1}
             />
           }
+        />
+        <Route path="/mentor-flow-2" 
+        element={
+        <IndustrySelection 
+        matchedWith="mentee" 
+        question={MatchFlow.mentorQues2} 
+        />
+        }
+        />
+         <Route path="/mentee-flow-2" 
+         element={
+         <IndustrySelection
+          matchedWith="mentor"
+          question={MatchFlow.menteeQues2} 
+          />
+        } 
         />
       </Routes>
     </AuthProvider>
