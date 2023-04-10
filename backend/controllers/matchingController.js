@@ -28,7 +28,7 @@ router.get('/lists', auth, async (req, res) => {
         const industry = response.data.industry;
         const mentorship = response.data.mentorship;
 
-        const matchingRole = role === 'mentee' ? 'mentor' : role === 'mentor' ? 'mentee' : null;
+        const matchingRole = role.toLowerCase() === 'mentee' ? 'mentor' : role === 'mentor' ? 'mentee' : null;
 
         if (matchingRole) {
             await mongoose.connect(process.env.MONGO_URI || uri,{
