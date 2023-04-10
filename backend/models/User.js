@@ -10,7 +10,6 @@ const userSchema = new Schema({
     role: {
         type: String,
         enum: ['Mentor', 'Mentee'],
-        // default: 'Mentee'
     },
     title: {
         type: String,
