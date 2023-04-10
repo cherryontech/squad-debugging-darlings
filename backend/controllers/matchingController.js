@@ -23,12 +23,12 @@ router.get('/lists', auth, async (req, res) => {
             }
         });
 
-        const role = response.data.role;
-        const title = response.data.title;
-        const industry = response.data.industry;
-        const mentorship = response.data.mentorship;
+        const role = response.data.role.toLowerCase();
+        const title = response.data.title.toLowerCase();
+        const industry = response.data.industry.toLowerCase();
+        const mentorship = response.data.mentorship.toLowerCase();
 
-        const matchingRole = role.toLowerCase() === 'mentee' ? 'mentor' : role === 'mentor' ? 'mentee' : null;
+        const matchingRole = role === 'mentee' ? 'mentor' : role === 'mentor' ? 'mentee' : null;
 
         if (matchingRole) {
             await mongoose.connect(process.env.MONGO_URI || uri,{
