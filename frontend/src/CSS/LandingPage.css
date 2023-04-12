@@ -28,6 +28,9 @@
 
    
 }
+.explanation {
+    margin-left: 10%;
+}
 
 .header{
     display: flex;
@@ -44,16 +47,22 @@
         background: #FFFFFF;
         border: 3px solid #027800;
         border-radius: 50px;
-        text-align: center;
-  
-    
-     
-        
+        text-align: center; 
+        margin-right: 2%;
 }
+
+.cardsContainer{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+
 .pictureAndBubblesDiv1, .pictureAndBubblesDiv2{
     display: flex;
     flex-direction: row;
     margin-left: 8%;
+  
     
 }
 
@@ -73,6 +82,7 @@ width: 324px;
 
 .firstRow{
     display: flex;
+    margin: 2%;
     /* justify-content: space-evenly; */
    
     
@@ -81,6 +91,7 @@ width: 324px;
     display: flex;
     flex-direction: row;
     margin-left: 10%;
+   margin-bottom: 2%;
     justify-content: space-evenly;
 }
 .bubblesDiv {
@@ -90,4 +101,8 @@ width: 324px;
 
 .thirdRow{
     display: flex;
+}
+
+.container {
+    margin-bottom: 4%;
 }
