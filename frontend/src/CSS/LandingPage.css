@@ -1,0 +1,29 @@
+.main-container {
+    margin: 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.landingPageButton {
+    color: white;
+    background: green;
+    border-radius: 10px;
+    width: 327px;
+    height: 80px;
+    border: none;
+    margin: 2%;
+    font-size: 20px;
+}
+
+.InspireOthersImg{
+    width: 558px;
+        height: 558px;
+        left: 730px;
+        top: 202px;
+}
+.container-one{
+    display: flex;
+    justify-content: space-evenly;
+
+   
+}

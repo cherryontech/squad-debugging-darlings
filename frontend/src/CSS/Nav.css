@@ -15,7 +15,7 @@
   font-size: 36px;
 }
 
-.logout-button {
+.buttons {
   background: #FFFFFF;
     border: 3px solid #027800;
     border-radius: 10px;
@@ -24,4 +24,24 @@
       height: 44px;
       left: 1215px;
       top: 20px;
+}
+
+.get-started-button {
+  color: white;
+  background: green;
+  border-radius: 10px;
+  width: 189px;
+    height: 44px;
+    left: 1215px;
+    top: 20px;
+    border: none;
+    margin: 2%;
+}
+
+.the-button-div{
+  display: flex;
+  flex-direction: row;
+ align-items: center;
+
+
 }
