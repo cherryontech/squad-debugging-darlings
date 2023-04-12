@@ -4,6 +4,7 @@
     flex-direction: column;
 }
 
+
 .landingPageButton {
     color: white;
     background: green;
@@ -26,4 +27,67 @@
     justify-content: space-evenly;
 
    
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.bubble{
+        width: 216px;
+        height: 48px;
+        left: 615px;
+        top: 926px;
+        color: #027800;
+        background: #FFFFFF;
+        border: 3px solid #027800;
+        border-radius: 50px;
+        text-align: center;
+  
+    
+     
+        
+}
+.pictureAndBubblesDiv1, .pictureAndBubblesDiv2{
+    display: flex;
+    flex-direction: row;
+    margin-left: 8%;
+    
+}
+
+
+.writingImg{
+width: 324px;
+    height: 324px;
+    left: 269px;
+    top: 982px;
+}
+.workHomeImg{
+    width: 324px;
+        height: 324px;
+        left: 849px;
+        top: 1160px;
+}
+
+.firstRow{
+    display: flex;
+    /* justify-content: space-evenly; */
+   
+    
+}
+.secondRow {
+    display: flex;
+    flex-direction: row;
+    margin-left: 10%;
+    justify-content: space-evenly;
+}
+.bubblesDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+.thirdRow{
+    display: flex;
 }
