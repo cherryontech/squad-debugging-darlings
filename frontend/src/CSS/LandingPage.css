@@ -15,6 +15,11 @@
     margin: 2%;
     font-size: 20px;
 }
+.landingPageButton:hover {
+    background: darkgreen;
+    cursor: pointer;
+}
+
 
 .InspireOthersImg{
     width: 558px;
