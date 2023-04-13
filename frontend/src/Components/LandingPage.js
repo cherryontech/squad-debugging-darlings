@@ -6,6 +6,7 @@ import InspireOthers from "../assets/images/InspireOthers.png";
 import Writing from "../assets/images/Writing.png";
 import workHome from "../assets/images/workHome.png";
 import ExampleCard from "../common/ExampleCard";
+import Footer from "./Footer";
 
 export default function LandingPage() {
   const navigate = useNavigate();
@@ -179,6 +180,8 @@ export default function LandingPage() {
             </div>
           </div>
         </div>
+
+        <Footer />
       </div>
     </>
   );
