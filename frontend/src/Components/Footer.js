@@ -13,14 +13,19 @@ export default function Footer() {
             Discover your ideal mentor and unlock your dream job!
           </p>
         </div>
-        <div className="secondHalf">
-          <div className="vectors">
-            <a href="https://twitter.com/cherryOnTech">
-              <img className="twitterImg" src={twitter}></img>
-            </a>
-            <a href="https://www.linkedin.com/company/cherry-on-tech/?originalSubdomain=ca">
-              <img className="linkedInImg" src={linkedin}></img>
-            </a>
+        <div className="flexDiv">
+          <div className="secondHalf">
+            <div className="vectors">
+              <a href="https://twitter.com/cherryOnTech">
+                <img className="twitterImg" src={twitter}></img>
+              </a>
+              <a href="https://www.linkedin.com/company/cherry-on-tech/?originalSubdomain=ca">
+                <img className="linkedInImg" src={linkedin}></img>
+              </a>
+            </div>
+          </div>
+          <div className="copyRightContainer">
+            <p>© 2023 TechOnCherry. All right reserved.</p>
           </div>
         </div>
       </footer>
