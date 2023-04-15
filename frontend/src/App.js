@@ -9,7 +9,8 @@ import {
   SecondProgressBarForm,
   ThirdProgressBarForm,
   ProgressBarForm,
-  Calendly
+  Calendly,
+  MentorshipType
 } from "./Components";
 import MatchFlow from "./constants/MatchFlow";
 
@@ -48,6 +49,7 @@ const App = () => {
             />
           }
         />
+        <Route path="/mentor-flow-3" element={<MentorshipType />} />
         <Route path="/mentor-flow-4" element={<Calendly />} />
       </Routes>
     </AuthProvider>
