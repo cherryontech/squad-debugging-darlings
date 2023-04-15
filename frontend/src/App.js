@@ -49,7 +49,22 @@ const App = () => {
             />
           }
         />
-        <Route path="/mentor-flow-3" element={<MentorshipType />} />
+        <Route 
+        path="/mentor-flow-3" 
+        element={
+        <MentorshipType 
+          matchedWith="mentee"
+          question={MatchFlow.mentorQues2}
+        />
+        } />
+        <Route 
+        path="/mentee-flow-3" 
+        element={
+        <MentorshipType 
+          matchedWith="mentor"
+          question={MatchFlow.menteeQues2}
+        />
+        } />
         <Route path="/mentor-flow-4" element={<Calendly />} />
       </Routes>
     </AuthProvider>

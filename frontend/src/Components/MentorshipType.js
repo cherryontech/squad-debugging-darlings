@@ -116,7 +116,7 @@ const MentorshipType = ({ question, matchedWith }) => {
         <h2 className="tellus">
           Answer the following questions to get matched with a compatible {matchedWith}.
         </h2>
-        <p>Pick up to 3 areas where you'd like to {question} mentorship</p>
+        <p>{question}</p>
         <div className={classes.root}>
         <div className="chipContainer">
 
@@ -165,7 +165,7 @@ const MentorshipType = ({ question, matchedWith }) => {
             color: isAnyMentorshipsSelected || selectedMentorships.length > 0 ? "white" : ""
           }}
           >
-            Continue
+            Finish
           </Button>
           </Box>
       </div>
