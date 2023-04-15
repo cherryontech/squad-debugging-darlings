@@ -2,13 +2,12 @@ import React, { useState, useEffect, useContext } from "react";
 import { Button, Chip, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Link, useNavigate } from "react-router-dom";
-import "../CSS/IndustrySelection.css";
 import Nav from "./Nav";
 import "../CSS/SecondProgressBarForm.css";
 import { LinearDeterminate } from "./ProgressBar";
-import { AuthContext } from "../Context/AuthContext";
+// import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
-import jwt_decode from "jwt-decode";
+// import jwt_decode from "jwt-decode";
 import { api } from "../api/api";
 
 const useStyles = makeStyles({
@@ -28,14 +27,14 @@ const useStyles = makeStyles({
 
 const MentorshipType = ({ question, matchedWith }) => {
   const classes = useStyles();
-  const [industry, setIndustry] = useState([]);
-  const { token } = useContext(AuthContext);
-  const decoded = jwt_decode(token);
-  const [userId, setUserId] = useState(decoded.userId);
-  const [role, setRole] = useState("");
-  const [isAnyIndustriesSelected, setIsAnyIndustriesSelected] = useState(false);
-  const [selectedIndustries, setSelectedIndustries] = useState([]);
-  const navigate = useNavigate();
+  const [mentorship, setMentorship] = useState([]);
+  // const { token } = useContext(AuthContext);
+  // const decoded = jwt_decode(token);
+  // const [userId, setUserId] = useState(decoded.userId);
+  // const [role, setRole] = useState("");
+  const [isAnyMentorshipsSelected, setIsAnyMentorshipsSelected] = useState(false);
+  const [selectedMentorships, setSelectedMentorships] = useState([]);
+  // const navigate = useNavigate();
 
     const getUserProfile = async () => {
     try {
@@ -50,8 +49,8 @@ const MentorshipType = ({ question, matchedWith }) => {
       };
       const response = await axios.request(config);
 
-      const { industry, role } = response.data;
-      setIndustry(industry);
+      const { mentorship, role } = response.data;
+      setMentorship(mentorship);
       setRole(role);
     } catch (error) {
       console.error(error);
@@ -62,29 +61,29 @@ const MentorshipType = ({ question, matchedWith }) => {
     getUserProfile();
   }, []);
 
-  const handleSelectIndustry = (industry) => {
-    if (selectedIndustries.length < 5 && !selectedIndustries.includes(industry)) {
-      setSelectedIndustries([...selectedIndustries, industry]);
+  const handleSelectMentorship = (mentorship) => {
+    if (selectedMentorships.length < 3 && !selectedMentorships.includes(mentorship)) {
+      setSelectedMentorships([...selectedMentorships, mentorship]);
     }
   };
 
-  const handleDeleteIndustry = (industry) => {
-    setSelectedIndustries(selectedIndustries.filter((i) => i !== industry));
+  const handleDeleteMentorship = (mentorship) => {
+    setSelectedMentorships(selectedMentorships.filter((i) => i !== mentorship));
   };
 
-  const handleSelectAnyIndustries = () => {
-    setSelectedIndustries([]);
-    setIsAnyIndustriesSelected(true);
+  const handleSelectAnyMentorships = () => {
+    setSelectedMentorships([]);
+    setIsAnyMentorshipsSelected(true);
   };
 
-  const handleDeselectAnyIndustries = () => {
-    setIsAnyIndustriesSelected(false);
+  const handleDeselectAnyMentorships = () => {
+    setIsAnyMentorshipsSelected(false);
   };
 
   const handleContinueClick = async () => {
     try {
       let data = JSON.stringify({
-        industry,
+        mentorship,
       });
       let config = {
         method: "patch",
@@ -99,9 +98,9 @@ const MentorshipType = ({ question, matchedWith }) => {
       const response = await axios.request(config);
       console.log(response.data);
       if (role.toLowerCase() === "mentor") {
-        navigate("/mentor-flow-3");
+        navigate("/mentor-flow-4");
          } else {
-           navigate("/mentee-flow-3");
+           navigate("/mentee-flow-4");
          }
     } catch (error) {
       console.error(error);
@@ -117,31 +116,24 @@ const MentorshipType = ({ question, matchedWith }) => {
         <h2 className="tellus">
           Answer the following questions to get matched with a compatible {matchedWith}.
         </h2>
-        <p>{question} Select up to five industries of interest!</p>
+        <p>Pick up to 3 areas where you'd like to {question} mentorship</p>
         <div className={classes.root}>
         <div className="chipContainer">
-    <Box m={1} style={{ marginTop: "52px" }}>
-      <Chip
-        label="I'm open to any industries"
-        clickable
-        onClick={isAnyIndustriesSelected ? handleDeselectAnyIndustries : handleSelectAnyIndustries}
-        color={isAnyIndustriesSelected ? "success" : undefined}
-      />
-    </Box>
+
   <Box display="flex" flexWrap="wrap" justifyContent="flex-start" alignItems="center" m={-2} p={2} spacing={2}>
-    {[ "Healthcare", "Finance", "Web3", "Ecommerce", "Education", "Game", "Robotics", "B2B", "B2C", "Sports", "Civic tech", "Cloud", "AI", "loT", "Cyber Security", "Network Admin" ].map((industry) => (
-      <Box key={industry} m={1}>
+    {[ "Technical Skills", "Networking", "Resume", "Portfolio", "General Career Guidance", "Imposter Syndrome", "Interviews", "Career Switching" ].map((mentorship) => (
+      <Box key={mentorship} m={1}>
         <Chip
-          label={industry}
+          label={mentorship}
           clickable
-          onClick={() => handleSelectIndustry(industry)}
+          onClick={() => handleSelectMentorship(mentorship)}
           onDelete={
-            selectedIndustries.includes(industry)
-              ? () => handleDeleteIndustry(industry)
+            selectedMentorships.includes(mentorship)
+              ? () => handleDeleteMentorship(mentorship)
               : undefined
           }
-          color={selectedIndustries.includes(industry) ? "success" : undefined}
-          disabled={isAnyIndustriesSelected}
+          color={selectedMentorships.includes(mentorship) ? "success" : undefined}
+          disabled={isAnyMentorshipsSelected}
         />
       </Box>
     ))}
@@ -167,10 +159,10 @@ const MentorshipType = ({ question, matchedWith }) => {
             onClick={handleContinueClick}
             className={classes.button}
             variant="contained"
-            disabled={!isAnyIndustriesSelected && selectedIndustries.length === 0}
+            disabled={!isAnyMentorshipsSelected && selectedMentorships.length === 0}
             style={{
-            backgroundColor: isAnyIndustriesSelected || selectedIndustries.length > 0 ? "green" : "",
-            color: isAnyIndustriesSelected || selectedIndustries.length > 0 ? "white" : ""
+            backgroundColor: isAnyMentorshipsSelected || selectedMentorships.length > 0 ? "green" : "",
+            color: isAnyMentorshipsSelected || selectedMentorships.length > 0 ? "white" : ""
           }}
           >
             Continue
