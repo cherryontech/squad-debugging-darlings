@@ -4,7 +4,7 @@ const MatchFlow = {
     "mentorQues1": "What is your current role?",
     "menteeQues1": "What role are you interested in pursuing?",
     "mentorQues2": "In which industries do you have experience?",
-    "menteeQues2": "testing testing",
+    "menteeQues2": ""
 };
 
 export default MatchFlow;
