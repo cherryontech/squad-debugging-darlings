@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Button, Chip, Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Nav from "./Nav";
 import "../CSS/SecondProgressBarForm.css";
 import { LinearDeterminate } from "./ProgressBar";
@@ -34,7 +34,7 @@ const IndustrySelection = ({ question, matchedWith }) => {
   const [userId, setUserId] = useState(decoded.userId);
   const [isAnyIndustriesSelected, setIsAnyIndustriesSelected] = useState(false);
   const [selectedIndustries, setSelectedIndustries] = useState([]);
-
+  const navigate = useNavigate();
 
     const getUserProfile = async () => {
     try {
@@ -49,8 +49,9 @@ const IndustrySelection = ({ question, matchedWith }) => {
       };
       const response = await axios.request(config);
 
-      const { industry } = response.data;
+      const { industry, role } = response.data;
       setIndustry(industry);
+      setRole(role);
     } catch (error) {
       console.error(error);
     }
@@ -96,6 +97,11 @@ const IndustrySelection = ({ question, matchedWith }) => {
       };
       const response = await axios.request(config);
       console.log(response.data);
+      if (role.toLowerCase() === "mentor") {
+        navigate("/mentor-flow-3");
+         } else {
+           navigate("/mentee-flow-3");
+         }
     } catch (error) {
       console.error(error);
     }

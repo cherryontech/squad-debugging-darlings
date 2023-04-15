@@ -3,6 +3,6 @@ export { default as LoginModal } from "./LoginModal";
 export { default as ProgressBarForm } from "./ProgressBarForm";
 export { default as SecondProgressBarForm } from "./SecondProgressBarForm";
 export { default as ThirdProgressBarForm } from "./ThirdProgressBarForm";
-export { default as TitleSelection } from "./RoleSelection";
+export { default as TitleSelection } from "./TitleSelection";
 export { default as Calendly } from "./Calendly";
 export { default as IndustrySelection } from "./IndustrySelection"
