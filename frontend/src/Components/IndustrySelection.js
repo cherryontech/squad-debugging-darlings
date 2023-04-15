@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Button, Chip, Box } from "@mui/material";
-import { makeStyles, createTheme } from "@mui/styles";
+import { makeStyles } from "@mui/styles";
 import { Link, useNavigate } from "react-router-dom";
 import "../CSS/IndustrySelection.css";
 import Nav from "./Nav";
@@ -24,9 +24,6 @@ const useStyles = makeStyles({
     textTransform: "none",
     fontSize: "20px",
   },
-  disabled: {
-    color: "red",
-  }
 });
 
 const IndustrySelection = ({ question, matchedWith }) => {
