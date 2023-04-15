@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import Nav from "./Nav";
 import MatchCard from "../common/MatchCard";
+import Footer from "./Footer";
 import "../CSS/Dashboard.css";
 
 // import { AuthContext } from "../Context/AuthContext";
@@ -18,6 +19,7 @@ const Dashboard = () => {
           <h3>Book a chat with awesome mentors!</h3>
         </div>
         <MatchCard />
+        <Footer />
       </div>
     </>
   );
