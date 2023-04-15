@@ -16,7 +16,7 @@ router.get('/test', (req,res)=>{
 router.post('/signup', SignupController);
 router.post('/signin', SigninController);
 router.get('/userProfile/:userId', ProfileController);
-router.patch('/userProfile/:userId', ProfileController);
+// router.patch('/userProfile/:userId', ProfileController);
 
 // Matching
 router.get('/lists', MatchingController);
