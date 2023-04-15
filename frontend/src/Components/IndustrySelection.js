@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Button, Chip, Box } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { makeStyles, createTheme } from "@mui/styles";
 import { Link, useNavigate } from "react-router-dom";
+import "../CSS/IndustrySelection.css";
 import Nav from "./Nav";
 import "../CSS/SecondProgressBarForm.css";
 import { LinearDeterminate } from "./ProgressBar";
@@ -14,8 +15,7 @@ const useStyles = makeStyles({
   root: {
     display: "flex",
     justifyContent: "center",
-    flexWrap: "wrap",
-    width: "30%",
+    alignItems: "center",
   },
   button: {
     height: "60px",
@@ -24,6 +24,9 @@ const useStyles = makeStyles({
     textTransform: "none",
     fontSize: "20px",
   },
+  disabled: {
+    color: "red",
+  }
 });
 
 const IndustrySelection = ({ question, matchedWith }) => {
@@ -32,6 +35,7 @@ const IndustrySelection = ({ question, matchedWith }) => {
   const { token } = useContext(AuthContext);
   const decoded = jwt_decode(token);
   const [userId, setUserId] = useState(decoded.userId);
+  const [role, setRole] = useState("");
   const [isAnyIndustriesSelected, setIsAnyIndustriesSelected] = useState(false);
   const [selectedIndustries, setSelectedIndustries] = useState([]);
   const navigate = useNavigate();
@@ -110,7 +114,7 @@ const IndustrySelection = ({ question, matchedWith }) => {
   return (
     <>
       <Nav showLogoutButton={true} />
-      <div className="menteeRoleContainer">
+      <div className="progress-bar-form-container">
         <LinearDeterminate page={2} />
         <h1 className="welcome">Let's get you matched!</h1>
         <h2 className="tellus">
@@ -118,6 +122,15 @@ const IndustrySelection = ({ question, matchedWith }) => {
         </h2>
         <p>{question} Select up to five industries of interest!</p>
         <div className={classes.root}>
+        <div className="chipContainer">
+    <Box m={1} style={{ marginTop: "52px" }}>
+      <Chip
+        label="I'm open to any industries"
+        clickable
+        onClick={isAnyIndustriesSelected ? handleDeselectAnyIndustries : handleSelectAnyIndustries}
+        color={isAnyIndustriesSelected ? "success" : undefined}
+      />
+    </Box>
   <Box display="flex" flexWrap="wrap" justifyContent="flex-start" alignItems="center" m={-2} p={2} spacing={2}>
     {[ "Healthcare", "Finance", "Web3", "Ecommerce", "Education", "Game", "Robotics", "B2B", "B2C", "Sports", "Civic tech", "Cloud", "AI", "loT", "Cyber Security", "Network Admin" ].map((industry) => (
       <Box key={industry} m={1}>
@@ -135,15 +148,8 @@ const IndustrySelection = ({ question, matchedWith }) => {
         />
       </Box>
     ))}
-    <Box m={1} style={{ marginTop: "52px" }}>
-      <Chip
-        label="I'm open to any industries"
-        clickable
-        onClick={isAnyIndustriesSelected ? handleDeselectAnyIndustries : handleSelectAnyIndustries}
-        color={isAnyIndustriesSelected ? "success" : undefined}
-      />
-    </Box>
   </Box>
+  </div>
 </div>
 
         <Box display="flex" justifyContent="space-evenly" mt={"15pt"}>
