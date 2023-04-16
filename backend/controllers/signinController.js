@@ -9,10 +9,16 @@ const User = require("../models/User");
 
 //signin
 router.post("/signin", async (req, res) => {
+    res.header('Content-Type', 'application/json;charset=UTF-8')
+    res.header('Access-Control-Allow-Credentials', true)
+    res.header(
+        'Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept'
+    )
     const { email, password } = req.body;
     //Jinju will provide confidential
     const uri = "";
-    await mongoose.connect(process.env.MONGO_URI || uri,{
+    await mongoose.connect(process.env.MONGO_URI || uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
@@ -21,6 +27,12 @@ router.post("/signin", async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
         if (isMatch) {
             const token = jwt.sign({ userId: user.userId }, secretKey);
+
+            res.cookie("token", token, {
+                maxAge: 3600000,
+                sameSite: "strict",
+            });
+
             res.status(200).json({ message: "Login successful", token: token });
         } else {
             res.status(400).json({ message: "Invalid password" });

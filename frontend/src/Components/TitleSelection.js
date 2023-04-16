@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useContext, useCallback } from "react";
-import { LinearDeterminate } from "./ProgressBar";
-import Nav from "./Nav";
-import RoleCard from "../common/RoleCard";
-import { Button, FormControl, Card, Box } from "@mui/material";
+import { Box, Button, Card, FormControl } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../CSS/RoleSelection.css";
 import { AuthContext } from "../Context/AuthContext";
-import axios from "axios";
-import jwt_decode from "jwt-decode";
 import { api } from "../api/api";
+import RoleCard from "../common/RoleCard";
+import Nav from "./Nav";
+import { LinearDeterminate } from "./ProgressBar";
 
 
 
@@ -61,7 +61,6 @@ const TitleSelection = ({ question, matchedWith }) => {
       const { title, role} = response.data;
       setRole(role);
       setTitle(title);
-      console.log(role);
     } catch (error) {
       console.error(error);
     }
@@ -95,10 +94,8 @@ const TitleSelection = ({ question, matchedWith }) => {
         },
         data: data,
       };
-      const response = await axios.request(config);
-      console.log(response.data);
-      console.log(role);
-       if (role.toLowerCase() === "mentor") {
+      await axios.request(config);
+       if (role === "Mentor") {
       navigate("/mentor-flow-2");
        } else {
          navigate("/mentee-flow-2");

@@ -1,16 +1,15 @@
-import React, { useState, useEffect, useContext } from "react";
-import { LinearDeterminate } from "./ProgressBar";
-import Nav from "./Nav";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import "../CSS/ProgressBarForm.css";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../Context/AuthContext";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "../CSS/ProgressBarForm.css";
+import { AuthContext } from "../Context/AuthContext";
 import { api } from "../api/api";
-import { Grid, Paper } from "@mui/material";
+import Nav from "./Nav";
+import { LinearDeterminate } from "./ProgressBar";
 
 const ProgressBarForm = () => {
   const { token } = useContext(AuthContext);
@@ -73,13 +72,13 @@ const ProgressBarForm = () => {
         maxBodyLength: Infinity,
         url: `${api.users.userProfile}/${userId}`,
         headers: {
-          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
+        withCredentials: true,
         data: data,
       };
-      const response = await axios.request(config);
-      console.log(response.data);
+      await axios.request(config);
+      
       // move to next step of questionnaire
     } catch (error) {
       console.error(error);

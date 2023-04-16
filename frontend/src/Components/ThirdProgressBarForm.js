@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useContext, useCallback } from "react";
-import { LinearDeterminate } from "./ProgressBar";
-import Nav from "./Nav";
-import RoleCard from "../common/RoleCard";
-import { Button, FormControl, Card, Box } from "@mui/material";
-import { AuthContext } from "../Context/AuthContext";
+import { Box, Button, Card, FormControl } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import { makeStyles } from "@mui/styles";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../Context/AuthContext";
 import { api } from "../api/api";
+import RoleCard from "../common/RoleCard";
+import Nav from "./Nav";
+import { LinearDeterminate } from "./ProgressBar";
 
 const useStyles = makeStyles({
   root: {
@@ -87,11 +87,10 @@ const ThirdProgressBarForm = () => {
         },
         data: data,
       };
-      const response = await axios.request(config);
-      console.log(response.data);
+      await axios.request(config);
       if (role === "Mentor") {
         navigate("/mentor-flow-1");
-      } else if (role === "Mentee") {
+      } else {
         navigate("/mentee-flow-1");
       }
     } catch (error) {
