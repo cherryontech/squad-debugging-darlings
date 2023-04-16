@@ -11,6 +11,8 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { api } from "../api/api";
 
+
+
 const useStyles = makeStyles({
   root: {
     display: "flex",
@@ -33,12 +35,13 @@ const useStyles = makeStyles({
   },
 });
 
-const RoleSelection = ({ question, matchedWith }) => {
+const TitleSelection = ({ question, matchedWith }) => {
   const classes = useStyles();
   const { token } = useContext(AuthContext);
   const decoded = jwt_decode(token);
   const [userId, setUserId] = useState(decoded.userId);
   const [title, setTitle] = useState("");
+  const [role, setRole] = useState("");
   const [isCardSelected, setIsCardSelected] = useState(false);
   const navigate = useNavigate();
 
@@ -55,8 +58,10 @@ const RoleSelection = ({ question, matchedWith }) => {
       };
       const response = await axios.request(config);
 
-      const { title } = response.data;
+      const { title, role} = response.data;
+      setRole(role);
       setTitle(title);
+      console.log(role);
     } catch (error) {
       console.error(error);
     }
@@ -75,10 +80,10 @@ const RoleSelection = ({ question, matchedWith }) => {
   );
 
   const handleContinueClick = async () => {
-    // handle continue button click
     try {
       let data = JSON.stringify({
         title,
+
       });
       let config = {
         method: "patch",
@@ -92,11 +97,12 @@ const RoleSelection = ({ question, matchedWith }) => {
       };
       const response = await axios.request(config);
       console.log(response.data);
-      //  if (title === "Mentor") {
-      navigate("/mentor-flow-4");
-      //  } else if (role === "Mentee") {
-      //    navigate("/mentee-flow-1");
-      //  }
+      console.log(role);
+       if (role.toLowerCase() === "mentor") {
+      navigate("/mentor-flow-2");
+       } else {
+         navigate("/mentee-flow-2");
+       }
     } catch (error) {
       console.error(error);
     }
@@ -183,4 +189,4 @@ const RoleSelection = ({ question, matchedWith }) => {
   );
 };
 
-export default RoleSelection;
+export default TitleSelection;
