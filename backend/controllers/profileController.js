@@ -62,7 +62,7 @@ router.patch('/userProfile/:userId', auth, async (req, res) => {
     try {
         const userId = req.params.userId;
         const { firstName, lastName, role, title, pronouns, calendly, industry, mentorship } = req.body;
-        
+
         // Check if user has permission to update this profile
         if (req.user.userId !== userId) {
             return res.status(401).json({
@@ -97,10 +97,10 @@ router.patch('/userProfile/:userId', auth, async (req, res) => {
             user.calendly = calendly;
         }
         if (industry) {
-            user.industry = JSON.parse(industry);
+            user.industry = industry;
         }
         if (mentorship) {
-            user.mentorship = JSON.parse(mentorship);
+            user.mentorship = mentorship;
         }
 
         await user.save();

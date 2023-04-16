@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Button, Chip, Box } from "@mui/material";
+import { Box, Button, Chip } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { Link, useNavigate } from "react-router-dom";
-import Nav from "./Nav";
-import "../CSS/SecondProgressBarForm.css";
-import { LinearDeterminate } from "./ProgressBar";
-// import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
-// import jwt_decode from "jwt-decode";
+import jwt_decode from "jwt-decode";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "../CSS/SecondProgressBarForm.css";
+import { AuthContext } from "../Context/AuthContext";
 import { api } from "../api/api";
+import Nav from "./Nav";
+import { LinearDeterminate } from "./ProgressBar";
 
 const useStyles = makeStyles({
   root: {
@@ -28,15 +28,15 @@ const useStyles = makeStyles({
 const MentorshipType = ({ question, matchedWith }) => {
   const classes = useStyles();
   const [mentorship, setMentorship] = useState([]);
-  // const { token } = useContext(AuthContext);
-  // const decoded = jwt_decode(token);
-  // const [userId, setUserId] = useState(decoded.userId);
-  // const [role, setRole] = useState("");
+  const { token } = useContext(AuthContext);
+  const decoded = jwt_decode(token);
+  const [userId, setUserId] = useState(decoded.userId);
+  const [role, setRole] = useState("");
   const [isAnyMentorshipsSelected, setIsAnyMentorshipsSelected] = useState(false);
   const [selectedMentorships, setSelectedMentorships] = useState([]);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const getUserProfile = async () => {
+  const getUserProfile = async () => {
     try {
       let config = {
         method: "get",
@@ -83,7 +83,7 @@ const MentorshipType = ({ question, matchedWith }) => {
   const handleContinueClick = async () => {
     try {
       let data = JSON.stringify({
-        mentorship,
+        mentorship: selectedMentorships,
       });
       let config = {
         method: "patch",
@@ -95,13 +95,12 @@ const MentorshipType = ({ question, matchedWith }) => {
         },
         data: data,
       };
-      const response = await axios.request(config);
-      console.log(response.data);
+      await axios.request(config);
       if (role.toLowerCase() === "mentor") {
         navigate("/mentor-flow-4");
-         } else {
-           navigate("/mentee-flow-4");
-         }
+      } else {
+        navigate("/dashboard");
+      }
     } catch (error) {
       console.error(error);
     }
@@ -118,31 +117,31 @@ const MentorshipType = ({ question, matchedWith }) => {
         </h2>
         <p>{question}</p>
         <div className={classes.root}>
-        <div className="chipContainer">
+          <div className="chipContainer">
 
-  <Box display="flex" flexWrap="wrap" justifyContent="flex-start" alignItems="center" m={-2} p={2} spacing={2}>
-    {[ "Technical Skills", "Networking", "Resume", "Portfolio", "General Career Guidance", "Imposter Syndrome", "Interviews", "Career Switching" ].map((mentorship) => (
-      <Box key={mentorship} m={1}>
-        <Chip
-          label={mentorship}
-          clickable
-          onClick={() => handleSelectMentorship(mentorship)}
-          onDelete={
-            selectedMentorships.includes(mentorship)
-              ? () => handleDeleteMentorship(mentorship)
-              : undefined
-          }
-          color={selectedMentorships.includes(mentorship) ? "success" : undefined}
-          disabled={isAnyMentorshipsSelected}
-        />
-      </Box>
-    ))}
-  </Box>
-  </div>
-</div>
+            <Box display="flex" flexWrap="wrap" justifyContent="flex-start" alignItems="center" m={-2} p={2} spacing={2}>
+              {["Technical Skills", "Networking", "Resume", "Portfolio", "General Career Guidance", "Imposter Syndrome", "Interviews", "Career Switching"].map((mentorship) => (
+                <Box key={mentorship} m={1}>
+                  <Chip
+                    label={mentorship}
+                    clickable
+                    onClick={() => handleSelectMentorship(mentorship)}
+                    onDelete={
+                      selectedMentorships.includes(mentorship)
+                        ? () => handleDeleteMentorship(mentorship)
+                        : undefined
+                    }
+                    color={selectedMentorships.includes(mentorship) ? "success" : undefined}
+                    disabled={isAnyMentorshipsSelected}
+                  />
+                </Box>
+              ))}
+            </Box>
+          </div>
+        </div>
 
         <Box display="flex" justifyContent="space-evenly" mt={"15pt"}>
-        <Link to="" style={{ textDecoration: "none" }}>
+          <Link to={role === "Mentor" ? "/mentor-flow-2" : "/mentee-flow-2"} style={{ textDecoration: "none" }}>
             <Button
               className={classes.button}
               variant="outlined"
@@ -161,13 +160,13 @@ const MentorshipType = ({ question, matchedWith }) => {
             variant="contained"
             disabled={!isAnyMentorshipsSelected && selectedMentorships.length === 0}
             style={{
-            backgroundColor: isAnyMentorshipsSelected || selectedMentorships.length > 0 ? "green" : "",
-            color: isAnyMentorshipsSelected || selectedMentorships.length > 0 ? "white" : ""
-          }}
+              backgroundColor: isAnyMentorshipsSelected || selectedMentorships.length > 0 ? "green" : "",
+              color: isAnyMentorshipsSelected || selectedMentorships.length > 0 ? "white" : ""
+            }}
           >
-            Finish
+            {role === "Mentor" ? "Continue" : "Finish"}
           </Button>
-          </Box>
+        </Box>
       </div>
     </>
   );

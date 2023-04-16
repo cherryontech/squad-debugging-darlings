@@ -1,15 +1,15 @@
-import React, { useState, useContext, useEffect } from "react";
-import { LinearDeterminate } from "./ProgressBar";
-import Nav from "./Nav";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 import { makeStyles } from "@mui/styles";
-// import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Nav from "./Nav";
+import { LinearDeterminate } from "./ProgressBar";
 
-import { AuthContext } from "../Context/AuthContext";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import { AuthContext } from "../Context/AuthContext";
 import { api } from "../api/api";
 
 const useStyles = makeStyles({
@@ -46,7 +46,6 @@ const Calendly = () => {
         },
       };
       const response = await axios.request(config);
-      console.log(response.data);
       const { calendly } = response.data;
       setCalendly(calendly);
       setIsValid(validateInput(calendly));
@@ -117,7 +116,7 @@ const Calendly = () => {
           </p>
 
           <Box display="flex" justifyContent="space-evenly" mt={"15pt"}>
-            {/* <Link to="/setup-profile-2" style={{ textDecoration: "none" }}> */}
+            <Link to="/mentor-flow-3" style={{ textDecoration: "none" }}>
             <Button
               className={classes.button}
               variant="outlined"
@@ -129,7 +128,7 @@ const Calendly = () => {
             >
               Back
             </Button>
-            {/* </Link> */}
+            </Link>
             <Button
               className={classes.button}
               variant="contained"
