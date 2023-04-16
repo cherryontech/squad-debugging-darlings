@@ -23,12 +23,12 @@ router.get('/lists', auth, async (req, res) => {
             }
         });
 
-        const role = response.data.role.toLowerCase();
-        const title = response.data.title.toLowerCase();
-        const industry = response.data.industry.toLowerCase();
-        const mentorship = response.data.mentorship.toLowerCase();
+        const role = response.data.role;
+        const title = response.data.title;
+        const industry = response.data.industry;
+        const mentorship = response.data.mentorship;
 
-        const matchingRole = role === 'mentee' ? 'mentor' : role === 'mentor' ? 'mentee' : null;
+        const matchingRole = role === 'Mentee' ? 'Mentor' : role === 'Mentor' ? 'Mentee' : null;
 
         if (matchingRole) {
             await mongoose.connect(process.env.MONGO_URI || uri,{
@@ -60,7 +60,8 @@ router.get('/lists', auth, async (req, res) => {
                 }
 
                 // Matching criteria: industries 3/5, mentorship 2/3
-                if (commonIndustries >= 3  && commonMentorships >= 2) {
+                // TODO: Will CHANGE THIS LATER WHEN WE HAVE MORE DATA TO PLAY WITH
+                if (commonIndustries >= 1  && commonMentorships >= 1) {
                     matchingUsers.push(user);
                 }
             }

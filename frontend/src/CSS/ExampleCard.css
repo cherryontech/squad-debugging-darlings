@@ -1,0 +1,27 @@
+.card {
+    width: 440px;
+    height: 338px;
+    left: 152px;
+    top: 1794px;
+
+    border: 2px solid #027800;
+    border-radius: 15px;
+    padding: 3%;
+    margin: 2%;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+.clickMe{
+    color: white;
+        background: green;
+        border-radius: 10px;
+        width: 189px;
+        height: 44px;
+        left: 1215px;
+        top: 20px;
+        border: none;
+        margin: 2%;
+        margin-left: 25%;
+}

@@ -6,10 +6,9 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState();
 
   const login = (token) => {
-    console.log(token, "token before");
+
     setToken(token);
   };
-  console.log(token, "token after");
   const logout = () => {
     setToken(null);
   };

@@ -11,6 +11,7 @@ import {
   ProgressBarForm,
   Calendly,
   IndustrySelection,
+  LandingPage,
 } from "./Components";
 import MatchFlow from "./constants/MatchFlow";
 
@@ -20,6 +21,7 @@ const App = () => {
   return (
     <AuthProvider>
       <Routes>
+        <Route path="/" element={<LandingPage />} />
         <Route
           path="/signup"
           element={<SignupModal setAlertMsg={setAlertMsg} />}

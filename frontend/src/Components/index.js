@@ -6,3 +6,4 @@ export { default as ThirdProgressBarForm } from "./ThirdProgressBarForm";
 export { default as TitleSelection } from "./TitleSelection";
 export { default as Calendly } from "./Calendly";
 export { default as IndustrySelection } from "./IndustrySelection"
+export { default as LandingPage } from "./LandingPage";
