@@ -1,24 +1,35 @@
 import "../CSS/Nav.css";
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const Nav = ({ showLogoutButton }) => {
+const Nav = ({ showLogoutButton, showLoginButton, showGetStartedButton }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="nav">
       <h1 className="placeholder-logo">Logo</h1>
       {showLogoutButton && (
-        <Link className="logout-btn" to="/signup">
-          <button className="logout-button" onClick={handleLogout}>
-            Logout
-          </button>
-        </Link>
+        <button className="buttons" onClick={() => navigate("/signup")}>
+          Logout
+        </button>
       )}
+      <div className="the-button-div">
+        {showLoginButton && (
+          <button className="buttons" onClick={() => navigate("/login")}>
+            Login
+          </button>
+        )}
+        {showGetStartedButton && (
+          <button
+            className="get-started-button"
+            onClick={() => navigate("/signup")}
+          >
+            Get Started
+          </button>
+        )}
+      </div>
     </div>
   );
-};
-
-const handleLogout = () => {
-  // Implement logout logic here
 };
 
 export default Nav;

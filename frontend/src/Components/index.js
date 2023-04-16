@@ -6,3 +6,4 @@ export { default as ThirdProgressBarForm } from "./ThirdProgressBarForm";
 export { default as RoleSelection } from "./RoleSelection";
 export { default as Calendly } from "./Calendly";
 export { default as MentorshipType } from "./MentorshipType"
+export { default as LandingPage } from "./LandingPage";
