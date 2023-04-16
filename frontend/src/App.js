@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./Context/AuthContext";
 import {
-  RoleSelection,
+  TitleSelection,
   LoginModal,
   SignupModal,
   SecondProgressBarForm,
@@ -11,6 +11,7 @@ import {
   ProgressBarForm,
   Calendly,
   MentorshipType
+  IndustrySelection,
   LandingPage,
 } from "./Components";
 import MatchFlow from "./constants/MatchFlow";
@@ -36,7 +37,7 @@ const App = () => {
         <Route
           path="/mentor-flow-1"
           element={
-            <RoleSelection
+            <TitleSelection
               matchedWith="mentee"
               question={MatchFlow.mentorQues1}
             />
@@ -45,7 +46,7 @@ const App = () => {
         <Route
           path="/mentee-flow-1"
           element={
-            <RoleSelection
+            <TitleSelection
               matchedWith="mentor"
               question={MatchFlow.menteeQues1}
             />
@@ -67,6 +68,22 @@ const App = () => {
           question={MatchFlow.menteeQues2}
         />
         } />
+        <Route path="/mentor-flow-2" 
+        element={
+        <IndustrySelection 
+        matchedWith="mentee"
+        question={MatchFlow.mentorQues2} 
+        />
+        }
+        />
+         <Route path="/mentee-flow-2" 
+         element={
+         <IndustrySelection
+          matchedWith="mentor"
+          question={MatchFlow.menteeQues2} 
+          />
+        } 
+        />
         <Route path="/mentor-flow-4" element={<Calendly />} />
       </Routes>
     </AuthProvider>

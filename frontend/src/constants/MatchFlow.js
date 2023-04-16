@@ -5,6 +5,8 @@ const MatchFlow = {
     "menteeQues1": "What role are you interested in pursuing?",
     "mentorQues2": "Pick up to 3 areas where you'd like to provide mentorship",
     "menteeQues2": "In what areas do you need mentorship?"
+    "mentorQues2": "In which industries do you have experience?",
+    "menteeQues2": ""
 };
 
 export default MatchFlow;
