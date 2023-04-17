@@ -18,7 +18,9 @@ const Dashboard = () => {
           <h2>The talented mentors who have been matched with you</h2>
           <h3>Book a chat with awesome mentors!</h3>
         </div>
-        <MatchCard />
+        <div className="cardsContainer">
+          <MatchCard />
+        </div>
         <Footer />
       </div>
     </>

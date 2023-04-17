@@ -8,7 +8,7 @@ export default function Footer() {
     <>
       <footer className="sticky-footer" style={{ backgroundColor: "#EDEFF1" }}>
         <div className="firstHalf">
-          <h1 className="logo">Logo</h1>
+          <h1 className="logo">TechTonic</h1>
           <p className="text">
             Discover your ideal mentor and unlock your dream job!
           </p>

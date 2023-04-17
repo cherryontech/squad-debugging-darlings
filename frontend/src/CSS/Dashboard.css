@@ -4,3 +4,8 @@
     margin-left: 20%;
 
 }
+.cardsContainer {
+    display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+}

@@ -36,7 +36,9 @@
     border: none;
         margin-right: 9%;
         background-color: #D9D9D9;
-        width: 10%;
+        width: 211px;
+            height: 52px;
         font-size: 36px;
+        text-align: center;
 
 }

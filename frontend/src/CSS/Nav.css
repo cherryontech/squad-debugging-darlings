@@ -21,7 +21,8 @@ a.no-underline:hover {
 width: 211px;
   height: 52px;
   font-size: 36px;
- color: black
+ color: black;
+text-align: center;
 }
 
 .buttons {
