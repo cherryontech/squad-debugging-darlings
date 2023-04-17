@@ -1,18 +1,23 @@
-import "./App.css";
 import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./Context/AuthContext";
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
 import {
-  RoleSelection,
-  LoginModal,
-  SignupModal,
-  SecondProgressBarForm,
-  ThirdProgressBarForm,
-  ProgressBarForm,
   Calendly,
+  IndustrySelection,
   LandingPage,
+<<<<<<< HEAD
   Dashboard,
+=======
+  LoginModal,
+  MentorshipType,
+  ProgressBarForm,
+  SecondProgressBarForm,
+  SignupModal,
+  ThirdProgressBarForm,
+  TitleSelection,
+>>>>>>> main
 } from "./Components";
+import { AuthProvider } from "./Context/AuthContext";
 import MatchFlow from "./constants/MatchFlow";
 
 const App = () => {
@@ -36,7 +41,7 @@ const App = () => {
         <Route
           path="/mentor-flow-1"
           element={
-            <RoleSelection
+            <TitleSelection
               matchedWith="mentee"
               question={MatchFlow.mentorQues1}
             />
@@ -45,13 +50,49 @@ const App = () => {
         <Route
           path="/mentee-flow-1"
           element={
-            <RoleSelection
+            <TitleSelection
               matchedWith="mentor"
               question={MatchFlow.menteeQues1}
             />
           }
         />
+<<<<<<< HEAD
         <Route path="/mentee-flow-4" element={<Dashboard />} />
+=======
+        <Route path="/mentor-flow-2"
+          element={
+            <IndustrySelection
+              matchedWith="mentee"
+              question={MatchFlow.mentorQues2}
+            />
+          }
+        />
+        <Route path="/mentee-flow-2"
+          element={
+            <IndustrySelection
+              matchedWith="mentor"
+              question={MatchFlow.menteeQues2}
+            />
+          }
+        />
+        <Route
+          path="/mentor-flow-3"
+          element={
+            <MentorshipType
+              matchedWith="mentee"
+              question={MatchFlow.mentorQues3}
+            />
+          } />
+        <Route
+          path="/mentee-flow-3"
+          element={
+            <MentorshipType
+              matchedWith="mentor"
+              question={MatchFlow.menteeQues3}
+            />
+          } />
+
+>>>>>>> main
         <Route path="/mentor-flow-4" element={<Calendly />} />
       </Routes>
     </AuthProvider>
