@@ -18,16 +18,18 @@ const MentorCard = ({ role, user }) => {
       </div>
       <div className="industryDiv">
         <p className="bold-text">Industry</p>
-        <p> {user.industries}</p>
+        <p> {user.industry.join(" ")}</p>
       </div>
       <div className="strengthDiv">
         <p className="bold-text">Strength</p>
-        <p>{user.strengths.join(" ")}</p>
+        <p>{user.mentorship.join(" ")}</p>
       </div>
       {role === "Mentee" ? (
-        <button className="clickMe" disabled>
-          Book chat
-        </button>
+        <a href={user.calendly}>
+          <button className="clickMe" disabled>
+            Book chat
+          </button>
+        </a>
       ) : (
         <></>
       )}
@@ -36,14 +38,34 @@ const MentorCard = ({ role, user }) => {
 };
 
 export default function MatchCard() {
-  // const { token } = useContext(AuthContext);
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0NWEwMjc4ZS0xMmEzLTQ3YWEtYWRiMy0yNWNjZmQzYWJmY2YiLCJpYXQiOjE2ODE2NjMzNjZ9.gbUJqmMcCuQH5VbkUtqGBHhyceT8PKqZbrvQeknlNxc";
+  const { token } = useContext(AuthContext);
+
   const decoded = jwt_decode(token);
   const [userId, setUserId] = useState(decoded.userId);
+  const [role, setRole] = useState("");
   const [matchedUsers, setMatchedUsers] = useState([]);
 
-  const getMatches = useCallback(async () => {
+  const getUserProfile = async () => {
+    try {
+      let config = {
+        method: "get",
+        maxBodyLength: Infinity,
+        url: `${api.users.userProfile}/${userId}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      };
+      const response = await axios.request(config);
+
+      const { role } = response.data;
+      setRole(role);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const getMatches = async () => {
     try {
       let config = {
         method: "get",
@@ -62,21 +84,18 @@ export default function MatchCard() {
     } catch (error) {
       console.error(error);
     }
-  }, [setMatchedUsers, token]);
+  };
 
   useEffect(() => {
     getMatches();
-  }, [getMatches]);
+    getUserProfile();
+  }, []);
   console.log(matchedUsers);
   return (
     <>
       {matchedUsers.length > 0 ? (
         matchedUsers.map((matchedUser) => (
-          <MentorCard
-            key={matchedUser.userId}
-            role={matchedUser.role}
-            user={matchedUser}
-          />
+          <MentorCard key={matchedUser.userId} role={role} user={matchedUser} />
         ))
       ) : (
         <p>No matched users found</p>

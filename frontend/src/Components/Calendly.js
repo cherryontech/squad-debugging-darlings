@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { makeStyles } from "@mui/styles";
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Nav from "./Nav";
 import { LinearDeterminate } from "./ProgressBar";
 
@@ -27,12 +27,12 @@ const useStyles = makeStyles({
 
 const Calendly = () => {
   const classes = useStyles();
+  const navigate = useNavigate();
   const { token } = useContext(AuthContext);
   const decoded = jwt_decode(token);
   const [userId, setUserId] = useState(decoded.userId);
   const [calendly, setCalendly] = useState("");
   const [isValid, setIsValid] = useState(false);
-
 
   const getUserProfile = async () => {
     try {
@@ -84,7 +84,7 @@ const Calendly = () => {
         data: data,
       };
       await axios.request(config);
-      // move to next step of questionnaire
+      navigate("/dashboard");
     } catch (error) {
       console.error(error);
     }
@@ -110,24 +110,28 @@ const Calendly = () => {
             sx={{ width: "671.85px" }}
           />
           <p>
-            <a className={classes.anchor} href="https://calendly.com/" target="_blank">
+            <a
+              className={classes.anchor}
+              href="https://calendly.com/"
+              target="_blank"
+            >
               What is Calendly?
             </a>
           </p>
 
           <Box display="flex" justifyContent="space-evenly" mt={"15pt"}>
             <Link to="/mentor-flow-3" style={{ textDecoration: "none" }}>
-            <Button
-              className={classes.button}
-              variant="outlined"
-              style={{
-                backgroundColor: "white",
-                border: "3px solid #027800",
-                color: "green",
-              }}
-            >
-              Back
-            </Button>
+              <Button
+                className={classes.button}
+                variant="outlined"
+                style={{
+                  backgroundColor: "white",
+                  border: "3px solid #027800",
+                  color: "green",
+                }}
+              >
+                Back
+              </Button>
             </Link>
             <Button
               className={classes.button}

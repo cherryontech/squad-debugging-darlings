@@ -1,10 +1,10 @@
-const baseURL = "https://mentor-mentee-matching-backend.onrender.com";
+const baseURL = "http://localhost:3000";
 
 export const api = {
-    users: {
-        signup: `${baseURL}/users/signup`,
-        signin: `${baseURL}/users/signin`,
-        userProfile: `${baseURL}/users/userProfile`,
-        match: `${baseURL}/users/lists`,
-    }
-}
+  users: {
+    signup: `${baseURL}/users/signup`,
+    signin: `${baseURL}/users/signin`,
+    userProfile: `${baseURL}/users/userProfile`,
+    match: `${baseURL}/users/lists`,
+  },
+};

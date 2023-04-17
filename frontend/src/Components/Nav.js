@@ -7,7 +7,9 @@ const Nav = ({ showLogoutButton, showLoginButton, showGetStartedButton }) => {
 
   return (
     <div className="nav">
-      <h1 className="placeholder-logo">Logo</h1>
+      <a href="/" className="no-underline">
+        <h1 className="placeholder-logo">TechTonic</h1>
+      </a>
 
       <div className="the-button-div">
         {showLogoutButton && (
