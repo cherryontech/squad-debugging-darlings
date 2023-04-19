@@ -42,7 +42,6 @@ const LoginModal = ({ alertMsg, setAlertMsg }) => {
           window.reload;
         } else {
           login(dataToken);
-          console.log(dataToken);
           navigate("/setup-profile-1");
         }
       })

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useCallback } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "../CSS/MatchCard.css";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
@@ -6,7 +6,6 @@ import { AuthContext } from "../Context/AuthContext";
 import { api } from "../api/api";
 
 const MentorCard = ({ role, user }) => {
-  console.log({ role, user });
   return (
     <div className="card">
       <div className="nameDiv">
@@ -25,8 +24,8 @@ const MentorCard = ({ role, user }) => {
         <p>{user.mentorship.join(" ")}</p>
       </div>
       {role === "Mentee" ? (
-        <a href={user.calendly}>
-          <button className="clickMe" disabled>
+        <a href={user.calendly} target="_blank">
+          <button className="clickMe">
             Book chat
           </button>
         </a>
@@ -77,9 +76,7 @@ export default function MatchCard() {
         },
       };
       const response = await axios.request(config);
-      console.log(response);
       const matchingUsers = response.data;
-      console.log(matchingUsers);
       setMatchedUsers(matchingUsers);
     } catch (error) {
       console.error(error);
@@ -91,7 +88,6 @@ export default function MatchCard() {
     getUserProfile();
   }, []);
 
-  console.log(matchedUsers);
   return (
     <>
       {matchedUsers.length > 0 ? (

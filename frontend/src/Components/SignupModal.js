@@ -32,7 +32,6 @@ const SignupModal = () => {
   const validatePassword = (value) => {
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
     setPasswordError(!passwordRegex.test(value));
-    console.log(passwordError);
   };
 
   const showLoginModal = (msg) => {
