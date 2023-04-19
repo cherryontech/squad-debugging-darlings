@@ -1,11 +1,10 @@
 .card {
     width: 440px;
-        height: 422px;
+        height: 375px;
 
     border: 2px solid #027800;
     border-radius: 15px;
-    padding: 3%;
-    margin: 2%;
+    margin: none;
 }
 
 .bold-text {

@@ -90,6 +90,7 @@ export default function MatchCard() {
     getMatches();
     getUserProfile();
   }, []);
+
   console.log(matchedUsers);
   return (
     <>
