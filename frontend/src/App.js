@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import {
   Calendly,
+  Dashboard,
   IndustrySelection,
   LandingPage,
   LoginModal,
@@ -52,7 +53,8 @@ const App = () => {
             />
           }
         />
-        <Route path="/mentor-flow-2"
+        <Route
+          path="/mentor-flow-2"
           element={
             <IndustrySelection
               matchedWith="mentee"
@@ -60,7 +62,8 @@ const App = () => {
             />
           }
         />
-        <Route path="/mentee-flow-2"
+        <Route
+          path="/mentee-flow-2"
           element={
             <IndustrySelection
               matchedWith="mentor"
@@ -75,7 +78,8 @@ const App = () => {
               matchedWith="mentee"
               question={MatchFlow.mentorQues3}
             />
-          } />
+          }
+        />
         <Route
           path="/mentee-flow-3"
           element={
@@ -83,9 +87,11 @@ const App = () => {
               matchedWith="mentor"
               question={MatchFlow.menteeQues3}
             />
-          } />
+          }
+        />
 
         <Route path="/mentor-flow-4" element={<Calendly />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </AuthProvider>
   );

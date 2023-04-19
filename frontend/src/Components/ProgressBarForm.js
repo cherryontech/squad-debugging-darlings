@@ -72,9 +72,9 @@ const ProgressBarForm = () => {
         maxBodyLength: Infinity,
         url: `${api.users.userProfile}/${userId}`,
         headers: {
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
-        withCredentials: true,
         data: data,
       };
       await axios.request(config);

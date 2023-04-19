@@ -7,13 +7,16 @@ const Nav = ({ showLogoutButton, showLoginButton, showGetStartedButton }) => {
 
   return (
     <div className="nav">
-      <h1 className="placeholder-logo">Logo</h1>
-      {showLogoutButton && (
-        <button className="buttons" onClick={() => navigate("/signup")}>
-          Logout
-        </button>
-      )}
+      <a href="/" className="no-underline">
+        <h1 className="placeholder-logo">TechTonic</h1>
+      </a>
+
       <div className="the-button-div">
+        {showLogoutButton && (
+          <button className="buttons" onClick={() => navigate("/signup")}>
+            Logout
+          </button>
+        )}
         {showLoginButton && (
           <button className="buttons" onClick={() => navigate("/login")}>
             Login

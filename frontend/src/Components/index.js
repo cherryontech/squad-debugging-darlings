@@ -8,3 +8,4 @@ export { default as Calendly } from "./Calendly";
 export { default as MentorshipType } from "./MentorshipType"
 export { default as IndustrySelection } from "./IndustrySelection"
 export { default as LandingPage } from "./LandingPage";
+export { default as Dashboard } from "./Dashboard";
