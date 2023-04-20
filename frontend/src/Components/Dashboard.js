@@ -9,19 +9,6 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { api } from "../api/api";
 
-// const Title = ({ role }) => {
-//   return (
-//     <div className="exclamation">
-//       <h2>
-//         The talented {role === "mentee" ? "mentors" : "mentees"} who have been
-//         matched with you
-//       </h2>
-//       <h3>
-//         Book a chat with awesome {role === "mentee" ? "mentors" : "mentees"}!
-//       </h3>
-//     </div>
-//   );
-// };
 const Dashboard = () => {
   const { token } = useContext(AuthContext);
 
