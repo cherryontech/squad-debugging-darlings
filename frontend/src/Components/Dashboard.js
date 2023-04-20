@@ -4,19 +4,67 @@ import MatchCard from "../common/MatchCard";
 import Footer from "./Footer";
 import "../CSS/Dashboard.css";
 
-// import { AuthContext } from "../Context/AuthContext";
-// import axios from "axios";
-// import jwt_decode from "jwt-decode";
-// import { api } from "../api/api";
+import { AuthContext } from "../Context/AuthContext";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+import { api } from "../api/api";
 
+// const Title = ({ role }) => {
+//   return (
+//     <div className="exclamation">
+//       <h2>
+//         The talented {role === "mentee" ? "mentors" : "mentees"} who have been
+//         matched with you
+//       </h2>
+//       <h3>
+//         Book a chat with awesome {role === "mentee" ? "mentors" : "mentees"}!
+//       </h3>
+//     </div>
+//   );
+// };
 const Dashboard = () => {
+  const { token } = useContext(AuthContext);
+
+  const decoded = jwt_decode(token);
+  const [userId, setUserId] = useState(decoded.userId);
+  const [role, setRole] = useState("");
+
+  const getUserProfile = async () => {
+    try {
+      let config = {
+        method: "get",
+        maxBodyLength: Infinity,
+        url: `${api.users.userProfile}/${userId}`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      };
+      const response = await axios.request(config);
+
+      const { role } = response.data;
+      setRole(role);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    getUserProfile();
+  }, []);
+  console.log(role);
   return (
     <>
       <Nav showLogoutButton={true} />
       <div className="matchesContainer">
         <div className="exclamation">
-          <h2>The talented mentors who have been matched with you</h2>
-          <h3>Book a chat with awesome mentors!</h3>
+          <h2>
+            The talented {role === "mentor" ? "mentees" : "mentors"} who have
+            been matched with you
+          </h2>
+          <h3>
+            Book a chat with awesome {role === "mentor" ? "mentees" : "mentors"}
+            !
+          </h3>
         </div>
         <div className="cardsContainer">
           <MatchCard />

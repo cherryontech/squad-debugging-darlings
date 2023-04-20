@@ -20,11 +20,11 @@ const MentorCard = ({ role, user }) => {
       </div>
       <div className="industryDiv">
         <p className="bold-text">Industry</p>
-        <p>#{user.industry.join(" ")}</p>
+        <p>#{user.industry.join(" #")}</p>
       </div>
       <div className="strengthDiv">
         <p className="bold-text">Strength</p>
-        <p>#{user.mentorship.join(" ")}</p>
+        <p>#{user.mentorship.join(" #")}</p>
       </div>
       {role === "Mentee" ? (
         <a href={user.calendly} target="_blank">
