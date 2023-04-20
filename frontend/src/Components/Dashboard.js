@@ -51,18 +51,18 @@ const Dashboard = () => {
   useEffect(() => {
     getUserProfile();
   }, []);
-  console.log(role);
+  console.log(role, "lalalal");
   return (
     <>
       <Nav showLogoutButton={true} />
       <div className="matchesContainer">
         <div className="exclamation">
           <h2>
-            The talented {role === "mentor" ? "mentees" : "mentors"} who have
+            The talented {role === "Mentor" ? "mentees" : "mentors"} who have
             been matched with you
           </h2>
           <h3>
-            Book a chat with awesome {role === "mentor" ? "mentees" : "mentors"}
+            Book a chat with awesome {role === "Mentor" ? "mentees" : "mentors"}
             !
           </h3>
         </div>
