@@ -6,8 +6,8 @@
 }
 .cardsContainer {
     display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
   
 }

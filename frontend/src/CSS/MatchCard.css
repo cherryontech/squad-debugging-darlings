@@ -1,10 +1,10 @@
 .card {
-    width: 440px;
-        height: 375px;
-
+    width: 332px;
+    height: 330px;
     border: 2px solid #027800;
     border-radius: 15px;
-    margin: none;
+    margin: 1%;
+    padding-bottom: 2%;
 }
 
 .bold-text {
