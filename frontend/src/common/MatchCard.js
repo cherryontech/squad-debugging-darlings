@@ -4,7 +4,7 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { AuthContext } from "../Context/AuthContext";
 import { api } from "../api/api";
-
+import suitcase from "../assets/images/suitcase.png";
 const MentorCard = ({ role, user }) => {
   return (
     <div className="card">
@@ -12,22 +12,23 @@ const MentorCard = ({ role, user }) => {
         <p className="bold-text">
           {user.firstName} {user.lastName}
         </p>
-        <p>{user.pronouns}</p>
-        <p>{user.title}</p>
+        <p className="pronouns">{user.pronouns}</p>
+        <div className="suitcaseDiv">
+          <img className="suitcase" src={suitcase}></img>
+          <p>{user.title}</p>
+        </div>
       </div>
       <div className="industryDiv">
         <p className="bold-text">Industry</p>
-        <p> {user.industry.join(" ")}</p>
+        <p>#{user.industry.join(" #")}</p>
       </div>
       <div className="strengthDiv">
         <p className="bold-text">Strength</p>
-        <p>{user.mentorship.join(" ")}</p>
+        <p>#{user.mentorship.join(" #")}</p>
       </div>
       {role === "Mentee" ? (
         <a href={user.calendly} target="_blank">
-          <button className="clickMe">
-            Book chat
-          </button>
+          <button className="clickMe">Book chat</button>
         </a>
       ) : (
         <></>

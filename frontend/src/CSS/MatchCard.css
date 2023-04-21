@@ -1,12 +1,15 @@
 .card {
-    width: 440px;
-        height: 375px;
-
+    width: 332px;
+    height: 330px;
     border: 2px solid #027800;
     border-radius: 15px;
-    margin: none;
+    margin: 1%;
+    padding-bottom: 2%;
 }
-
+.pronouns{
+    font-size: 14px;
+    margin-bottom: 0%;
+}
 .bold-text {
     font-weight: bold;
 }
@@ -22,4 +25,15 @@
     border: none;
     margin: none;
     margin-left: 25%;
+}
+.suitcaseDiv{
+    display: flex;
+    align-items: center;
+    margin-top: 0%;
+}
+
+.suitcase {
+    height: 19px;
+    width: 20px;
+    margin-right: 1%;
 }

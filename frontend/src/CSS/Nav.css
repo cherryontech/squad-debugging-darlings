@@ -17,11 +17,11 @@ a.no-underline:hover {
 .placeholder-logo {
   border: none;
   margin-left: 10px;
-  background-color: #D9D9D9;
+  
 width: 211px;
   height: 52px;
   font-size: 36px;
- color: black;
+ color: green;
 text-align: center;
 }
 
