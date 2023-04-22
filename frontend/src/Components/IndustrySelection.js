@@ -4,7 +4,6 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "../CSS/IndustrySelection.css";
 import "../CSS/SecondProgressBarForm.css";
 import { AuthContext } from "../Context/AuthContext";
 import { api } from "../api/api";
@@ -63,7 +62,10 @@ const IndustrySelection = ({ question, matchedWith }) => {
   }, []);
 
   const handleSelectIndustry = (industry) => {
-    if (selectedIndustries.length < 5 && !selectedIndustries.includes(industry)) {
+    if (
+      selectedIndustries.length < 5 &&
+      !selectedIndustries.includes(industry)
+    ) {
       setSelectedIndustries([...selectedIndustries, industry]);
     }
   };
@@ -114,7 +116,8 @@ const IndustrySelection = ({ question, matchedWith }) => {
         <LinearDeterminate page={2} />
         <h1 className="welcome">Let's get you matched!</h1>
         <h2 className="tellus">
-          Answer the following questions to get matched with a compatible {matchedWith}.
+          Answer the following questions to get matched with a compatible{" "}
+          {matchedWith}.
         </h2>
         <p>{question} Select up to 5 industries of interest!</p>
         <div className={classes.root}>
@@ -123,12 +126,41 @@ const IndustrySelection = ({ question, matchedWith }) => {
               <Chip
                 label="I'm open to any industries"
                 clickable
-                onClick={isAnyIndustriesSelected ? handleDeselectAnyIndustries : handleSelectAnyIndustries}
+                onClick={
+                  isAnyIndustriesSelected
+                    ? handleDeselectAnyIndustries
+                    : handleSelectAnyIndustries
+                }
                 color={isAnyIndustriesSelected ? "success" : undefined}
               />
             </Box>
-            <Box display="flex" flexWrap="wrap" justifyContent="flex-start" alignItems="center" m={-2} p={2} spacing={2}>
-              {["Healthcare", "Finance", "Web3", "Ecommerce", "Education", "Game", "Robotics", "B2B", "B2C", "Sports", "Civic tech", "Cloud", "AI", "loT", "Cyber Security", "Network Admin"].map((industry) => (
+            <Box
+              display="flex"
+              flexWrap="wrap"
+              justifyContent="flex-start"
+              alignItems="center"
+              m={-2}
+              p={2}
+              spacing={2}
+            >
+              {[
+                "Healthcare",
+                "Finance",
+                "Web3",
+                "Ecommerce",
+                "Education",
+                "Game",
+                "Robotics",
+                "B2B",
+                "B2C",
+                "Sports",
+                "Civic tech",
+                "Cloud",
+                "AI",
+                "loT",
+                "Cyber Security",
+                "Network Admin",
+              ].map((industry) => (
                 <Box key={industry} m={1}>
                   <Chip
                     label={industry}
@@ -139,7 +171,11 @@ const IndustrySelection = ({ question, matchedWith }) => {
                         ? () => handleDeleteIndustry(industry)
                         : undefined
                     }
-                    color={selectedIndustries.includes(industry) ? "success" : undefined}
+                    color={
+                      selectedIndustries.includes(industry)
+                        ? "success"
+                        : undefined
+                    }
                     disabled={isAnyIndustriesSelected}
                   />
                 </Box>
@@ -149,7 +185,10 @@ const IndustrySelection = ({ question, matchedWith }) => {
         </div>
 
         <Box display="flex" justifyContent="space-evenly" mt={"15pt"}>
-          <Link to={role === "Mentor" ? "/mentor-flow-1" : "/mentee-flow-1"} style={{ textDecoration: "none" }}>
+          <Link
+            to={role === "Mentor" ? "/mentor-flow-1" : "/mentee-flow-1"}
+            style={{ textDecoration: "none" }}
+          >
             <Button
               className={classes.button}
               variant="outlined"
@@ -166,10 +205,18 @@ const IndustrySelection = ({ question, matchedWith }) => {
             onClick={handleContinueClick}
             className={classes.button}
             variant="contained"
-            disabled={!isAnyIndustriesSelected && selectedIndustries.length === 0}
+            disabled={
+              !isAnyIndustriesSelected && selectedIndustries.length === 0
+            }
             style={{
-              backgroundColor: isAnyIndustriesSelected || selectedIndustries.length > 0 ? "green" : "",
-              color: isAnyIndustriesSelected || selectedIndustries.length > 0 ? "white" : ""
+              backgroundColor:
+                isAnyIndustriesSelected || selectedIndustries.length > 0
+                  ? "green"
+                  : "",
+              color:
+                isAnyIndustriesSelected || selectedIndustries.length > 0
+                  ? "white"
+                  : "",
             }}
           >
             Continue

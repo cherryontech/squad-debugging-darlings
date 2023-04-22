@@ -1,20 +1,14 @@
-*{
-font-family: 'SF Pro', sans-serif;
-
+* {
+  font-family: "SF Pro", sans-serif;
 }
 .modal {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0; */
   width: 100%;
   height: 100%;
   background-color: white;
   position: relative;
-
 }
 
 .login-btn-div {
@@ -22,15 +16,11 @@ font-family: 'SF Pro', sans-serif;
   justify-content: space-evenly;
 }
 
-
 .modal-content-login {
- background-color: #fff;
+  background-color: #fff;
   padding: 20px;
-  /* border-radius: 5px;
-  box-shadow: 0px 0px 10px #aaa; */
-  /* position: relative; */
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: flex;
 }
 
@@ -41,26 +31,24 @@ font-family: 'SF Pro', sans-serif;
 .form-group-login label {
   display: block;
   margin-bottom: 5px;
-  
 }
 
 .form-group-login input {
   box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 5pt;
-    gap: 12px;
-    width: 672px;
-    height: 56px;
-    background: #FFFFFF;
-    border: 1px solid #9D9D9D;
-    border-radius: 10px;
-    flex: none;
-    order: 1;
-    align-self: stretch;
-    flex-grow: 0;
-   
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5pt;
+  gap: 12px;
+  width: 672px;
+  height: 56px;
+  background: #ffffff;
+  border: 1px solid #9d9d9d;
+  border-radius: 10px;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
 }
 
 .form-group-login input:focus {
@@ -70,42 +58,32 @@ font-family: 'SF Pro', sans-serif;
 
 .title-login h1 {
   width: 100%;
-    height: 48px;
-  
-    /* Heading one */
-  
-    font-family: 'SF Pro', sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 40px;
-    line-height: 48px;
-    /* identical to box height, or 120% */
-  
-    display: flex;
-    align-items: center;
-    text-align: center;
-  
-    color: #000000;
-
+  height: 48px;
+  font-family: "SF Pro", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 48px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #000000;
 }
 
 .title-login p {
-  /* margin-bottom: 10px;
-  font-size: 16px; */
   width: 100%;
   height: 40px;
   font-weight: 700;
-    font-size: 32px;
-    line-height: 40px;
+  font-size: 32px;
+  line-height: 40px;
 }
+
 .reminder-error p {
   font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    position: absolute;
-   
-    
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  position: absolute;
 }
 
 .login-button {
@@ -119,15 +97,15 @@ font-family: 'SF Pro', sans-serif;
 }
 
 .reminder-error {
-  background-color: rgba(226, 103, 81, 0.4);;
-  opacity: .9;
+  background-color: rgba(226, 103, 81, 0.4);
+  opacity: 0.9;
   height: 72px;
-    width: 674px;
-    left: 0px;
-    top: 0px;
-    border-radius: 0px;
-    
+  width: 674px;
+  left: 0px;
+  top: 0px;
+  border-radius: 0px;
 }
+
 .login-button-enabled {
   display: flex;
   flex-direction: row;
@@ -146,11 +124,11 @@ font-family: 'SF Pro', sans-serif;
   line-height: 24px;
   letter-spacing: -0.408px;
   border: none;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .login-button-disabled {
-display: flex;
+  display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
@@ -159,15 +137,15 @@ display: flex;
   text-align: center;
   width: 327px;
   height: 80px;
-  background: #DBDBDC;
+  background: #dbdbdc;
   border-radius: 10px;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-    letter-spacing: -0.408px;
-    border: none;
-   color: #FFFFFF;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.408px;
+  border: none;
+  color: #ffffff;
 }
 
 .login-account p {
@@ -186,28 +164,23 @@ display: flex;
 }
 
 .register-account {
-  
-    width: 100%;
-    height: 21px;
-    left: 567px;
-    top: 777px;
-  
-    font-family: 'SF Pro';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 21px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-  
-    color: #000000;
+  width: 100%;
+  height: 21px;
+  left: 567px;
+  top: 777px;
+  font-family: "SF Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  color: #000000;
 }
 
-
 @media only screen and (min-width: 1440px) {
-
   /* Add your desktop styles here */
   .modal {
     margin: 0 auto;
@@ -216,7 +189,6 @@ display: flex;
 
 /* Tablet styles */
 @media only screen and (min-width: 768px) {
-
   /* Add your tablet styles here */
   .modal {
     margin: 0 auto;
@@ -225,9 +197,8 @@ display: flex;
 
 /* Mobile styles */
 @media only screen and (min-width: 320px) {
-
   /* Add your mobile styles here */
-  .modal{
+  .modal {
     margin: 0 auto;
   }
 }

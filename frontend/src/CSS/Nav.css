@@ -1,6 +1,6 @@
 .nav {
   border-bottom: 1px solid #333;
-  display:flex;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
@@ -17,27 +17,25 @@ a.no-underline:hover {
 .placeholder-logo {
   border: none;
   margin-left: 10px;
-  
-width: 211px;
+  width: 211px;
   height: 52px;
   font-size: 36px;
- color: green;
-text-align: center;
+  color: green;
+  text-align: center;
 }
 
 .buttons {
-  background: #FFFFFF;
-    border: 3px solid #027800;
-    border-radius: 10px;
-    color: #027800;
-    width: 189px;
-      height: 44px;
-      left: 1215px;
-      top: 20px;
+  background: #ffffff;
+  border: 3px solid #027800;
+  border-radius: 10px;
+  color: #027800;
+  width: 189px;
+  height: 44px;
+  left: 1215px;
+  top: 20px;
 }
 .buttons:hover {
   background: rgb(251, 249, 249);
- 
   cursor: pointer;
 }
 
@@ -46,21 +44,19 @@ text-align: center;
   background: green;
   border-radius: 10px;
   width: 189px;
-    height: 44px;
-    left: 1215px;
-    top: 20px;
-    border: none;
-    margin: 2%;
+  height: 44px;
+  left: 1215px;
+  top: 20px;
+  border: none;
+  margin: 2%;
 }
 .get-started-button:hover {
-background: darkgreen;
+  background: darkgreen;
   cursor: pointer;
 }
 
-.the-button-div{
+.the-button-div {
   display: flex;
   flex-direction: row;
- align-items: center;
-
-
+  align-items: center;
 }
