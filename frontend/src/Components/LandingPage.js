@@ -146,7 +146,7 @@ export default function LandingPage() {
         </div>
         <div className="container-four">
           <div className="header">
-            <h2>FAQ</h2>
+            <h2 className="FAQ">FAQ</h2>
           </div>
           <div className="explanation">
             <div className="container">
