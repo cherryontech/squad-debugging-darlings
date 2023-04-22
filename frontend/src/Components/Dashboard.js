@@ -38,7 +38,7 @@ const Dashboard = () => {
   useEffect(() => {
     getUserProfile();
   }, []);
-  console.log(role, "lalalal");
+
   return (
     <>
       <Nav showLogoutButton={true} />
