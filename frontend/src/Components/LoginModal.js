@@ -22,7 +22,7 @@ const LoginModal = ({ alertMsg, setAlertMsg }) => {
     setAlertMsg(location?.state?.msg);
   }, [email, password, setAlertMsg]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const requestOptions = {
       method: "POST",
@@ -32,20 +32,21 @@ const LoginModal = ({ alertMsg, setAlertMsg }) => {
         password,
       }),
     };
-    fetch(api.users.signin, requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        setAlertMsg(data.message);
+    try {
+      const response = await fetch(api.users.signin, requestOptions);
+      const data = await response.json();
+      setAlertMsg(data.message);
 
-        const dataToken = data.token;
-        if (!dataToken) {
-          window.reload;
-        } else {
-          login(dataToken);
-          navigate("/setup-profile-1");
-        }
-      })
-      .catch((error) => console.log(error));
+      const dataToken = data.token;
+      if (!dataToken) {
+        window.reload;
+      } else {
+        login(dataToken);
+        navigate("/setup-profile-1");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

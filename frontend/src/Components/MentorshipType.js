@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     borderRadius: "10px",
     textTransform: "none",
     fontSize: "20px",
-  }
+  },
 });
 
 const MentorshipType = ({ question, matchedWith }) => {
@@ -32,7 +32,8 @@ const MentorshipType = ({ question, matchedWith }) => {
   const decoded = jwt_decode(token);
   const [userId, setUserId] = useState(decoded.userId);
   const [role, setRole] = useState("");
-  const [isAnyMentorshipsSelected, setIsAnyMentorshipsSelected] = useState(false);
+  const [isAnyMentorshipsSelected, setIsAnyMentorshipsSelected] =
+    useState(false);
   const [selectedMentorships, setSelectedMentorships] = useState([]);
   const navigate = useNavigate();
 
@@ -62,7 +63,10 @@ const MentorshipType = ({ question, matchedWith }) => {
   }, []);
 
   const handleSelectMentorship = (mentorship) => {
-    if (selectedMentorships.length < 3 && !selectedMentorships.includes(mentorship)) {
+    if (
+      selectedMentorships.length < 3 &&
+      !selectedMentorships.includes(mentorship)
+    ) {
       setSelectedMentorships([...selectedMentorships, mentorship]);
     }
   };
@@ -110,17 +114,34 @@ const MentorshipType = ({ question, matchedWith }) => {
     <>
       <Nav showLogoutButton={true} />
       <div className="progress-bar-form-container">
-        <LinearDeterminate page={2} />
+        <LinearDeterminate page={3} />
         <h1 className="welcome">Let's get you matched!</h1>
         <h2 className="tellus">
-          Answer the following questions to get matched with a compatible {matchedWith}.
+          Answer the following questions to get matched with a compatible{" "}
+          {matchedWith}.
         </h2>
         <p>{question}</p>
         <div className={classes.root}>
           <div className="chipContainer">
-
-            <Box display="flex" flexWrap="wrap" justifyContent="flex-start" alignItems="center" m={-2} p={2} spacing={2}>
-              {["Technical Skills", "Networking", "Resume", "Portfolio", "General Career Guidance", "Imposter Syndrome", "Interviews", "Career Switching"].map((mentorship) => (
+            <Box
+              display="flex"
+              flexWrap="wrap"
+              justifyContent="flex-start"
+              alignItems="center"
+              m={-2}
+              p={2}
+              spacing={2}
+            >
+              {[
+                "Technical Skills",
+                "Networking",
+                "Resume",
+                "Portfolio",
+                "General Career Guidance",
+                "Imposter Syndrome",
+                "Interviews",
+                "Career Switching",
+              ].map((mentorship) => (
                 <Box key={mentorship} m={1}>
                   <Chip
                     label={mentorship}
@@ -131,7 +152,11 @@ const MentorshipType = ({ question, matchedWith }) => {
                         ? () => handleDeleteMentorship(mentorship)
                         : undefined
                     }
-                    color={selectedMentorships.includes(mentorship) ? "success" : undefined}
+                    color={
+                      selectedMentorships.includes(mentorship)
+                        ? "success"
+                        : undefined
+                    }
                     disabled={isAnyMentorshipsSelected}
                   />
                 </Box>
@@ -141,7 +166,10 @@ const MentorshipType = ({ question, matchedWith }) => {
         </div>
 
         <Box display="flex" justifyContent="space-evenly" mt={"15pt"}>
-          <Link to={role === "Mentor" ? "/mentor-flow-2" : "/mentee-flow-2"} style={{ textDecoration: "none" }}>
+          <Link
+            to={role === "Mentor" ? "/mentor-flow-2" : "/mentee-flow-2"}
+            style={{ textDecoration: "none" }}
+          >
             <Button
               className={classes.button}
               variant="outlined"
@@ -158,10 +186,18 @@ const MentorshipType = ({ question, matchedWith }) => {
             onClick={handleContinueClick}
             className={classes.button}
             variant="contained"
-            disabled={!isAnyMentorshipsSelected && selectedMentorships.length === 0}
+            disabled={
+              !isAnyMentorshipsSelected && selectedMentorships.length === 0
+            }
             style={{
-              backgroundColor: isAnyMentorshipsSelected || selectedMentorships.length > 0 ? "green" : "",
-              color: isAnyMentorshipsSelected || selectedMentorships.length > 0 ? "white" : ""
+              backgroundColor:
+                isAnyMentorshipsSelected || selectedMentorships.length > 0
+                  ? "green"
+                  : "",
+              color:
+                isAnyMentorshipsSelected || selectedMentorships.length > 0
+                  ? "white"
+                  : "",
             }}
           >
             {role === "Mentor" ? "Continue" : "Finish"}
