@@ -5,7 +5,7 @@
 
 ## 💿 <b>Technologies:</b>
 
-- <img alt="TypeScript" src="https://user-images.githubusercontent.com/25181517/117448384-f9e06d00-af3e-11eb-9e02-a05bead103cf.png" width ="20px"/> TypeScript
+
 - <img alt="React" src="https://user-images.githubusercontent.com/25181517/117448085-96eed600-af3e-11eb-9492-83a3a0fcbfb1.png" width="22px"/> React
 - <img alt="Express" src="https://user-images.githubusercontent.com/25181517/183576452-167273ef-bc96-48d1-bb36-5ddb57695960.png" width="25px"/> Express
 - <img alt="React Router" src="https://user-images.githubusercontent.com/102757890/188328033-172b27de-1636-4629-b997-2eadb33634ad.png" width="20px"/> React Router
