@@ -50,7 +50,7 @@ mongoose.connect(process.env.MONGO_URI || uri,{
   console.log('MongoDB connection error', err)
 });
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
   console.log(
     `welcome to Mentor-Mentee matching platform running on port: ${port}`
   );
