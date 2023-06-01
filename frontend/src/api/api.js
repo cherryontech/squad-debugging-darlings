@@ -1,4 +1,4 @@
-const baseURL = "https://mentor-mentee-matching-backend.onrender.com";
+const baseURL = "https://cot-tech-tonic.herokuapp.com";
 
 export const api = {
   users: {
