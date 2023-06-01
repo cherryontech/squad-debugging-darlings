@@ -77,6 +77,7 @@ export default function MatchCard() {
         },
       };
       const response = await axios.request(config);
+      console.log(response)
       const matchingUsers = response.data;
       setMatchedUsers(matchingUsers);
     } catch (error) {

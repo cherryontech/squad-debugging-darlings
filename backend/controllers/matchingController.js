@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const auth = require('../auth');
 const User = require("../models/User");
 
-const baseURL = process.env.BASE_URL || 'http://localhost:3000';
+const baseURL = process.env.BASE_URL || "https://cot-tech-tonic.herokuapp.com";
 
 // Matching algorithm
 router.get('/lists', auth, async (req, res) => {
