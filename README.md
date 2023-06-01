@@ -1,7 +1,7 @@
 <h1> Find Your Ideal Mentor with Our Cutting-Edge Web App</h1>
 <h2> Welcome to TechTonic, our mentor-mentee matching platform, designed exclusively for women and nonbinary individuals looking to build their careers in the tech industry. Our innovative web application connects you with experienced mentors who provide the guidance and support you need to thrive in this exciting field. </h2>
 <br>
-Check out the deployed site [here](https://main--cot-tech-tonic.netlify.app/)
+Check out the deployed site here --> https://main--cot-tech-tonic.netlify.app/
 
 
 <br>
