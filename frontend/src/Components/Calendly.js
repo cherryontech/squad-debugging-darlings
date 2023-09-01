@@ -114,6 +114,7 @@ const Calendly = () => {
               className={classes.anchor}
               href="https://calendly.com/"
               target="_blank"
+              aria-label="link to book a chat with calendy"
             >
               What is Calendly?
             </a>
