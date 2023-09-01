@@ -16,11 +16,11 @@ export default function Footer() {
         <div className="flexDiv">
           <div className="secondHalf">
             <div className="vectors">
-              <a href="https://twitter.com/cherryOnTech">
-                <img className="twitterImg" src={twitter}></img>
+              <a href="https://twitter.com/cherryOnTech"  aria-label="link to twitter">
+                <img className="twitterImg" src={twitter} alt="twitter"></img>
               </a>
-              <a href="https://www.linkedin.com/company/cherry-on-tech/?originalSubdomain=ca">
-                <img className="linkedInImg" src={linkedin}></img>
+              <a href="https://www.linkedin.com/company/cherry-on-tech/?originalSubdomain=ca"  aria-label="link to linkedin">
+                <img className="linkedInImg" src={linkedin} alt="linkedin"></img>
               </a>
             </div>
           </div>

@@ -37,7 +37,7 @@ export default function LandingPage() {
             </button>
           </div>
           <div>
-            <img className="inspireOthersImg" src={InspireOthers}></img>
+            <img className="inspireOthersImg" src={InspireOthers} alt="inspire"></img>
           </div>
         </div>
         <div className="container-two">
@@ -49,7 +49,7 @@ export default function LandingPage() {
             </p>
           </div>
           <div className="pictureAndBubblesDiv1">
-            <img className="writingImg" src={Writing}></img>
+            <img className="writingImg" src={Writing} alt="writing"></img>
             <div className="bubblesDiv">
               <div className="firstRow">
                 <div className="bubble">
@@ -125,7 +125,7 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
-            <img className="workHomeImg" src={workHome}></img>
+            <img className="workHomeImg" src={workHome} alt="work home"></img>
           </div>
         </div>
         <div className="container-three">

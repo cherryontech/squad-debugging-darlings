@@ -14,7 +14,7 @@ const MentorCard = ({ role, user }) => {
         </p>
         <p className="pronouns">{user.pronouns}</p>
         <div className="suitcaseDiv">
-          <img className="suitcase" src={suitcase}></img>
+          <img className="suitcase" src={suitcase} alt="suitcase"></img>
           <p>{user.title}</p>
         </div>
       </div>
@@ -27,7 +27,7 @@ const MentorCard = ({ role, user }) => {
         <p>#{user.mentorship.join(" #")}</p>
       </div>
       {role === "Mentee" ? (
-        <a href={user.calendly} target="_blank">
+        <a href={user.calendly} target="_blank" aria-label="link to book a chat with calendy">
           <button className="clickMe">Book chat</button>
         </a>
       ) : (

@@ -7,7 +7,7 @@ const Nav = ({ showLogoutButton, showLoginButton, showGetStartedButton }) => {
 
   return (
     <div className="nav">
-      <a href="/" className="no-underline">
+      <a href="/" className="no-underline" aria-label="click to go to the root">
         <h1 className="placeholder-logo">TechTonic</h1>
       </a>
 
